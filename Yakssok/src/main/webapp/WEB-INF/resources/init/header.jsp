@@ -32,11 +32,18 @@
             <li><a href="#">약품 정보 수정 건의</a></li>
           </ul>
         </li>
-        <li><a href="#">약국찾기</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="blue">약국찾기</font>&nbsp;<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="${pageContext.request.contextPath }/drugstore/current_loc">내 주변 약국</a></li>
+            <li class="divider"></li>
+            <li><a href="${pageContext.request.contextPath }/drugstore/allDay">연중무휴</a></li>
+            <li><a href="${pageContext.request.contextPath }/drugstore/night">심야약국</a></li>
+          </ul>
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="red">긴급상황</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">전국 24시 약국</a></li>
             <li><a href="#">편의점 상비약</a></li>
             <li><a href="#">응급처치</a></li>
           </ul>

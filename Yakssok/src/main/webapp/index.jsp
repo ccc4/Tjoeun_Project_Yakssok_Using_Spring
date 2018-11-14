@@ -80,7 +80,7 @@
 		        <div class="option">
 					<div>
 						<form onsubmit="searchPlaces(); return false;">
-							키워드 : <input type="text" value="종각역 약국" id="keyword" size="15"> 
+							키워드 : <input type="text" value="" id="keyword" size="15"> 
 							<button type="submit">검색하기</button> 
 		                </form>
 					</div>
@@ -109,7 +109,7 @@
 
 
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=769b0855ff503f0c21d8ca6171bac898&libraries=services"></script>
+
 <script type="text/javascript">
 
 	function test() {
@@ -125,7 +125,8 @@ var markers = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new daum.maps.LatLng(37.570967, 126.989478), // 지도의 중심좌표
+/*         center: new daum.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표 */
         level: 3 // 지도의 확대 레벨
     };  
 

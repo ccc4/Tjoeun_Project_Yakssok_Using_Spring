@@ -5,7 +5,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 <configuration>
  	<typeAliases>
- 		<!-- <typeAlias type="com.yakssok.model.Member" alias="member"/>
- 		<typeAlias type="com.yakssok.model.Board" alias="board"/> -->
+ 		<typeAlias type="com.yakssok.model.Drugstore" alias="drugstore"/>
+ 		<typeAlias type="com.yakssok.model.DrugstoreFS" alias="drugstoreFS"/>
+ 		<!-- <typeAlias type="com.yakssok.model.Board" alias="board"/> -->
  	</typeAliases>
  </configuration>
