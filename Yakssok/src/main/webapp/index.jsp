@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>약쏙</title>
 
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
 
@@ -61,6 +61,17 @@
 		</form>
 	</div> -->
 	
+	
+	
+	<div>
+		<span>로그인해주세요.</span>
+		<div>
+			<button type="button" onclick="${pageContext.request.contextPath}/member/login">로그인</button>
+			<button type="button" onclick="${pageContext.request.contextPath}/member/join">회원가입</button>
+		</div>
+	
+	</div>
+	
 	<div>
 		<div class="map_wrap" style="width:800px;height:400px; display: inline-block;">
 			<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -69,7 +80,7 @@
 		        <div class="option">
 					<div>
 						<form onsubmit="searchPlaces(); return false;">
-							키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+							키워드 : <input type="text" value="종각역 약국" id="keyword" size="15"> 
 							<button type="submit">검색하기</button> 
 		                </form>
 					</div>
