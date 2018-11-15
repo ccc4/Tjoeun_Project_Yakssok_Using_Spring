@@ -36,14 +36,16 @@
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 
 <div class="container">
+	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
+	<h2>내 주변 약국</h2>
+		
 	<div class="map_wrap">
-	    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-	    <ul id="category" style="display: none;">
+		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		<ul id="category" style="display: none;">
 	       <!--  <li id="BK9" data-order="0"> 
 	            <span class="category_bg bank"></span>
 	            은행

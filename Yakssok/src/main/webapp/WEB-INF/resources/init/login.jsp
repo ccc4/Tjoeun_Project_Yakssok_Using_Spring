@@ -8,8 +8,8 @@
 	<div style="float: right;">
 		<span>로그인해주세요.</span>
 		<div>
-			<button type="button" onclick="${pageContext.request.contextPath}/member/login">로그인</button>
-			<button type="button" onclick="${pageContext.request.contextPath}/member/join">회원가입</button>
+			<button class="btn btn-default" type="button" onclick="${pageContext.request.contextPath}/member/login">로그인</button>
+			<button class="btn btn-default" type="button" onclick="${pageContext.request.contextPath}/member/join">회원가입</button>
 		</div>
 	
 	</div>

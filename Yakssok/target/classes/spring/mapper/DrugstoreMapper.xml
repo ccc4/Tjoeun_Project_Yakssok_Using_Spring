@@ -6,19 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="DrugstoreMapper">
 	
 	<select id="firstValues" resultType="String">
-		SELECT first FROM drugstore_view GROUP BY first;
+		SELECT first FROM drugstore_allDay_view GROUP BY first;
 	</select>
 	
 	<select id="secondListAll" parameterType="String" resultType="drugstore">
-		SELECT * FROM drugstore_view WHERE second = #{second} ORDER BY name;
+		SELECT * FROM drugstore_allDay_view WHERE second = #{second} ORDER BY name;
 	</select>
 	
 	<select id="secondValues" parameterType="String" resultType="String">
-		SELECT second FROM drugstore_view WHERE first = #{first} GROUP BY second order by second
+		SELECT second FROM drugstore_allDay_view WHERE first = #{first} GROUP BY second order by second
 	</select>
 	
 	<select id="secondListOne" parameterType="drugstoreFS" resultType="drugstore">
-		SELECT * FROM drugstore_view WHERE first = #{first} AND second = #{second} ORDER BY second
+		SELECT * FROM drugstore_allDay_view WHERE first = #{first} AND second = #{second} ORDER BY second
 	</select>
 	
 	

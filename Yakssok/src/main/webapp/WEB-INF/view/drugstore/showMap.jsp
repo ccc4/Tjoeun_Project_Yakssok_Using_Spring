@@ -7,12 +7,14 @@
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
 </head>
 <body>
-<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 
 <div class="container">
+	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
-	<button type="button" onclick="history.back()">뒤로가기</button>
+	<h2>지도보기</h2>
+	
+	<button class="btn btn-default" type="button" onclick="history.back()">뒤로가기</button>
 	<p style="margin-top:12px">
 	    <em class="link">
 	        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
