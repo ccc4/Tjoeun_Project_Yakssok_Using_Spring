@@ -17,23 +17,25 @@ public class DrugstoreService {
 	@Autowired
 	private DrugstoreDAO dao;
 	
-	/*public List<Drugstore> firstList(String first) {
-		return dao.firstList(first);
-	}*/
-	
-	public List<Drugstore> secondList(DrugstoreFS fs) {
-		return dao.secondList(fs);
+	public List<String> firstValues() {
+		return dao.firstValues();
 	}
-	
+
+	public Map<String, List<Drugstore>> secondListAll(List<String> secondValues) {
+		Map<String, List<Drugstore>> map = new HashMap<String, List<Drugstore>>();
+		for(String second : secondValues) {
+			map.put(second, dao.secondListAll(second));
+		}
+		return map;
+	}
+
 	public List<String> secondValues(String first) {
 		return dao.secondValues(first);
 	}
 	
-	public Map<String, List<Drugstore>> firstList(List<String> secondValues) {
-		Map<String, List<Drugstore>> map = new HashMap<String, List<Drugstore>>();
-		for(String second : secondValues) {
-			map.put(second, dao.firstList(second));
-		}
-		return map;
+	public List<Drugstore> secondListOne(DrugstoreFS fs) {
+		return dao.secondListOne(fs);
 	}
+	
+	
 }

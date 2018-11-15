@@ -23,12 +23,13 @@ public class DrugstoreController {
 	
 	@RequestMapping(value="/current_loc", method=RequestMethod.GET)
 	public String current_loc(Model model) {
-		model.addAttribute("menu", "current_loc");
-		return "drugstore/wide";
+		
+		return "drugstore/find";
 	}
 	@RequestMapping(value="/allDay", method=RequestMethod.GET)
 	public String allDay(Model model) {
 		model.addAttribute("menu", "allDay");
+		model.addAttribute("firstValues", service.firstValues());
 		return "drugstore/wide";
 	}
 	@RequestMapping(value="/night", method=RequestMethod.GET)
@@ -38,10 +39,10 @@ public class DrugstoreController {
 	}
 	
 	@RequestMapping(value="/allDay/{first}", method=RequestMethod.GET)
-	public String gyeonggi(Model model, @PathVariable String first) {
+	public String allDayWide(Model model, @PathVariable String first) {
 		
 		List<String> secondValues = service.secondValues(first);
-		Map<String, List<Drugstore>> map = service.firstList(secondValues);
+		Map<String, List<Drugstore>> map = service.secondListAll(secondValues);
 		
 		model.addAttribute("menu", "allDay");
 		model.addAttribute("first", first);
@@ -53,15 +54,27 @@ public class DrugstoreController {
 	}
 	
 	@RequestMapping(value="/allDay/{first}/{second}", method=RequestMethod.GET)
-	public String gyeonggi(Model model, @PathVariable String first, @PathVariable String second) {
+	public String allDayView(Model model, @PathVariable String first, @PathVariable String second) {
 		DrugstoreFS fs = new DrugstoreFS();
 		fs.setFirst(first);
 		fs.setSecond(second);
+		
+		List<String> secondValues = service.secondValues(first);
+		
 		model.addAttribute("menu", "allDay");
 		model.addAttribute("first", first);
 		model.addAttribute("second", second);
-		model.addAttribute("list", service.secondList(fs));
+		model.addAttribute("secondValues", secondValues);
+		model.addAttribute("list", service.secondListOne(fs));
 		
 		return "drugstore/view";
+	}
+	
+	@RequestMapping(value="/showMap/{address}", method=RequestMethod.GET)
+	public String showMap(Model model, @PathVariable String address) {
+		
+		model.addAttribute("address", address);
+		
+		return "drugstore/showMap";
 	}
 }

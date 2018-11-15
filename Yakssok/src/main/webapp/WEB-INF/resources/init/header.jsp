@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h2 style="text-align: center;">약속</h2>
+<%-- <h2 style="text-align: center;"><a href="${pageContext.request.contextPath }/">약속</a></h2> --%>
+<div style="text-align: center">
+	<a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/init/img/title.png" width="250" height="150"/></a>
+</div>
 
 <nav class="navbar navbar-default" style="margin-bottom: 40px">
   <div class="container-fluid">
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">메인</a></li>
+        <li><a href="${pageContext.request.contextPath }/">메인</a></li>
         
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">약품정보&nbsp;<span class="caret"></span></a>
@@ -29,7 +32,6 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">관리자 문의</a></li>
             <li><a href="#">약품 정보 등록 건의</a></li>
-            <li><a href="#">약품 정보 수정 건의</a></li>
           </ul>
         </li>
         <li class="dropdown">
