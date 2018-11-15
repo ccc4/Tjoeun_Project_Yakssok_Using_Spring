@@ -1,5 +1,8 @@
 package com.yakssok.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.yakssok.model.Drugstore;
 import com.yakssok.model.DrugstoreFS;
 import com.yakssok.service.DrugstoreService;
 
@@ -35,9 +39,15 @@ public class DrugstoreController {
 	
 	@RequestMapping(value="/allDay/{first}", method=RequestMethod.GET)
 	public String gyeonggi(Model model, @PathVariable String first) {
-		model.addAttribute("first", first);
+		
+		List<String> secondValues = service.secondValues(first);
+		Map<String, List<Drugstore>> map = service.firstList(secondValues);
+		
 		model.addAttribute("menu", "allDay");
-		model.addAttribute("list", service.firstList(first));
+		model.addAttribute("first", first);
+		model.addAttribute("secondValues", secondValues);
+		model.addAttribute("map", map);
+		/*model.addAttribute("list", service.firstList(first));*/
 		
 		return "drugstore/view";
 	}
@@ -47,8 +57,9 @@ public class DrugstoreController {
 		DrugstoreFS fs = new DrugstoreFS();
 		fs.setFirst(first);
 		fs.setSecond(second);
-		model.addAttribute("first", first);
 		model.addAttribute("menu", "allDay");
+		model.addAttribute("first", first);
+		model.addAttribute("second", second);
 		model.addAttribute("list", service.secondList(fs));
 		
 		return "drugstore/view";

@@ -12,25 +12,10 @@
 <jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 
 
-<c:if test="${!empty menu }">
-	<button type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }'">처음으로</button>
-</c:if>
+<button type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }'">처음으로</button>
+<button type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }/${first }'">${first } 전체목록</button>
 
-<c:if test="${first == '서울' }">
-	<c:if test="${empty list }">
-		<script type="text/javascript">
-			alert("해당 자료가 아직 없습니다.");
-			history.back();
-		</script>
-	</c:if>
-</c:if>
 <c:if test="${first == '경기'}">
-	<c:if test="${empty list }">
-		<script type="text/javascript">
-			alert("해당 자료가 아직 없습니다.");
-			history.back();
-		</script>
-	</c:if>
 	<div>
 		<button type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/allDay/경기/가평'">가평</button>
 		<button type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/allDay/경기/고양덕양'">고양덕양</button>
@@ -42,30 +27,62 @@
 </c:if>
 
 
-
-
-<table border="1">
-	<tr>
-		<th>번호</th>
-		<th>약국명</th>
-		<th>연락처</th>
-		<th>주소</th>
-		<th>토,일,공휴일 운영시간</th>
-		<th>비고(세부 운영시간)</th>
-		<th>지도보기</th>
-	</tr>
-	<c:forEach var="l" items="${list }" varStatus="status">
-		<tr>
-			<td>${status.count }</td>
-			<td>${l.name }</td>
-			<td>${l.tel }</td>
-			<td>${l.address }</td>
-			<td>${l.weekend }</td>
-			<td>${l.remarks }</td>
-			<td>지도링크</td>
-		</tr>
+<c:if test="${empty list }">
+	<c:forEach var="v" items="${secondValues }">
+		<table border="1">
+			<caption class="h3">${v }</caption>
+			<tr>
+				<th>번호</th>
+				<th>약국명</th>
+				<th>연락처</th>
+				<th>주소</th>
+				<th>토,일,공휴일 운영시간</th>
+				<th>비고(세부 운영시간)</th>
+				<th>지도보기</th>
+			</tr>
+			<c:forEach var="l" items="${map[v] }" varStatus="status">
+				<tr>
+					<td>${status.count }</td>
+					<td>${l.name }</td>
+					<td>${l.tel }</td>
+					<td>${l.address }</td>
+					<td>${l.weekend }</td>
+					<td>${l.remarks }</td>
+					<td>지도링크</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</c:forEach>
-</table>
+</c:if>
+<c:if test="${!empty list }">
+	<table border="1">
+		<caption class="h3">${second }</caption>
+		<tr>
+			<th>번호</th>
+			<th>약국명</th>
+			<th>연락처</th>
+			<th>주소</th>
+			<th>토,일,공휴일 운영시간</th>
+			<th>비고(세부 운영시간)</th>
+			<th>지도보기</th>
+		</tr>
+		<c:forEach var="l" items="${list }" varStatus="status">
+			<tr>
+				<td>${status.count }</td>
+				<td>${l.name }</td>
+				<td>${l.tel }</td>
+				<td>${l.address }</td>
+				<td>${l.weekend }</td>
+				<td>${l.remarks }</td>
+				<td>지도링크</td>
+			</tr>
+		</c:forEach>
+	</table>
+</c:if>
+
+
+
+
 
 
 

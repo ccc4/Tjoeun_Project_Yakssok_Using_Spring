@@ -5,13 +5,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="DrugstoreMapper">
 	
-	<select id="firstList" parameterType="String" resultType="drugstore">
-		SELECT * FROM drugstore WHERE first = #{province} ORDER BY second
-	</select>
+	<!-- <select id="firstList" parameterType="String" resultType="drugstore">
+		SELECT * FROM drugstore WHERE first = #{first} ORDER BY second
+	</select> -->
 	
 	<select id="secondList" parameterType="drugstoreFS" resultType="drugstore">
 		SELECT * FROM drugstore WHERE first = #{first} AND second = #{second} ORDER BY second
 	</select>
+	
+	<select id="secondValues" parameterType="String" resultType="String">
+		SELECT second FROM drugstore WHERE first = #{first} GROUP BY second order by second
+	</select>
+	
+	<select id="firstList" parameterType="String" resultType="drugstore">
+		SELECT * FROM drugstore WHERE second = #{second} ORDER BY name;
+	</select>
+	
+	
 	
 	
 </mapper>
