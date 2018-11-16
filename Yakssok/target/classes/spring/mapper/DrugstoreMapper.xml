@@ -21,7 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM drugstore_allDay_view WHERE first = #{first} AND second = #{second} ORDER BY second
 	</select>
 	
-	
+	<select id="getModel" parameterType="int" resultType="drugstore">
+		SELECT * FROM drugstore_allDay_view WHERE idx = #{idx}
+	</select>
 	
 	
 	

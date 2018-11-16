@@ -37,5 +37,9 @@ public class DrugstoreService {
 		return dao.secondListOne(fs);
 	}
 	
+	public Drugstore getModel(int idx) {
+		return dao.getModel(idx);
+	}
+	
 	
 }

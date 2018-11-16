@@ -26,6 +26,21 @@
 	</div> -->
 	
 	
+<!-- 	<div class="placeinfo">
+		<a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>'
+		<span title="' + place.road_address_name + '">' + place.road_address_name + '</span>
+	    <span class="jibun" title="' + place.address_name + '">(지번 : ' + place.address_name + ')</span>';
+	    
+	    
+	    <span title="' + place.address_name + '">' + place.address_name + '</span>';
+	   
+	    <span class="tel">' + place.phone + '</span>
+	</div>' + 
+	<div class="after"></div>'; -->
+	
+	
+	
+	
 	
 	<div>
 		<span>로그인해주세요.</span>

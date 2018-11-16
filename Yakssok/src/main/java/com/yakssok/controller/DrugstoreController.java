@@ -21,10 +21,10 @@ public class DrugstoreController {
 	@Autowired
 	private DrugstoreService service;
 	
-	@RequestMapping(value="/current_loc", method=RequestMethod.GET)
-	public String current_loc(Model model) {
+	@RequestMapping(value="/nearby", method=RequestMethod.GET)
+	public String nearby(Model model) {
 		
-		return "drugstore/find";
+		return "drugstore/nearby";
 	}
 	@RequestMapping(value="/allDay", method=RequestMethod.GET)
 	public String allDay(Model model) {
@@ -70,10 +70,10 @@ public class DrugstoreController {
 		return "drugstore/view";
 	}
 	
-	@RequestMapping(value="/showMap/{address}", method=RequestMethod.GET)
-	public String showMap(Model model, @PathVariable String address) {
+	@RequestMapping(value="/showMap/{idx}", method=RequestMethod.GET)
+	public String showMap(Model model, @PathVariable int idx) {
 		
-		model.addAttribute("address", address);
+		model.addAttribute("model", service.getModel(idx));
 		
 		return "drugstore/showMap";
 	}

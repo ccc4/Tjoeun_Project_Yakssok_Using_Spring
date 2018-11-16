@@ -15,15 +15,10 @@
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
-#category li .bank {background-position: -10px 0;}
-#category li .mart {background-position: -10px -36px;}
+#category li .category_bg {background:url(${pageContext.request.contextPath}/resources/init/img/places_category2.png) no-repeat;}
 #category li .pharmacy {background-position: -10px -72px;}
-#category li .oil {background-position: -10px -108px;}
-#category li .cafe {background-position: -10px -144px;}
-#category li .store {background-position: -10px -180px;}
 #category li.on .category_bg {background-position-x:-46px;}
-.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
+.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:250px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
 .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
@@ -96,6 +91,32 @@
 	
 	// 지도를 생성합니다    
 	var map = new daum.maps.Map(mapContainer, mapOption); 
+	
+	
+	
+	
+	
+	
+	
+	// 지도 컨트롤 추가함
+	
+	
+	// 지도 타입 변경 컨트롤을 생성한다
+	var mapTypeControl = new daum.maps.MapTypeControl();
+
+	// 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
+	map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);	
+
+	// 지도에 확대 축소 컨트롤을 생성한다
+	var zoomControl = new daum.maps.ZoomControl();
+
+	// 지도의 우측에 확대 축소 컨트롤을 추가한다
+	map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+	
+	
+	
+	
+	
 	
 	
 	
@@ -238,6 +259,7 @@
 	            // 장소정보를 표출하도록 클릭 이벤트를 등록합니다
 	            (function(marker, place) {
 	                daum.maps.event.addListener(marker, 'click', function() {
+	                	moveMap(place);
 	                    displayPlaceInfo(place);
 	                });
 	            })(marker, places[i]);
@@ -246,7 +268,8 @@
 	
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 	function addMarker(position, order) {
-	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+	    var imageSrc = '${pageContext.request.contextPath}/resources/init/img/places_category2.png', 
+/* 	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', */	// 마커 이미지 url, 스프라이트 이미지를 씁니다
 	        imageSize = new daum.maps.Size(27, 28),  // 마커 이미지의 크기
 	        imgOptions =  {
 	            spriteSize : new daum.maps.Size(72, 208), // 스프라이트 이미지의 크기
@@ -273,8 +296,28 @@
 	    markers = [];
 	}
 	
+	
+	
+	
+	
+	// 클릭한 마커에 대한 장소로 부드럽게 이동하기
+	function moveMap(place) {
+		// 마커 클릭시 해당 위치로 움직이는 테스트
+	    var coords = new daum.maps.LatLng(place.y, place.x);
+	    map.setCenter(coords);
+	    // 버그로 인해 부드러운 이동은 빼버림 ㅠ
+	    /* map.panTo(coords); */
+	}
+	
+	
+	
+	
+	
+	
+	
 	// 클릭한 마커에 대한 장소 상세정보를 커스텀 오버레이로 표시하는 함수입니다
 	function displayPlaceInfo (place) {
+		
 	    var content = '<div class="placeinfo">' +
 	                    '   <a class="title" href="' + place.place_url + '" target="_blank" title="' + place.place_name + '">' + place.place_name + '</a>';   
 	
@@ -286,12 +329,15 @@
 	    }                
 	   
 	    content += '    <span class="tel">' + place.phone + '</span>' + 
-	                '</div>' + 
+	                '</div>' +  
 	                '<div class="after"></div>';
+	                
 	
 	    contentNode.innerHTML = content;
 	    placeOverlay.setPosition(new daum.maps.LatLng(place.y, place.x));
 	    placeOverlay.setMap(map);  
+	    
+	    
 	}
 	
 	
@@ -314,16 +360,19 @@
 	
 	    if (className === 'on') {
 	        currCategory = '';
-	        changeCategoryClass();
+	        /* changeCategoryClass(); */
 	        removeMarker();
 	    } else {
 	        currCategory = id;
-	        changeCategoryClass(this);
+	        /* changeCategoryClass(this); */
 	        searchPlaces();
 	    }
 	}
 	
-	/* // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
+	
+	// 클릭할 일 없으니 주석처리
+	
+	 /* // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
 	function changeCategoryClass(el) {
 	    var category = document.getElementById('category'),
 	        children = category.children,
@@ -336,7 +385,7 @@
 	    if (el) {
 	        el.className = 'on';
 	    } 
-	}  */
+	} */
 
 </script>
 </body>

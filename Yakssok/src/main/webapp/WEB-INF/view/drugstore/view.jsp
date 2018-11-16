@@ -54,7 +54,7 @@
 								<td style="text-align: left;">${l.address }</td>
 								<td>${l.weekend }</td>
 								<td style="text-align: left;">${l.remarks }</td>
-								<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${l.address}">지도링크</a></td>
+								<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${l.idx}">지도링크</a></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -80,7 +80,7 @@
 							<td style="text-align: left;">${l.address }</td>
 							<td>${l.weekend }</td>
 							<td style="text-align: left;">${l.remarks }</td>
-							<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${l.address}">지도링크</a></td>
+							<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${l.idx}">지도링크</a></td>
 						</tr>
 					</c:forEach>
 				</table>

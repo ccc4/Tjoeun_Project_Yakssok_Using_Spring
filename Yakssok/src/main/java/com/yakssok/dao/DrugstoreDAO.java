@@ -33,5 +33,9 @@ public class DrugstoreDAO {
 		return sqlSession.selectList(strNameSpace + ".secondListOne", fs);
 	}
 	
+	public Drugstore getModel(int idx) {
+		return sqlSession.selectOne(strNameSpace + ".getModel", idx);
+	}
+	
 	
 }

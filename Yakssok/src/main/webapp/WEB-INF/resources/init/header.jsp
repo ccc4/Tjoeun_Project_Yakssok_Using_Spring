@@ -37,7 +37,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="cyan">약국찾기</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="${pageContext.request.contextPath }/drugstore/current_loc">내 주변 약국</a></li>
+            <li><a href="${pageContext.request.contextPath }/drugstore/nearby">내 주변 약국</a></li>
             <li class="divider"></li>
             <li><a href="${pageContext.request.contextPath }/drugstore/allDay">연중무휴</a></li>
             <li><a href="${pageContext.request.contextPath }/drugstore/night">심야약국</a></li>
