@@ -15,10 +15,11 @@
 #category li:hover {background: #ffe6e6;border-left:1px solid #acacac;margin-left: -1px;}
 #category li:last-child{margin-right:0;border-right:0;}
 #category li span {display: block;margin:0 auto 3px;width:27px;height: 28px;}
-#category li .category_bg {background:url(${pageContext.request.contextPath}/resources/init/img/places_category2.png) no-repeat;}
+/* #category li .category_bg {background:url(${pageContext.request.contextPath}/resources/init/img/places_category2.png) no-repeat;} */
+#category li .category_bg {background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png) no-repeat;}
 #category li .pharmacy {background-position: -10px -72px;}
 #category li.on .category_bg {background-position-x:-46px;}
-.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:250px;}
+.placeinfo_wrap {position:absolute;bottom:28px;left:-150px;width:300px;}
 .placeinfo {position:relative;width:100%;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;padding-bottom: 10px;background: #fff;}
 .placeinfo:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
 .placeinfo_wrap .after {content:'';position:relative;margin-left:-12px;left:50%;width:22px;height:12px;background:url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
@@ -268,8 +269,8 @@
 	
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 	function addMarker(position, order) {
-	    var imageSrc = '${pageContext.request.contextPath}/resources/init/img/places_category2.png', 
-/* 	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png', */	// 마커 이미지 url, 스프라이트 이미지를 씁니다
+	    /* var imageSrc = '${pageContext.request.contextPath}/resources/init/img/places_category2.png', // 마커 이미지 변경하는 설정 */
+ 	    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png',
 	        imageSize = new daum.maps.Size(27, 28),  // 마커 이미지의 크기
 	        imgOptions =  {
 	            spriteSize : new daum.maps.Size(72, 208), // 스프라이트 이미지의 크기

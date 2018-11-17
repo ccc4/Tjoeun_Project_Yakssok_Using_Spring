@@ -9,29 +9,41 @@
 </head>
 <body>
 
+<script type="text/javascript">
+	function show(str) {
+		alert(str);
+		home();
+	}
+	
+	function home() {
+		location.href="${pageContext.request.contextPath}/";
+	}
+</script>
+
 <c:if test="${join == 1 }">
 	<script type="text/javascript">
-		alert("회원가입완료!\n회원가입한 아이디로 로그인해주세요.");
-		location.href= "${pageContext.request.contextPath}/";
+		/* alert("회원가입완료!\n회원가입한 아이디로 로그인해주세요.");
+		location.href= "${pageContext.request.contextPath}/"; */
+		show('회원가입완료!\n회원가입한 아이디로 로그인해주세요.');
 	</script>
 </c:if>
 <c:if test="${join == 0 }">
 	<script type="text/javascript">
-		alert("회원가입실패");
-		location.href= "${pageContext.request.contextPath}/";
+		/*alert("회원가입실패");
+		location.href= "${pageContext.request.contextPath}/";*/
+		show('회원가입실패');
 	</script>
 </c:if>
 
 <c:if test="${login == 1 }">
 	<script type="text/javascript">
-		alert("로그인 성공");
-		location.href= "${pageContext.request.contextPath}/";
+		/* show('로그인성공'); */
+		home();
 	</script>
 </c:if>
 <c:if test="${login == 0 }">
 	<script type="text/javascript">
-		alert("로그인 실패");
-		location.href= "${pageContext.request.contextPath}/";
+		show("로그인실패");
 	</script>
 </c:if>
 
@@ -50,14 +62,14 @@
 
 <c:if test="${logout == 1 }">
 	<script type="text/javascript">
-		alert("로그아웃 성공");
-		location.href= "${pageContext.request.contextPath}/";
+		/* alert("로그아웃 성공");
+		location.href= "${pageContext.request.contextPath}/"; */
+		home();
 	</script>
 </c:if>
 <c:if test="${logout == 0 }">
 	<script type="text/javascript">
-		alert("로그아웃 실패");
-		location.href= "${pageContext.request.contextPath}/";
+		show("로그아웃실패");
 	</script>
 </c:if>
 

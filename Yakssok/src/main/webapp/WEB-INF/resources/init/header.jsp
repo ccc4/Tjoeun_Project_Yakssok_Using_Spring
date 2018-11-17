@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <h2 style="text-align: center;"><a href="${pageContext.request.contextPath }/">약속</a></h2> --%>
+    
+    
+    
+<style type="text/css">
+	.navbar .navbar-nav {
+		display: inline-block;
+		float: none;
+	}
+	 
+	.navbar .navbar-collapse {
+		text-align: center;
+	}
+</style>
+    
+    
+    
 <div style="text-align: center">
 	<a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/init/img/title.png" width="250" height="150"/></a>
 </div>
