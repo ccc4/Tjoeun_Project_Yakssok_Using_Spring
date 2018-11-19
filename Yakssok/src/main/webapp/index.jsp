@@ -13,7 +13,23 @@
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+	
+	
+	
+	
+	
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" name="test"><img alt="" src="${pageContext.request.contextPath }/resources/pill/img/dont/dont1.jpg" width="100px" height="120px">
+		</label>
+		<label>
+			<input type="checkbox" name="test"><img alt="" src="${pageContext.request.contextPath }/resources/pill/img/dont/dont2.jpg" width="100px" height="120px">
+		</label>
+	</div>
+	
 </div>
+
+
 
 
 

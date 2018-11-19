@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="PillSetMapper">
+	
+	<insert id="test1" parameterType="String">
+		INSERT INTO p_caution (img) VALUES (#{value});
+	</insert>
+	
+	<insert id="test2" parameterType="String">
+		INSERT INTO p_dont (img) VALUES (#{value});
+	</insert>
+	
+	<insert id="test3" parameterType="String">
+		INSERT INTO p_food (img) VALUES (#{value});
+	</insert>
+	
+	<insert id="test4" parameterType="String">
+		INSERT INTO p_form (img) VALUES (#{value});
+	</insert>
+	
+	<insert id="test5" parameterType="String">
+		INSERT INTO p_saveHow (img) VALUES (#{value});
+	</insert>
+	
+	<insert id="test6" parameterType="String">
+		INSERT INTO p_sideEffect (img) VALUES (#{value});
+	</insert>
+	
+	<insert id="test7" parameterType="String">
+		INSERT INTO p_useHow (img) VALUES (#{value});
+	</insert>
+	
+	
+	
+	
+</mapper>

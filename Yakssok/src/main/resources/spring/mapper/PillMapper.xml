@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="PillMapper">
+	
+	<select id="getDont" resultType="String">
+		SELECT img FROM p_dont 
+	</select>
+	
+	<select id="getSaveHow" resultType="String">
+		SELECT img FROM p_saveHow
+	</select>
+	
+	<select id="getSideEffect" resultType="String">
+		SELECT img FROM p_sideEffect 
+	</select>
+	
+	<select id="getUseHow" resultType="String">
+		SELECT img FROM p_useHow
+	</select>
+	
+	<select id="getFood" resultType="String">
+		SELECT img FROM p_food 
+	</select>
+	
+	<select id="getForm" resultType="String">
+		SELECT img FROM p_form 
+	</select>
+	
+	<select id="getCaution" resultType="String">
+		SELECT img FROM p_caution 
+	</select>
+	
+	
+</mapper>
