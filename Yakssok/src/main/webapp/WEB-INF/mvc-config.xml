@@ -16,7 +16,7 @@
          <context:component-scan
             base-package="org.springframework.samples.web"/>  -->
 
-	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
     <mvc:annotation-driven />
     <mvc:resources location="WEB-INF/resources/" mapping="/resources/**"/>
 
@@ -31,12 +31,12 @@
 	<context:component-scan base-package="com.yakssok.dao"/>
 	
 	<!-- 트랜잭션 -->
-	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
-	</bean> -->
+	</bean>
 	
 	<!-- 파일업로드 -->
-	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/> -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 
 	<!-- 웹소켓 -->
 	<!-- <websocket:handlers>

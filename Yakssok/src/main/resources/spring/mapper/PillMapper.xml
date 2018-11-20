@@ -5,6 +5,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="PillMapper">
 	
+	<select id="getCompany_idx" parameterType="String" resultType="int">
+		SELECT p_company_idx FROM p_company WHERE name = #{name}
+	</select>
+	
+	<insert id="add_p_effect" parameterType="p_effect" useGeneratedKeys="true" keyProperty="p_effect_idx">
+		INSERT INTO p_effect (main, etc) VALUES (#{main}, #{etc})
+	</insert>
+	
+	<insert id="add_p_detail_1" parameterType="p_detail_1" useGeneratedKeys="true" keyProperty="p_detail_1_idx">
+		INSERT INTO p_detail_1 (sg, route, look, packing) VALUES (#{sg}, #{route}, #{look}, #{packing})
+	</insert>
+	
+	<insert id="add_p_detail_2" parameterType="p_detail_2" useGeneratedKeys="true" keyProperty="p_detail_2_idx">
+		INSERT INTO p_detail_2 (p_caution_idx, p_form_idx, p_food_idx, p_useHow_idx, p_sideEffect_idx, p_saveHow_idx, p_dont_idx) VALUES (#{p_caution_idx}, #{p_form_idx}, #{p_food_idx}, #{p_useHow_idx}, #{p_sideEffect_idx}, #{p_saveHow_idx}, #{p_dont_idx})
+	</insert>
+	
+	<insert id="add_pill" parameterType="pill" useGeneratedKeys="true" keyProperty="p_idx">
+		INSERT INTO pill (name, imgPath, p_effect_idx, p_company_idx, p_detail_1_idx, p_detail_2_idx) 
+		VALUES (#{name}, #{imgPath}, #{p_effect_idx}, #{p_company_idx}, #{p_detail_1_idx}, #{p_detail_2_idx})
+	</insert>
+	
+	<insert id="add_p_ingredient" parameterType="p_ingredient">
+		INSERT INTO p_ingredient (p_idx, eng, kor, content) VALUES (#{p_idx}, #{eng}, #{kor}, #{content})
+	</insert>
+	
+	
+	
+	<select id="getCompanyNames" resultType="String">
+		SELECT name FROM p_company GROUP BY name
+	</select>
+	
 	<select id="getDont" resultType="String">
 		SELECT img FROM p_dont 
 	</select>
