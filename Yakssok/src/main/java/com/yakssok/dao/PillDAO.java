@@ -6,10 +6,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yakssok.model.P_company;
 import com.yakssok.model.P_detail_1;
 import com.yakssok.model.P_detail_2;
 import com.yakssok.model.P_effect;
 import com.yakssok.model.P_ingredient;
+import com.yakssok.model.P_list;
+import com.yakssok.model.P_rating;
 import com.yakssok.model.Pill;
 
 
@@ -20,6 +23,31 @@ public class PillDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	public List<P_list> list() {
+		return sqlSession.selectList(strNameSpace + ".list");
+	}
+	
+	public List<P_ingredient> pi_list(int p_idx) {
+		return sqlSession.selectList(strNameSpace + ".pi_list", p_idx);
+	}
+	
+	public P_rating checkRating(P_rating p_rating) {
+		try {
+			return sqlSession.selectOne(strNameSpace + ".checkRating", p_rating);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public int allGood(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".allGood", p_idx);
+	}
+	public int allBad(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".allBad", p_idx);
+	}
+	
+	
 	
 	public int getCompany_idx(String name) {
 		try {
@@ -47,6 +75,10 @@ public class PillDAO {
 	
 	public int add_p_ingredient(P_ingredient p_ingredient) {
 		return sqlSession.insert(strNameSpace + ".add_p_ingredient", p_ingredient);
+	}
+	
+	public int add_company(P_company p_company) {
+		return sqlSession.insert(strNameSpace + ".add_company", p_company);
 	}
 		
 	

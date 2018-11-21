@@ -37,5 +37,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id = #{id};
 	</update>
 	
+	<select parameterType="member" id="join">
+		insert into member (id, pw, nickname, name, age, gender, tel, email, address) values
+		(#{id},#{pw},#{nickname},#{name},#{age},#{gender},#{tel}, #{email},#{address}) 
+	</select>
+
+	<select resultType="member" parameterType="member" id="getModel">
+		select * from member 
+		where id = #{id} 
+		</select>
+
+	<select resultType="int" parameterType="String" id="checkId">
+		select count(*) from member 
+		where id = #{id} 
+	</select>
+
+	<select resultType="int" parameterType="String" id="checkNick">
+		select count(*) from member 
+		where nickname = #{nickname} 
+	</select>
+	
 	
 </mapper>

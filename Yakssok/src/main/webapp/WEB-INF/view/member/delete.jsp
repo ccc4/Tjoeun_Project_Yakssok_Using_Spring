@@ -7,7 +7,7 @@
 <title>회원탈퇴</title>
 </head>
 <body>
-<form action="${pageContext.request.contextPath}/member/deleteResult" method="post">
+<form action="${pageContext.request.contextPath}/member/delete" method="post">
 <div align="center">
 <table>
 	<caption>회원탈퇴</caption>
@@ -17,7 +17,7 @@
 	</tr>
 		<tr>
 		<td>비밀번호:</td>
-		<td><input type="text" name="pw"></td>
+		<td><input type="password" name="pw"></td>
 	</tr>
 </table>
 <br/>

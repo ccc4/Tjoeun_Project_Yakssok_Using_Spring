@@ -11,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yakssok.model.*;
 import com.yakssok.service.PillService;
 
 @Controller
 @RequestMapping("/pill")
+@SessionAttributes("loginMember")
 public class PillController {
 	
 	@ModelAttribute("realPath")
@@ -29,6 +31,32 @@ public class PillController {
 	
 	@Autowired
 	private PillService service;
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="/list", method=RequestMethod.GET)
+	public String list(Model model) {
+		int m_idx = 0;
+//		System.out.println(loginMember);
+//		if(loginMember != null) {
+//			m_idx = loginMember.getM_Idx();
+//		}
+		model.addAttribute("list", service.list(m_idx));
+		return "pill/list";
+	}
+	
+	@RequestMapping(value="/add_company", method=RequestMethod.GET)
+	public String add_company() {
+		return "pill/add_company";
+	}
+	@RequestMapping(value="/add_company", method=RequestMethod.POST)
+	public String add_company(Model model, P_company p_company) {
+		model.addAttribute("add_company", service.add_company(p_company));
+		return CHECK_RESULT;
+	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String add(Model model) {

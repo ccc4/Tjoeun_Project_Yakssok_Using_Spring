@@ -10,7 +10,7 @@
 
 <body>
 
-<c:if test="${not islogin }">
+<c:if test="${not loginMember }">
 	<form action="${pageContext.request.contextPath}/member/login" method="post">
 		<table>
 			<caption>LOGIN</caption>
@@ -25,24 +25,15 @@
 
 		<tr>
 			<td><input type="submit" value="로그인"></td>
-			<td> <form action="${pageContext.request.contextPath}/member/join" method="post">
-			<input type="button" value="회원가입"></form>
+			<td><input type="button" value="회원가입"></td>
 		</tr>
 	</table>
 	
 	</form>
-	<a href="${pageContext.request.contextPath}/member/findid">ID찾기</a>
-	<a href="${pageContext.request.contextPath}/member/findpw">비밀번호 찾기</a>
+	<a href="${pageContext.request.contextPath}/member/findId">ID찾기</a>
+	<a href="${pageContext.request.contextPath}/member/findPw">비밀번호 찾기</a>
 
 </c:if>
-<!-- 
-<c:if test="${islogin == true }">
-<script type="text/javascript">
-location.href="/"
-</script>
-${loginMember.nickname}님 환영합니다<br/>
-<a href="${pageContext.request.contextPath}/logout">[로그아웃하기]</a>
-</c:if>
- -->
+
 </body>
 </html>

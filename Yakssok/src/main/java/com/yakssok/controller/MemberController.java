@@ -1,5 +1,6 @@
 package com.yakssok.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
 
 import com.yakssok.model.Member;
 import com.yakssok.model.DeleteMember;
@@ -15,7 +18,7 @@ import com.yakssok.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
-@SessionAttributes({"loginMember","islogin"})
+@SessionAttributes("loginMember")
 public class MemberController {
 	
 	private static final String RESULT_CHECK = "check/member";
@@ -26,13 +29,13 @@ public class MemberController {
 	//로그인 폼으로 이동
 	@RequestMapping(value="/login", method=RequestMethod.GET)				// 이 부분
 	public String login() {
-		System.out.println("진입");
+		//System.out.println("진입");
 		return "/member/login";
 	}
 	
 	//@RequestMapping(value = "/loginResult", method  = RequestMethod.POST)
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String logint(Model model, Member inputMember) {
+	public String login(Model model, Member inputMember) {
 
 		//db
 		Member member = service.select(inputMember);	
@@ -72,61 +75,141 @@ public class MemberController {
 		model.addAttribute("loginMember");*/
 		
 		status.setComplete();
-		model.addAttribute("logout", "1");
+		model.addAttribute("logout", 1);
 		
 		return RESULT_CHECK;
 	}
 	
 	//id찾는 폼으로 이동
-		@RequestMapping("/findid")
-		public String findIdForm() {
+		@RequestMapping(value = "/findId", method =RequestMethod.GET)
+		public String findId() {
 			return "/member/findId";
 		}
 
 		//id찾기 결과 
-		@RequestMapping(value="/findIdResult", method=RequestMethod.POST)
-		public String findIdResult(Model model, Member findInputMember) {
+		@RequestMapping(value="/findId", method=RequestMethod.POST)
+		public String findId(Model model, Member findInputMember) {
 			//입력 이름 ,이메일 멤버객체에 저장
 		
 			Member member = service.findId(findInputMember);
-			
+			int result =0;
 			//findResult = 0 fail
 			if(member == null) {
-				model.addAttribute("findResult",0);
+				model.addAttribute("findId",result);
+				
 			}else if (!member.getName().equals(findInputMember.getName()) || !member.getEmail().equals(findInputMember.getEmail())) {
-				model.addAttribute("findResult",0);
+				model.addAttribute("findId",result);
 			//성공
 			}else {
 				
-				model.addAttribute("findResult",1);
-				model.addAttribute("findMember",member);
-				//session.setAttribute("findMember",member);
+				model.addAttribute("findId",1);
+				model.addAttribute("findIdResult",member);
 				System.out.println(member.getId());
 			}
-			return "/member/findIdResult";
+			//return "member/findIdResult";
+			return RESULT_CHECK;
 		}
 		
 		//pw찾기폼이동
-		@RequestMapping("/findpw")
+		@RequestMapping(value = "/findPw", method = RequestMethod.GET)
 		public String findPw() {
 			return "/member/findPw";
 		}
 
 		
 		//pw찾기 결과
-		@RequestMapping(value ="findPwResult", method=RequestMethod.POST)
-		public String findPwResult() {
-			return "/member/findPwResult";
+		@RequestMapping(value ="/findPw", method=RequestMethod.POST)
+		public String findPw(Model model, Member inputMember) {
+			
+			//System.out.println("결과창");
+			
+			//디비값비교
+			Member member = service.select(inputMember);
+			
+			int result = 0;
+			
+			//널값, 아이디의 값, 이메일의 값이 일치하지 않으면 실패(리절트 0)
+			if(member == null) {
+				model.addAttribute("findPw", result);
+				
+			}else if( !inputMember.getId().equals(member.getId()) || !inputMember.getEmail().equals(member.getEmail())) {
+				model.addAttribute("findPw", result);
+			}else {
+				
+				//메일발송
+				//1.임시비밀번호 생성
+				//2.임시 비밀번호를 디비 비밀번호로 넣기
+				//3.사용자 이메일로 전송
+				//4.사용자 로그인 후 패스워드 수정
+				
+				
+				//1.
+				String pw = "";
+				
+				for (int i = 0; i < 7; i++) {
+					pw += (char) ((Math.random() * 26) + 97);
+				}
+			
+				//2.
+				System.out.println(pw);
+				member.setPw(pw);
+				service.editPw(member);
+				
+				System.out.println(inputMember.getEmail());
+				
+				
+				
+				//3.
+				String charSet = "utf-8";
+				String hostSMTP = "smtp.naver.com";
+				String hostSMTPid = "vivid2004";
+				String hostSMTPpwd = "systemmanager402";
+				
+				String fromEmail = "vivid2004@naver.com";
+				String fromName = "약쏙";
+				String subject = "약쏙에서 보낸 임시 비밀번호 입니다.";
+				 
+				String msg ="";
+				msg += "<div align='center' style='border:3px solid skyblue'>";
+				msg += "<strong><h3 style='color: black;'>";
+				msg += "<u>"+inputMember.getId() + "</u> 님의 임시 비밀번호 입니다. 비밀번호를 변경하세요.</h3></strong>";
+				msg += "<h4><p>임시 비밀번호 : ";
+				msg += member.getPw() + "</p></h4></div>";	
+				
+				try {
+				HtmlEmail mail = new HtmlEmail();
+				mail.setDebug(true);
+				mail.setCharset(charSet);
+				mail.setSSLOnConnect(true);
+				mail.setHostName(hostSMTP);
+				//mail.setSmtpPort(587);
+				mail.setSmtpPort(465);
+				
+				mail.setAuthentication(hostSMTPid, hostSMTPpwd);
+				mail.setStartTLSEnabled(true);
+				mail.addTo(inputMember.getEmail());
+				mail.setFrom(fromEmail,fromName,charSet);
+				mail.setSubject(subject);
+				mail.setHtmlMsg(msg);
+				mail.send();
+				} catch (EmailException e) {
+					e.printStackTrace();
+				}
+				result = 1;
+				model.addAttribute("findPw", result);
+			}
+			
+			return RESULT_CHECK;
 		}
 		
 		//pw수정폼이동
-		@RequestMapping("/editPw")
+		@RequestMapping(value = "/editPw", method = RequestMethod.GET)
 		public String editPw() {
 			return "/member/editPw";
 		}
 		
-		@RequestMapping(value = "editPwResult", method=RequestMethod.POST)
-		public String editPwResult(Model model, @RequestParam(name="id") String id,@RequestParam(name="pw") String pw,
+		@RequestMapping(value = "editPw", method=RequestMethod.POST)
+		public String editPw(Model model, @RequestParam(name="id") String id,@RequestParam(name="pw") String pw,
 												@RequestParam(name="newPw") String newPw) {
 			
 			//입력된 아이디,기존 비밀번호 멤버객체에 저장 db비교
@@ -145,29 +228,32 @@ public class MemberController {
 			//입력된 아이디,비밀번호가 틀리거나 null이면 수정실패
 			
 			if( member == null || !member.getId().equals(prevMember.getId()) || !member.getPw().equals(prevMember.getPw())) {
-				model.addAttribute("result",result);
+				
+				model.addAttribute("modify",result);
 			}else {
 				//pw에 newpw 값을 넣어야함
 				prevMember.setPw(newPw);
 				result = service.editPw(prevMember);
-				model.addAttribute("editPw",prevMember);
+				//model.addAttribute("modify",prevMember);
+				model.addAttribute("modify",result);
 			}
-			return "/member/editPwResult";
+			return RESULT_CHECK;
 		}
+		
 		//마이페이지 이동
 		@RequestMapping("/mypage")
 		public String myPage() {
 			return "/member/mypage";
 		}
 		
-		@RequestMapping("/delete")
+		@RequestMapping(value = "/delete", method = RequestMethod.GET)
 		public String delete() {
 			return "/member/delete";
 		}
 		
 		
-		@RequestMapping(value="/deleteResult", method = RequestMethod.POST)
-		public String deleteResult(Model model,Member inputMember) {
+		@RequestMapping(value="/delete", method = RequestMethod.POST)
+		public String delete(Model model,Member inputMember, SessionStatus status) {
 
 			//입력받은 값과 디비저장 값이 일치한지 확인 엥 ????
 			Member member = service.select(inputMember);
@@ -176,9 +262,9 @@ public class MemberController {
 			int result = 0;
 			
 			if(member == null) {
-				model.addAttribute("result",result);
+				model.addAttribute("delete",result);
 			}else if (!member.getId().equals(inputMember.getId()) || !member.getPw().equals(inputMember.getPw())) {
-				model.addAttribute("result",result);
+				model.addAttribute("delete",result);
 			}else {
 				//성공시 result값에 0아닌 값 넣기 -> ok
 				//성공시 member테이블에서 모든 정보 꺼내와서 
@@ -187,7 +273,7 @@ public class MemberController {
 				
 				DeleteMember deleteMember = new DeleteMember();
 				
-				deleteMember.setM_idx((member.getIdx()));
+				deleteMember.setM_idx((member.getM_Idx()));
 				deleteMember.setId(member.getId());
 				deleteMember.setPw(member.getPw());
 				deleteMember.setNickname(member.getNickname());
@@ -203,32 +289,31 @@ public class MemberController {
 				
 				service.insertdeleteMember(deleteMember);
 				result = service.deleteMember(inputMember);
-				model.addAttribute("islogin",false);
+				model.addAttribute("delete",1);
+				status.setComplete();
+				
 			}
 	
-			return "/member/deleteResult"; 
+			return RESULT_CHECK; 
 		}
 		
-		@RequestMapping("/editProfile")
+		@RequestMapping(value ="/editProfile", method = RequestMethod.GET)
 		public String editProfile() {
 			return "/member/editProfile";
 		}
 		
 		
 		
-		@RequestMapping(value = "/editProfileResult", method=RequestMethod.POST)
-		public String editProfileResult(Model model, Member newMember) {
-			//loginMember
-			//입력 받은 newMember 데이터 값이 null 이면 실패 아니면 성공
-		
-			//Member member = service.select(newMember);
+		@RequestMapping(value = "/editProfile", method=RequestMethod.POST)
+		public String editProfile(Model model, Member newMember) {
+			
 			int result = 0;
 
 			String nickname = newMember.getNickname().trim();
 			//System.out.println(nickname);
 			String name = newMember.getName().trim();
 			//String age = String.valueOf(newMember.getAge());
-			String age = Integer.toString(newMember.getAge());
+			String age = Integer.toString(newMember.getAge()).trim();
 			String tel = newMember.getTel().trim();
 			String email = newMember.getEmail().trim();
 			String address = newMember.getAddress().trim();  
@@ -236,17 +321,40 @@ public class MemberController {
 			//정보업데이트 실패
 			if(newMember == null ||  nickname == "" || name == "" || tel == ""|| email == ""|| address == "") {
 				result = 0;
-				model.addAttribute("editProfile", result);
+				model.addAttribute("failmodify", result);
 
 			}else {
 			//성공
 			result =service.updateMember(newMember);
-			model.addAttribute("editProfile", result);
+			model.addAttribute("modify", result);
 			model.addAttribute("loginMember",newMember);
 			}
-			return "/member/editProfileResult";
+			return RESULT_CHECK;
 		}
 		
-		
+		//회원가입
+		@RequestMapping(value = "/join", method = RequestMethod.GET)
+		public String join() {
+			return "member/join";
+		}
 
+		@RequestMapping(value = "/join", method = RequestMethod.POST)
+		public String join(Model model, Member member) {
+			//model.addAttribute("join", service.join(member));
+			//return "member/JoinEndForm";
+			
+			int result = 0;
+			//result = 0 이면 실패
+			if(member == null) {
+				model.addAttribute("join",result);
+			}else {
+				service.join(member);
+				result = 1;
+				model.addAttribute("join",result);
+			}
+			
+			return RESULT_CHECK;
+		}
+
+	
 }

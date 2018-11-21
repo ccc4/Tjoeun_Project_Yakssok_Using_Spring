@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="center">
-<form action="${pageContext.request.contextPath}/member/editPwResult" method="post">
+<form action="${pageContext.request.contextPath}/member/editPw" method="post">
 	<table>
 		<caption>비밀번호 수정</caption>
 		<tr>

@@ -42,4 +42,25 @@ public class MemberDAO {
 	public int update(Member member) {
 		return sqlSession.update(strName+".UpdateMember", member); 
 	}
+	
+	public int join(Member member) {
+		return sqlSession.insert(strName + ".join", member);
+	}
+	
+	public Member getModel(Member member) {
+		
+		return sqlSession.selectOne(strName + ".getModel", member);
+	}
+
+	public int checkId(String id) {
+		
+		return sqlSession.selectOne(strName + ".checkId", id);
+
+	}
+	public int checkNick(String nickname) {
+		
+		return sqlSession.selectOne(strName + ".checkNick", nickname);
+
+	}
+
 }

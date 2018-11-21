@@ -4,6 +4,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="PillMapper">
+
+	<select id="list" resultType="p_list">
+		SELECT * FROM p_list_view
+	</select>
+	
+	<select id="pi_list" parameterType="int" resultType="p_ingredient">
+		SELECT * FROM p_ingredient WHERE p_idx = #{p_idx}
+	</select>
+	
+	<select id="checkRating" parameterType="int" resultType="p_rating">
+		SELECT * FROM p_rating WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
+	</select>
+	
+	<select id="allGood" parameterType="int" resultType="int">
+		SELECT SUM(good) FROM p_rating WHERE p_idx = #{p_idx}
+	</select>
+	<select id="allBad" parameterType="int" resultType="int">
+		SELECT SUM(bad) FROM p_rating WHERE p_idx = #{p_idx}
+	</select>
+
 	
 	<select id="getCompany_idx" parameterType="String" resultType="int">
 		SELECT p_company_idx FROM p_company WHERE name = #{name}
@@ -28,6 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="add_p_ingredient" parameterType="p_ingredient">
 		INSERT INTO p_ingredient (p_idx, eng, kor, content) VALUES (#{p_idx}, #{eng}, #{kor}, #{content})
+	</insert>
+	
+	<insert id="add_company" parameterType="p_company">
+		INSERT INTO p_company (name, address, tel, fax, url) VALUES (#{name}, #{address}, #{tel}, #{fax}, #{url})
 	</insert>
 	
 	

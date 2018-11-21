@@ -7,22 +7,7 @@
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
 </head>
-<!-- 
-<script type="text/javascript">
-	function check_onclick() {
-		F=document.form;
-		if(F.nickname.value==""||F.name.value==""||
-			F.age.value==""||F.tel.value==""||
-			F.email.value==""||F.address.value==""){
-				alert("입력란을 모두 작성하세요.")
-				location.href='${pageContext.request.contextPath}/editProfile'
-			}else{
-				alert("수정완료")
-				location.href='/Yakssok'
-			}
-	}
-</script>
- -->
+
  
 <script type="text/javascript">
 
@@ -31,7 +16,7 @@
 
 <body>
 <div align="center">
-<form action="${pageContext.request.contextPath}/member/editProfileResult" method="post">
+<form action="${pageContext.request.contextPath}/member/editProfile" method="post">
 <table>
 <caption>회원정보 수정</caption>
 	<tr>

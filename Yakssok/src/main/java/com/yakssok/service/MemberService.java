@@ -43,4 +43,19 @@ public class MemberService {
 	public int updateMember(Member member) {
 		return dao.update(member);
 	}
+	
+	public int join(Member member) {
+		return this.dao.join(member);
+	}
+	
+	public Member getModel(Member member) {
+		return dao.getModel(member);
+	}
+	public int checkId(String id) {
+		return this.dao.checkId(id);
+	} 
+	public int checkNick(String nickname) {
+		return this.dao.checkNick(nickname);
+	} 
+
 }

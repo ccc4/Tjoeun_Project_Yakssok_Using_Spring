@@ -41,6 +41,7 @@
 						<option value="${c }">${c }</option>
 					</c:forEach>
 				</select>
+				<button type="button" onclick="location.href='${pageContext.request.contextPath}/pill/add_company'">회사 등록</button>
 			</div>
 			<div>
 				<input type="radio" name="sg" value="전문">전문

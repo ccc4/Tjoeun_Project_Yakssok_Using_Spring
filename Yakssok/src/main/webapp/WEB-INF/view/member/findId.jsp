@@ -9,7 +9,7 @@
 <title>아이디 검색</title>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/member/findIdResult" method="post">
+	<form action="${pageContext.request.contextPath}/member/findId" method="post">
 		<table>
 			<caption>아이디 찾기</caption>
 			<tr>

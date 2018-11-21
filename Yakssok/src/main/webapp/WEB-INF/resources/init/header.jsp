@@ -30,7 +30,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="white">약품정보</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">의약품</a></li>
+            <li><a href="${pageContext.request.contextPath }/pill/list">의약품</a></li>
             <li><a href="#">영양제</a></li>
             <li class="divider"></li>
             <li><a href="${pageContext.request.contextPath }/pill/add">의약품 등록</a></li>

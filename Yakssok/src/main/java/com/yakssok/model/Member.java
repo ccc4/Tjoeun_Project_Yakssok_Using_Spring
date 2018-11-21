@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Member {
 
-	private int idx;
+	private int m_idx;
 	private int type;
 	private String id;
 	private String pw;
@@ -21,9 +21,9 @@ public class Member {
 	public Member() {}
 	
 	
-	public Member(int idx, int type, String id, String pw, String nickname, String name, int age, int gender,
+	public Member(int m_idx, int type, String id, String pw, String nickname, String name, int age, int gender,
 			String tel, String email, String address, Date joinDate, int point) {
-		this.idx = idx;
+		this.m_idx = m_idx;
 		this.type = type;
 		this.id = id;
 		this.pw = pw;
@@ -37,11 +37,11 @@ public class Member {
 		this.joinDate = joinDate;
 		this.point = point;
 	}
-	public int getIdx() {
-		return idx;
+	public int getM_Idx() {
+		return m_idx;
 	}
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setM_Idx(int idx) {
+		this.m_idx = idx;
 	}
 	public int getType() {
 		return type;
@@ -50,28 +50,28 @@ public class Member {
 		this.type = type;
 	}
 	public String getId() {
-		return id;
+		return id.trim();
 	}
 	public void setId(String id) {
-		this.id = id;
+		this.id = id.trim();
 	}
 	public String getPw() {
-		return pw;
+		return pw.trim();
 	}
 	public void setPw(String pw) {
-		this.pw = pw;
+		this.pw = pw.trim();
 	}
 	public String getNickname() {
-		return nickname;
+		return nickname.trim();
 	}
 	public void setNickname(String nickname) {
-		this.nickname = nickname;
+		this.nickname = nickname.trim();
 	}
 	public String getName() {
-		return name;
+		return name.trim();
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.name = name.trim();
 	}
 	public int getAge() {
 		return age;
@@ -86,22 +86,22 @@ public class Member {
 		this.gender = gender;
 	}
 	public String getTel() {
-		return tel;
+		return tel.trim();
 	}
 	public void setTel(String tel) {
-		this.tel = tel;
+		this.tel = tel.trim();
 	}
 	public String getEmail() {
-		return email;
+		return email.trim();
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.trim();
 	}
 	public String getAddress() {
-		return address;
+		return address.trim();
 	}
 	public void setAddress(String address) {
-		this.address = address;
+		this.address = address.trim();
 	}
 	public Date getJoinDate() {
 		return joinDate;
