@@ -31,17 +31,21 @@ public class PillService {
 			P_list target = list.get(i);
 			int target_idx = target.getP_idx();
 			
+			// 효능/효과 엔터 구분
+			target.setEffect_main(target.getEffect_main().replace("<br>", "\r\n"));
+			
 			// 위에서 구한 idx 로 해당 약품의 구성 성분들 리스트로 뽑아서 저장
 			target.setP_ingredients(dao.pi_list(target_idx));
 			
 			// rating 저장하기
 			// 로그인 되어있는 경우만 null 값이 안되게
-			if(m_idx != 0) {
+			target.setRating(-1);
+			if(m_idx != 0) {	// 로그인 됨
 				P_rating p_rating = new P_rating();
 				p_rating.setP_idx(target_idx);
 				p_rating.setM_idx(m_idx);
-				P_rating return_p_rating = dao.checkRating(p_rating);	
-				if(return_p_rating != null) {	// 해당 약품 idx 와 회원 idx 로 조회한게 존재할 경우 -> 해당 약품에 대해 회원이 평가를 이미 한 경우
+				P_rating return_p_rating = dao.checkRating(p_rating);	// 해당 약품에 로그인된 아이디로 평가했는지 여부 체크
+				if(return_p_rating != null) {	// 존재하면 -> 평가했으니 전체 퍼센트 보여줌
 					target.setRating(getRating(target_idx));
 				}
 			}
@@ -49,12 +53,11 @@ public class PillService {
 		return list;
 	}
 	
-	public long getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
-		long allGood = dao.allGood(p_idx);
-		long allBad = dao.allBad(p_idx);
+	public double getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
+		double allGood = dao.allGood(p_idx);
+		double allBad = dao.allBad(p_idx);
 		
-		System.out.println((allGood + allBad) / allGood * 100 + " %");
-		return (allGood + allBad) / allGood * 100;
+		return allGood / (allGood + allBad) * 100;
 		
 	}
 

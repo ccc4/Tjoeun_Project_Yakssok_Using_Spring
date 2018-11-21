@@ -41,7 +41,7 @@
 						<option value="${c }">${c }</option>
 					</c:forEach>
 				</select>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/pill/add_company'">회사 등록</button>
+				&nbsp;<button class="btn btn-primary" type="button" onclick="location.href='${pageContext.request.contextPath}/pill/add_company'">목록에 없을 시 회사 등록</button>
 			</div>
 			<div>
 				<input type="radio" name="sg" value="전문">전문
@@ -102,7 +102,7 @@
 
 	
 	
-			<input type="submit" value="추가">
+			<input class="btn btn-default" type="submit" value="등록">
 		</form>
 	</div>
 

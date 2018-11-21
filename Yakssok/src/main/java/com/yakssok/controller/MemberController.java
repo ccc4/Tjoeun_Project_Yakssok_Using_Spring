@@ -273,7 +273,7 @@ public class MemberController {
 				
 				DeleteMember deleteMember = new DeleteMember();
 				
-				deleteMember.setM_idx((member.getM_Idx()));
+				deleteMember.setM_idx((member.getM_idx()));
 				deleteMember.setId(member.getId());
 				deleteMember.setPw(member.getPw());
 				deleteMember.setNickname(member.getNickname());

@@ -10,7 +10,7 @@ public class P_list {
 	private String effect_main;
 	
 	private List<P_ingredient> p_ingredients;
-	private long rating;
+	private double rating;
 	
 	public int getP_idx() {
 		return p_idx;
@@ -42,10 +42,10 @@ public class P_list {
 	public void setEffect_main(String effect_main) {
 		this.effect_main = effect_main;
 	}
-	public long getRating() {
+	public double getRating() {
 		return rating;
 	}
-	public void setRating(long rating) {
+	public void setRating(double rating) {
 		this.rating = rating;
 	}
 	public List<P_ingredient> getP_ingredients() {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,14 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yakssok.model.*;
 import com.yakssok.service.PillService;
 
 @Controller
 @RequestMapping("/pill")
-@SessionAttributes("loginMember")
 public class PillController {
 	
 	@ModelAttribute("realPath")
@@ -38,12 +37,12 @@ public class PillController {
 	
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model) {
+	public String list(Model model, HttpSession session) {
+		Member loginMember = (Member) session.getAttribute("loginMember");
 		int m_idx = 0;
-//		System.out.println(loginMember);
-//		if(loginMember != null) {
-//			m_idx = loginMember.getM_Idx();
-//		}
+		if(loginMember != null) {
+			m_idx = loginMember.getM_idx();
+		}
 		model.addAttribute("list", service.list(m_idx));
 		return "pill/list";
 	}
