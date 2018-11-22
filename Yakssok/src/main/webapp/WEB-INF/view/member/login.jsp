@@ -5,35 +5,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LOGIN</title>
+<jsp:include page="/WEB-INF/resources/init/init.jsp"/>
 </head>
-
 <body>
 
-<c:if test="${not loginMember }">
-	<form action="${pageContext.request.contextPath}/member/login" method="post">
-		<table>
-			<caption>LOGIN</caption>
-			<tr>
-				<td>ID:</td>
-				<td><input type="text" name="id" placeholder="아이디를 입력해주세요"></td>
-			</tr>
-			<tr>
-				<td>PW:</td>
-				<td><input type="password" name="pw" placeholder="비밀번호를 입력해주세요"></td>
-			</tr>
-
-		<tr>
-			<td><input type="submit" value="로그인"></td>
-			<td><input type="button" value="회원가입" onclick="location.href='${pageContext.request.contextPath}/member/join'"></td>
-		</tr>
-	</table>
+<div class="container">
+	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	
-	</form>
-	<a href="${pageContext.request.contextPath}/member/findId">ID찾기</a>
-	<a href="${pageContext.request.contextPath}/member/findPw">비밀번호 찾기</a>
-
-</c:if>
-
+	<div style="width: 100%; text-align: center;">
+		<div style="display: inline-block; text-align: left; width: 250px">
+ 			<%-- <form action="${pageContext.request.contextPath}/member/login" method="post">
+				<table>
+					<caption>LOGIN</caption>
+					<tr>
+						<td>ID:</td>
+						<td><input type="text" name="id" placeholder="아이디를 입력해주세요"></td>
+					</tr>
+					<tr>
+						<td>PW:</td>
+						<td><input type="password" name="pw" placeholder="비밀번호를 입력해주세요"></td>
+					</tr>
+		
+					<tr>
+						<td><input class="btn btn-default" type="submit" value="로그인"></td>
+						<td></td>
+					</tr>
+				</table>
+			
+			</form>
+			<a href="${pageContext.request.contextPath}/member/findId">ID찾기</a>
+			<a href="${pageContext.request.contextPath}/member/findPw">비밀번호 찾기</a> --%>
+			
+			<h3>로그인</h3>
+			<form action="${pageContext.request.contextPath}/member/login" method="post">
+				<div class="form-group">
+					<input type="text" class="form-control" id="inputID" name="id" placeholder="아이디를 입력해주세요">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" id="inputPW" name="pw" placeholder="비밀번호를 입력해주세요">
+				</div>
+				<div class="checkbox">
+				<label>
+					<input type="checkbox"> 아이디 기억하기
+				</label>
+				</div>
+				<div>
+					<button class="btn btn-default" type="submit">로그인</button>
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/member/join'">회원가입</button>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/member/findId">ID찾기</a> / 
+					<a href="${pageContext.request.contextPath}/member/findPw">비밀번호 찾기</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 </body>
 </html>

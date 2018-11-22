@@ -14,18 +14,22 @@
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
-	
-	
-	
-	
-	<div class="checkbox">
-		<label>
-			<input type="checkbox" name="test"><img alt="" src="${pageContext.request.contextPath }/resources/pill/img/dont/dont1.jpg" width="100px" height="120px">
-		</label>
-		<label>
-			<input type="checkbox" name="test"><img alt="" src="${pageContext.request.contextPath }/resources/pill/img/dont/dont2.jpg" width="100px" height="120px">
-		</label>
+	<div>
+		<form class="form-inline" action="${pageContext.request.contextPath }/pill/list" method="GET" style="margin-bottom: 20px">
+			<select class="form-control" name="type">
+				<option selected>약품명</option>
+				<option>효능/효과</option>
+				<option>회사</option>
+				<option>성분(영문/한글)</option>
+			</select>
+			
+			<input class="form-control" type="text" name="keyword" placeholder="검색어 입력">
+			<button class="btn btn-default" type="submit">검색</button>
+		</form>
 	</div>
+	
+	
+	
 	
 </div>
 
