@@ -15,8 +15,8 @@
 	<c:if test="${!empty loginMember }">
 			<span>${loginMember.nickname }님 환영합니다!</span>
 			<div>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">회원정보</button>
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
+				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/member/mypage'">회원정보</button>
+				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/member/logout'">로그아웃</button>
 			</div>
 	</c:if>
 </div>

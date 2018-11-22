@@ -20,6 +20,11 @@
 	}
 </script>
 
+<c:if test="${wrong == 1 }">
+	<script type="text/javascript">
+		show('잘못된 접근입니다.');
+	</script>
+</c:if>
 <c:if test="${pill == 0 }">
 	<script type="text/javascript">
 		show('입력 실패');

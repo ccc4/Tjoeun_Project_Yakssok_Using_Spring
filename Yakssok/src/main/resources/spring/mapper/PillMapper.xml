@@ -5,9 +5,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="PillMapper">
 
-	<select id="list" resultType="p_list">
-		SELECT * FROM p_list_view
+	<select id="all_list_count" resultType="int">
+		SELECT COUNT(*) FROM p_list_view
 	</select>
+
+	<select id="all_list" parameterType="p_list_helper" resultType="p_list">
+		SELECT * FROM p_list_view LIMIT #{p1}, #{p2}
+	</select>
+	
+	<select id="name_list_count" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM p_list_view WHERE name LIKE #{keyword}
+	</select>
+	
+	<select id="name_list" parameterType="p_list_helper" resultType="p_list">
+		SELECT * FROM p_list_view WHERE name LIKE #{keyword} LIMIT #{p1}, #{p2}
+	</select>
+	
+	<select id="effect_list_count" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM p_list_view WHERE effect_main LIKE #{keyword}
+	</select>
+	
+	<select id="effect_list" parameterType="p_list_helper" resultType="p_list">
+		SELECT * FROM p_list_view WHERE effect_main LIKE #{keyword} LIMIT #{p1}, #{p2}
+	</select>
+	
+	<select id="company_list_count" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM p_list_view WHERE company_name LIKE #{keyword}
+	</select>
+	
+	<select id="company_list" parameterType="p_list_helper" resultType="p_list">
+		SELECT * FROM p_list_view WHERE company_name LIKE #{keyword} LIMIT #{p1}, #{p2}
+	</select>
+	
+	<select id="ingredient_list_count" parameterType="String" resultType="int">
+		SELECT COUNT(distinct p.p_idx) FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng LIKE #{keyword} OR kor like #{keyword}
+	</select>
+	
+	<select id="ingredient_list" parameterType="p_list_helper" resultType="p_list">
+		SELECT DISTINCT p.p_idx, name, imgPath, company_name, effect_main FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng like #{keyword} OR kor like #{keyword} LIMIT #{p1}, #{p2}
+	</select>
+	
+	
+	
 	
 	<select id="pi_list" parameterType="int" resultType="p_ingredient">
 		SELECT * FROM p_ingredient WHERE p_idx = #{p_idx}
@@ -17,10 +56,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM p_rating WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
 	</select>
 	
-	<select id="allGood" parameterType="int" resultType="int">
+	<select id="all_Good" parameterType="int" resultType="int">
 		SELECT SUM(good) FROM p_rating WHERE p_idx = #{p_idx}
 	</select>
-	<select id="allBad" parameterType="int" resultType="int">
+	<select id="all_Bad" parameterType="int" resultType="int">
 		SELECT SUM(bad) FROM p_rating WHERE p_idx = #{p_idx}
 	</select>
 

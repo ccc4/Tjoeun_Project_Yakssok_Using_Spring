@@ -1,6 +1,7 @@
 package com.yakssok.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import com.yakssok.model.P_ingredient;
 import com.yakssok.model.P_list;
 import com.yakssok.model.P_rating;
 import com.yakssok.model.Pill;
+import com.yakssok.model.P_list_helper;
 
 
 @Repository
@@ -24,9 +26,42 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	public List<P_list> list() {
-		return sqlSession.selectList(strNameSpace + ".list");
+	
+	public int all_list_count() {
+		return sqlSession.selectOne(strNameSpace + ".all_list_count");
 	}
+	
+	public List<P_list> all_list(P_list_helper p_list_helper) {
+		return sqlSession.selectList(strNameSpace + ".all_list", p_list_helper);
+	}
+	
+	public int type_list_count(String type, String keyword) {
+		if(type.equals("약품명")) {
+			return sqlSession.selectOne(strNameSpace + ".name_list_count", keyword);
+		} else if(type.equals("효능/효과")) {
+			return sqlSession.selectOne(strNameSpace + ".effect_list_count", keyword);
+		} else if(type.equals("회사")) {
+			return sqlSession.selectOne(strNameSpace + ".company_list_count", keyword);
+		} else if(type.equals("성분(영문/한글)")) {
+			return sqlSession.selectOne(strNameSpace + ".ingredient_list_count", keyword);
+		} 
+		return 0;
+	}
+	
+	public List<P_list> type_list(String type, P_list_helper p_list_helper) {
+		if(type.equals("약품명")) {
+			return sqlSession.selectList(strNameSpace + ".name_list", p_list_helper);
+		} else if(type.equals("효능/효과")) {
+			return sqlSession.selectList(strNameSpace + ".effect_list", p_list_helper);
+		} else if(type.equals("회사")) {
+			return sqlSession.selectList(strNameSpace + ".company_list", p_list_helper);
+		} else if(type.equals("성분(영문/한글)")) {
+			return sqlSession.selectList(strNameSpace + ".ingredient_list", p_list_helper);
+		} 
+		return null;
+	}
+	
+	
 	
 	public List<P_ingredient> pi_list(int p_idx) {
 		return sqlSession.selectList(strNameSpace + ".pi_list", p_idx);
@@ -40,11 +75,11 @@ public class PillDAO {
 		}
 	}
 	
-	public int allGood(int p_idx) {
-		return sqlSession.selectOne(strNameSpace + ".allGood", p_idx);
+	public int all_Good(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".all_Good", p_idx);
 	}
-	public int allBad(int p_idx) {
-		return sqlSession.selectOne(strNameSpace + ".allBad", p_idx);
+	public int all_Bad(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".all_Bad", p_idx);
 	}
 	
 	

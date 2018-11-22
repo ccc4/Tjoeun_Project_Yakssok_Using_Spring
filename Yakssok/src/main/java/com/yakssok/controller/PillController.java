@@ -9,10 +9,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 import com.yakssok.model.*;
 import com.yakssok.service.PillService;
 
@@ -37,13 +41,28 @@ public class PillController {
 	
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model, HttpSession session) {
-		Member loginMember = (Member) session.getAttribute("loginMember");
+	public String list(Model model, HttpSession session, 
+			@RequestParam(name="page", defaultValue="1", required=false) int page, 
+			@RequestParam(name="type", required=false) String type, 
+			@RequestParam(name="keyword", required=false) String keyword) {
+		
 		int m_idx = 0;
+		
+		// 로그인 여부 판단
+		Member loginMember = (Member) session.getAttribute("loginMember");
 		if(loginMember != null) {
 			m_idx = loginMember.getM_idx();
 		}
-		model.addAttribute("list", service.list(m_idx));
+		
+		P_paging result = service.list(m_idx, page, type, "%" + keyword + "%");
+
+		// 타입이 존재하고 result 도 null 이 아니면 타입과 키워드를 지니게 한다.
+		if(type != null && result != null) {
+			result.setType(type);
+			result.setKeyword(keyword);
+		}
+		
+		model.addAttribute("p", result);
 		return "pill/list";
 	}
 	

@@ -14,17 +14,58 @@ import com.yakssok.model.P_detail_2;
 import com.yakssok.model.P_effect;
 import com.yakssok.model.P_ingredient;
 import com.yakssok.model.P_list;
+import com.yakssok.model.P_list_helper;
+import com.yakssok.model.P_paging;
 import com.yakssok.model.P_rating;
 import com.yakssok.model.Pill;
 
 @Service
 public class PillService {
 	
+	private static final int ONE_PAGE = 1;
+	private static final int ONE_SECTION = 5;
+	
 	@Autowired
 	private PillDAO dao;
 	
-	public List<P_list> list(int m_idx) {
-		List<P_list> list = dao.list();
+	public P_paging list(int m_idx, int page, String type, String keyword) {
+		
+		int allCount = 0;
+		if(type == null) {	// 전체목록인 경우
+			allCount = dao.all_list_count();
+		} else {
+			allCount = dao.type_list_count(type, keyword);
+		}
+		if(allCount == 0) {	
+			return null;	//	해당 결과 존재하지 않을 시 null 리턴
+		}
+		int onePage = ONE_PAGE;
+		int oneSection = ONE_SECTION;
+		
+		int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
+		
+		if(page < 1 || page > totalPage) {
+			return null;	// 잘못된 페이지를 고의로 입력했을 경우 null 리턴
+		}
+		
+		int startPage = (page - 1) / oneSection * oneSection;
+		if(startPage % oneSection == 0) startPage += 1;
+		
+		int endPage = startPage + oneSection - 1;
+		if(endPage > totalPage) endPage = totalPage;
+		
+		P_list_helper p_list_helper = new P_list_helper((page - 1) * onePage, onePage);
+		List<P_list> list = null;
+		if(type == null) {
+			list = dao.all_list(p_list_helper);
+		} else {
+			p_list_helper.setKeyword(keyword);
+			list = dao.type_list(type, p_list_helper);
+		} 
+		if(list == null) {
+			return null;	//	해당 결과 존재하지 않을 시 null 리턴
+		}
+		
 		for(int i=0;i<list.size();i++) {
 			
 			// 각 list 의 idx 값 받기
@@ -50,14 +91,14 @@ public class PillService {
 				}
 			}
 		}
-		return list;
+		return new P_paging(list, page, totalPage, startPage, endPage);
 	}
 	
 	public double getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
-		double allGood = dao.allGood(p_idx);
-		double allBad = dao.allBad(p_idx);
+		double all_Good = dao.all_Good(p_idx);
+		double all_Bad = dao.all_Bad(p_idx);
 		
-		return allGood / (allGood + allBad) * 100;
+		return all_Good / (all_Good + all_Bad) * 100;
 		
 	}
 
