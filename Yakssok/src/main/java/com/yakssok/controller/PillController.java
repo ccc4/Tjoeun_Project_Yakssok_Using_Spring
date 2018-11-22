@@ -9,14 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 import com.yakssok.model.*;
 import com.yakssok.service.PillService;
 
@@ -37,8 +35,13 @@ public class PillController {
 	
 	
 	
-	
-	
+	@RequestMapping(value="/view/{p_idx}", method=RequestMethod.GET)
+	public String view(Model model, @PathVariable String p_idx) {
+		System.out.println(p_idx);
+		
+		
+		return "pill/view";
+	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model, HttpSession session, 

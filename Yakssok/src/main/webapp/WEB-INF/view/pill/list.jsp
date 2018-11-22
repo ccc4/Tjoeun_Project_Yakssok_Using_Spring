@@ -44,15 +44,19 @@
 					<!-- 반복되는 썸네일 -->
 					<div class="col-md-3">
 						<div class="thumbnail">
-							<c:if test="${!empty l.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
-							</c:if>
-							<c:if test="${empty l.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200" style="margin: 0">
-							</c:if>
+							<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}">
+								<c:if test="${!empty l.imgPath }">
+										<img src="${pageContext.request.contextPath }/resources/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
+								</c:if>
+								<c:if test="${empty l.imgPath }">
+										<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200" style="margin: 0">
+								</c:if>
+							</a>
 							<div class="caption">
 								<div>
-									<span class="h5">${l.name }</span>
+									<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}">
+										<span class="h5">${l.name }</span>
+									</a>
 								</div>
 								<div>
 							        <span>

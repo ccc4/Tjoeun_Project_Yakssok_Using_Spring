@@ -15,6 +15,10 @@ public class PillSetController {
 	@Autowired
 	private PillSetService service;
 	
+	// 디비에 약 세부정보 경고 이미지 저장용
+	
+	
+	
 	@RequestMapping(value="/test1", method=RequestMethod.GET)
 	public String test1() {
 		for(int i=1;i<=24;i++) {

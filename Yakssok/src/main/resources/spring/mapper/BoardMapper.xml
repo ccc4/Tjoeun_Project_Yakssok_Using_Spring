@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
+<mapper namespace="board.model.Board.BoardMapper">
+
+	<select id="allCount" resultType="int">
+		SELECT count(*)
+		FROM board_free_view 
+		<include refid="search"/>		
+	</select>
+	
+	<select id="selectList" resultType="board">
+		SELECT *
+        FROM board_free_view    	
+	</select>
+
+	<select id="read_cnt_plus" parameterType="int">
+	    UPDATE board_free
+	    SET read_cnt = read_cnt + 1 
+	    WHERE idx = #{idx}
+	</select>
+	
+  	<select id="list" parameterType="java.util.Map" resultType="board">
+  		SELECT * 
+  		FROM board_free_view 
+  		ORDER BY idx DESC LIMIT #{p1}, #{p2}
+  	</select>
+  	
+  	<insert id="write" useGeneratedKeys="true"  keyProperty="idx">
+  	    insert into board_free
+     	(m_idx, title, contents)
+  	    values(#{m_idx}, #{title}, #{contents})
+    </insert>
+  	
+  	<select id="view" parameterType="int" resultType="board">
+  		SELECT * FROM board_free_view 
+  		WHERE idx = #{idx}
+  	</select>
+  	
+  	<select id="modify" parameterType="board">
+  		UPDATE board_free 
+  		SET title = #{title}, contents = #{contents}, modifyDate = sysdate() 
+  		WHERE idx = #{idx}
+  	</select>
+  	
+  	<select id="delete" parameterType="int">
+  		UPDATE board_free 
+  		SET exist = 0
+  		WHERE idx = #{idx}
+  	</select>
+  	
+  	<select id="searchList" parameterType="java.util.Map" resultType="board">
+		SELECT *
+		FROM board_free_view
+		WHERE idx
+ 	    <include refid="search"/>	
+ 	    ORDER BY idx desc, writeDate desc LIMIT #{p1}, #{p2}
+	</select>
+	
+    <select id="searchCount" resultType="int" >
+		SELECT count(*)
+		FROM board_free_view
+		where idx
+ 	    <include refid="search"/>	 	
+	</select>
+
+<sql id="search">
+
+		<if test="searchOption == 't'.toString()">
+			and title like CONCAT('%', #{keyword}, '%')
+		</if>
+
+		<if test="searchOption == 'c'.toString()">
+			and contents like CONCAT('%', #{keyword}, '%')
+		</if>
+
+		<if test="searchOption == 'tc'.toString()">
+			and title like CONCAT('%', #{keyword}, '%')
+			OR contents like CONCAT('%', #{keyword}, '%')
+		</if>
+
+</sql>
+
+</mapper>
+
+
+
+
+
+
+
+
+

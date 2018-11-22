@@ -10,6 +10,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  		
  		<typeAlias type="com.yakssok.model.Member" alias="member" />
  		
+ 		<typeAlias type="com.yakssok.model.Board" alias="board" />
+ 		
  		<typeAlias type="com.yakssok.model.P_effect" alias="p_effect" />
  		<typeAlias type="com.yakssok.model.P_detail_1" alias="p_detail_1" />
  		<typeAlias type="com.yakssok.model.P_detail_2" alias="p_detail_2" />
