@@ -30,9 +30,7 @@
 			</div>
 			<div>
 				내용:<br>
-				<textarea name="contents" rows="5" cols="30" readOnly>
-					<u:pre value='${board.contents }' />
-				</textarea>
+				<textarea name="contents" rows="5" cols="30" readOnly>${board.contents }</textarea>
 			</div>
 			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/'">
 						

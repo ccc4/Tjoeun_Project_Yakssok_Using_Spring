@@ -15,8 +15,8 @@
 
 
 	<div>
-		<button class="btn btn-default" type="button" onclick="location.href='history.back()'">뒤로가기</button>
-		<button class="btn btn-default" type="button" onclick="location.href='#'">수정건의</button>
+		<button class="btn btn-default" type="button" onclick="history.back()">뒤로가기</button>
+		<button class="btn btn-default" type="button" onclick="alert('준비중입니다.')">수정건의</button>
 	</div>
 
 	<!-- 약 정보 페이지 시작 -->
