@@ -16,7 +16,7 @@
 	<div>
 		<form action="${pageContext.request.contextPath}/member/editProfile" method="post">
 			<table>
-				<caption>회원정보 수정</caption>
+				<caption>회원정보 수정<button class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete'">회원탈퇴</button></caption>
 				<tr>
 					<td>아이디:</td>
 					<td><input type="text" name ="id" value="${loginMember.id}" readonly></td>
@@ -31,7 +31,7 @@
 				</tr>
 				<tr>
 					<td>나이:</td>
-					<td><input type="number" name="age" value="${loginMember.age}"></td>
+					<td><input type="number" name="age" value="${loginMember.age}" min="1" max="150"></td>
 				</tr>
 				<tr>
 					<td>번호:</td>
@@ -46,7 +46,8 @@
 					<td><input type="text" name="address" value="${loginMember.address }"></td>
 				</tr>
 			</table>
-			<input type="submit" value="수정">
+			<button class="btn btn-default pull-right" type="submit" onclick="location.href='history.back()'">뒤로</button>
+			<button class="btn btn-default pull-right" type="submit">수정</button>
 		</form>
 	</div>
 </div>

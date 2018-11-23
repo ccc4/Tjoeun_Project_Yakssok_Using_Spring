@@ -21,6 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  		<typeAlias type="com.yakssok.model.P_list" alias="p_list" />
  		<typeAlias type="com.yakssok.model.P_rating" alias="p_rating" />
  		<typeAlias type="com.yakssok.model.P_list_helper" alias="p_list_helper" />
+ 		<typeAlias type="com.yakssok.model.P_one" alias="p_one" />
  		<!-- <typeAlias type="com.yakssok.model.Board" alias="board"/> -->
  	</typeAliases>
  </configuration>

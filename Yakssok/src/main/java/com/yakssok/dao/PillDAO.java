@@ -16,6 +16,7 @@ import com.yakssok.model.P_list;
 import com.yakssok.model.P_rating;
 import com.yakssok.model.Pill;
 import com.yakssok.model.P_list_helper;
+import com.yakssok.model.P_one;
 
 
 @Repository
@@ -26,6 +27,31 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public P_one one_view(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".one_view", p_idx);
+	}
+	
+	public String get_p_dont(int p_dont_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_dont", p_dont_idx);
+	}
+	public String get_p_saveHow(int p_saveHow_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_saveHow", p_saveHow_idx);
+	}
+	public String get_p_sideEffect(int p_sideEffect_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_sideEffect", p_sideEffect_idx);
+	}
+	public String get_p_useHow(int p_useHow_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_useHow", p_useHow_idx);
+	}
+	public String get_p_food(int p_food_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_food", p_food_idx);
+	}
+	public String get_p_form(int p_form_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_form", p_form_idx);
+	}
+	public String get_p_caution(int p_caution_idx) {
+		return sqlSession.selectOne(strNameSpace + ".get_p_caution", p_caution_idx);
+	}
 	
 	public int all_list_count() {
 		return sqlSession.selectOne(strNameSpace + ".all_list_count");
@@ -76,10 +102,18 @@ public class PillDAO {
 	}
 	
 	public int all_Good(int p_idx) {
-		return sqlSession.selectOne(strNameSpace + ".all_Good", p_idx);
+		try {
+			return sqlSession.selectOne(strNameSpace + ".all_Good", p_idx);
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 	public int all_Bad(int p_idx) {
-		return sqlSession.selectOne(strNameSpace + ".all_Bad", p_idx);
+		try {
+			return sqlSession.selectOne(strNameSpace + ".all_Bad", p_idx);
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 	
 	

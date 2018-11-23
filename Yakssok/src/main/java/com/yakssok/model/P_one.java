@@ -1,9 +1,15 @@
 package com.yakssok.model;
 
+import java.util.List;
+
 public class P_one {
 	private int p_idx;
 	private String name;
 	private String imgPath;
+	
+	private double rating;
+	
+	private List<P_ingredient> ingredients;
 	
 	private String effect_main;
 	private String effect_etc;
@@ -27,6 +33,26 @@ public class P_one {
 	private String p_form_idx;
 	private String p_caution_idx;
 	
+	private List<String> detail_2;
+	
+	public List<String> getDetail_2() {
+		return detail_2;
+	}
+	public void setDetail_2(List<String> detail_2) {
+		this.detail_2 = detail_2;
+	}
+	public double getRating() {
+		return rating;
+	}
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+	public List<P_ingredient> getIngredients() {
+		return ingredients;
+	}
+	public void setIngredients(List<P_ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
 	public int getP_idx() {
 		return p_idx;
 	}

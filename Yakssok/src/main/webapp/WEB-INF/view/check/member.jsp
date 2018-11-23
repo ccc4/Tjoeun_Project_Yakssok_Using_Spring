@@ -40,8 +40,8 @@
 
 <c:if test="${login == 0 }">
 	<script type="text/javascript">
-		show("로그인실패");
-		location.href="login";
+		alert("로그인실패");
+		location.href="${pageContext.request.contextPath}/member/login";
 	</script>
 </c:if>
 
@@ -54,63 +54,71 @@
 
 <c:if test="${findId eq 0 }">
 	<script type="text/javascript">
-	show("존재하지 않는 회원이거나 아이디 또는 이메일이 틀렸습니다.");
-	location.href="findId";
+		alert("존재하지 않는 회원이거나 아이디 또는 이메일이 틀렸습니다.");
+		location.href="${pageContext.request.contextPath}/member/login";
 	</script>
 </c:if>
 
 <c:if test="${findId eq 1}">
-사용자의 아이디는 <strong>${findIdResult.id}</strong> 입니다.
-<a href="${pageContext.request.contextPath}/member/login">[로그인]</a>
+	<%-- 사용자의 아이디는 <strong>${findIdResult.id}</strong> 입니다.
+	<a href="${pageContext.request.contextPath}/member/login">[로그인]</a> --%>
+	
+	<script type="text/javascript">
+	var check = confirm("사용자의 아이디는 ${findIdResult.id } 입니다.\n바로 로그인하러 가시겠습니까?");
+	if(check) {
+		location.href="${pageContext.request.contextPath}/member/login";
+	} else {
+		location.href="${pageContext.request.contextPath}/";
+	}
+	</script>
 </c:if>
 
 <c:if test="${modify eq 1 }">
 	<script type="text/javascript">
-		show("수정 완료");
-		home();
+		alert("수정 완료");
+		location.href="${pageContext.request.contextPath}/member/mypage";
 	</script>
 </c:if>
 
 
 <c:if test="${modify eq 0 }">
 	<script type="text/javascript">
-		show("수정 실패");
-		home();
+		alert("수정 실패");
+		location.href="${pageContext.request.contextPath}/member/mypage";
 	</script>
 </c:if>
 
 <c:if test="${failmodify eq 0 }">
 	<script type="text/javascript">
-		show("입력란을 모두 채워주세요");
-		location.href= "editProfile";
+		alert("입력란을 모두 채워주세요");
+		location.href="${pageContext.request.contextPath}/member/editProfile";
 	</script>
 </c:if>
 
 <c:if test="${delete eq 0}">
 	<script type="text/javascript">
-		show("회원탈퇴 실패, 아이디 또는 비밀번호가 틀렸습니다.");
-		location.href='delete';
+		alert("회원탈퇴 실패, 아이디 또는 비밀번호가 틀렸습니다.");
+		location.href="${pageContext.request.contextPath}/member/mypage";
 	</script>
 </c:if>
 
 <c:if test="${delete eq 1}">
 	<script type="text/javascript">
 		show("회원탈퇴완료");
-		home();
 	</script>
 </c:if>
 
 <c:if test="${findPw eq 0}">
 	<script type="text/javascript">
-	show("회원정보가 틀렸거나 존재하지 않습니다.");
-	location.href='findPw';
+	alert("회원정보가 틀렸거나 존재하지 않습니다.");
+	location.href="${pageContext.request.contextPath}/member/login";
 	</script>
 </c:if>
 
 <c:if test="${findPw eq 1}">
 	<script type="text/javascript">
-	show("이메일로 임시비밀번호를 전송하였습니다.");
-	home();
+	alert("이메일로 임시비밀번호를 전송하였습니다.");
+	location.href="${pageContext.request.contextPath}/member/login";
 	</script>
 </c:if>
 	

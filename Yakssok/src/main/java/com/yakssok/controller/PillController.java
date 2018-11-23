@@ -36,10 +36,16 @@ public class PillController {
 	
 	
 	@RequestMapping(value="/view/{p_idx}", method=RequestMethod.GET)
-	public String view(Model model, @PathVariable String p_idx) {
-		System.out.println(p_idx);
+	public String view(Model model, HttpSession session, 
+			@PathVariable int p_idx) {
 		
+		int m_idx = 0;
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		if(loginMember != null) {
+			m_idx = loginMember.getM_idx();
+		}
 		
+		model.addAttribute("result", service.one_view(p_idx, m_idx));
 		return "pill/view";
 	}
 	

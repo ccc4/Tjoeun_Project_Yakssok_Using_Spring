@@ -4,11 +4,17 @@ package com.yakssok.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -29,16 +35,22 @@ public class MemberController {
 	//로그인 폼으로 이동
 	@RequestMapping(value="/login", method=RequestMethod.GET)				// 이 부분
 	public String login() {
-		//System.out.println("진입");
 		return "/member/login";
 	}
 	
 	//@RequestMapping(value = "/loginResult", method  = RequestMethod.POST)
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Model model, Member inputMember) {
-
+	public String login(Model model, Member inputMember, 
+			HttpServletRequest request, 
+			HttpServletResponse response) {
 		//db
 		Member member = service.select(inputMember);	
+		
+		if(request.getParameter("saveId") == null) {
+			Cookie cookie = new Cookie("saveId", null);
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
 		
 		//로그인 실패
 		if(member == null) {
@@ -51,7 +63,6 @@ public class MemberController {
 			
 		}else if(!member.getPw().equals(inputMember.getPw())) {
 			model.addAttribute("login", 0);
-			model.addAttribute("islogin",false);
 			model.addAttribute("loginMember");
 		//로그인 성공
 			
@@ -62,6 +73,11 @@ public class MemberController {
 			model.addAttribute("login", 1);
 			model.addAttribute("islogin",true);
 			model.addAttribute("loginMember",member);
+
+			if(request.getParameter("saveId") != null) {
+				Cookie cookie = new Cookie("saveId",inputMember.getId());
+				response.addCookie(cookie);
+			} 
 		}
 		return RESULT_CHECK;
 	}

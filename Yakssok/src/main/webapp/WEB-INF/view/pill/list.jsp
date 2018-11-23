@@ -59,24 +59,31 @@
 									</a>
 								</div>
 								<div>
-							        <span>
-								        <c:if test="${l.rating == -1}">
-								        	<button class="btn btn-primary" type="button">
-								        		Good&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-								        	</button> 
-								        	<button class="btn btn-danger" type="button">
-								        		Bad&nbsp;<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-								        	</button> 
-								        </c:if>
-								        <c:if test="${l.rating != -1}">
-								        	<span>${l.rating } %</span>
-								        </c:if>
-							        </span>
+							        <c:if test="${l.rating == -1}">
+							        	<button class="btn btn-primary" type="button">
+							        		Good&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+							        	</button> 
+							        	<button class="btn btn-danger" type="button">
+							        		Bad&nbsp;<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+							        	</button> 
+							        </c:if>
+							        <c:if test="${l.rating != -1}">
+							        	<div>
+									        <c:if test="${l.rating >= 50}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/pill/rating/good.png" width="30">
+								        		<span>${l.rating } %</span>
+								        	</c:if>
+									        <c:if test="${l.rating < 50}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/pill/rating/bad.png" width="30">
+								        		<span>${l.rating } %</span>
+								        	</c:if>
+							        	</div>
+							        </c:if>
 								</div>
 								<div>
 									<span>제조사/유통사 : ${l.company_name }</span>
 								</div>
-								<div>효과 : 
+								<div>효능/효과 : 
 									<button type="button" class="btn btn-default" data-toggle="popover" title="효능/효과" data-content="${l.effect_main }">
 										<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 									</button>

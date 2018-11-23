@@ -45,7 +45,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT DISTINCT p.p_idx, name, imgPath, company_name, effect_main FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng like #{keyword} OR kor like #{keyword} LIMIT #{p1}, #{p2}
 	</select>
 	
+	<!-- 하나의 약품정보 보기 -->
+	<select id="one_view" parameterType="int" resultType="p_one">
+		SELECT * FROM p_one_view WHERE p_idx = #{p_idx}
+	</select>
 	
+	<select id="get_p_dont" parameterType="int" resultType="String">
+		SELECT img FROM p_dont WHERE p_dont_idx = #{p_dont_idx}
+	</select>
+	<select id="get_p_saveHow" parameterType="int" resultType="String">
+		SELECT img FROM p_saveHow WHERE p_saveHow_idx = #{p_saveHow_idx}
+	</select>
+	<select id="get_p_sideEffect" parameterType="int" resultType="String">
+		SELECT img FROM p_sideEffect WHERE p_sideEffect_idx = #{p_sideEffect_idx}
+	</select>
+	<select id="get_p_useHow" parameterType="int" resultType="String">
+		SELECT img FROM p_useHow WHERE p_useHow_idx = #{p_useHow_idx}
+	</select>
+	<select id="get_p_food" parameterType="int" resultType="String">
+		SELECT img FROM p_food WHERE p_food_idx = #{p_food_idx}
+	</select>
+	<select id="get_p_form" parameterType="int" resultType="String">
+		SELECT img FROM p_form WHERE p_form_idx = #{p_form_idx}
+	</select>
+	<select id="get_p_caution" parameterType="int" resultType="String">
+		SELECT img FROM p_caution WHERE p_caution_idx = #{p_caution_idx}
+	</select>
 	
 	
 	<select id="pi_list" parameterType="int" resultType="p_ingredient">

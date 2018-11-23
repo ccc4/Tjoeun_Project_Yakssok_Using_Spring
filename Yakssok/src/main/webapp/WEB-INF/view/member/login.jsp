@@ -39,14 +39,24 @@
 			<h3>로그인</h3>
 			<form action="${pageContext.request.contextPath}/member/login" method="post">
 				<div class="form-group">
-					<input type="text" class="form-control" id="inputID" name="id" placeholder="아이디를 입력해주세요">
+					<c:if test="${!empty cookie.saveId }">
+						<input type="text" class="form-control" id="inputID" name="id" value="${cookie.saveId.value }">
+					</c:if>
+					<c:if test="${empty cookie.saveId }">
+						<input type="text" class="form-control" id="inputID" name="id" placeholder="아이디를 입력해주세요">
+					</c:if>
 				</div>
 				<div class="form-group">
 					<input type="password" class="form-control" id="inputPW" name="pw" placeholder="비밀번호를 입력해주세요">
 				</div>
 				<div class="checkbox">
 				<label>
-					<input type="checkbox"> 아이디 기억하기
+					<c:if test="${!empty cookie.saveId }">
+						<input type="checkbox" name ="saveId" checked> 아이디 기억하기
+					</c:if>
+					<c:if test="${empty cookie.saveId }">
+						<input type="checkbox" name ="saveId"> 아이디 기억하기
+					</c:if>
 				</label>
 				</div>
 				<div>

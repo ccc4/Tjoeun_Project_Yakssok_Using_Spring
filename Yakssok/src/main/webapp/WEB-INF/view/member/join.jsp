@@ -93,14 +93,14 @@
 					<tr>
 						<td>나이</td>
 						<td>
-							<input type="number" name="age" placeholder="나이">
+							<input type="number" name="age" placeholder="나이" min="1" max="150">
 						</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>성별</td>
 						<td>
-							<input type="radio" name="gender" value="1"> 남성
+							<input type="radio" name="gender" value="1" checked> 남성
 							<input type="radio" name="gender" value="0"> 여성
 						</td>
 						<td></td>
