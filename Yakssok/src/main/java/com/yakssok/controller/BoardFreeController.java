@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yakssok.model.board.Board;
 import com.yakssok.model.member.Member;
-import com.yakssok.service.BoardService;
+import com.yakssok.service.BoardFreeService;
 
 
 @Controller
 @RequestMapping("/board")
 @SessionAttributes("loginMember")
-public class BoardController {
+public class BoardFreeController {
 	
-	private static final String RESULT_CHECK = "check/board";
+	private static final String RESULT_CHECK = "check/board_free";
 	 
 	@Autowired
-	private BoardService service;
+	private BoardFreeService service;
 
-	@RequestMapping(value="", method=RequestMethod.GET)
+	@RequestMapping(value="/free", method=RequestMethod.GET)
 	public String list(Model model, 
 			@RequestParam(name="page", defaultValue="1", required=false) int page,
 			@RequestParam(defaultValue="title") String option,
@@ -44,27 +44,27 @@ public class BoardController {
 		model.addAttribute("option", option);
 		model.addAttribute("keyword", keyword);
 			
-		return "board/main";
+		return "board/free/list";
 	}
 	
-	@RequestMapping(value="/view/{b_idx}", method=RequestMethod.GET)
+	@RequestMapping(value="/free/view/{b_idx}", method=RequestMethod.GET)
 	public String view(Model model, @PathVariable int b_idx) {
 		
 		Object result = service.view(b_idx);
 		model.addAttribute("board", result);
 		
-		return "board/view";
+		return "board/free/view";
 	}
 	
-	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	@RequestMapping(value="/free/modify", method=RequestMethod.GET)
 	public String modify(Model model, @RequestParam int b_idx) {
 		
 		Board result = service.view(b_idx);
 		model.addAttribute("board", result);
 		
-		return "board/modify";
+		return "board/free/modify";
 	}
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	@RequestMapping(value="/free/modify", method=RequestMethod.POST)
 	public String modify(Model model, Board board) {
 		
 		Object result = service.modify(board);
@@ -74,7 +74,7 @@ public class BoardController {
 		return RESULT_CHECK;
 	}
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	@RequestMapping(value="/free/delete", method=RequestMethod.GET)
 	public String delete(Model model, @RequestParam int b_idx) {
 		
 		Object result = service.delete(b_idx);
@@ -83,11 +83,11 @@ public class BoardController {
 		return RESULT_CHECK;
 	}
 	
-	@RequestMapping(value="/write", method=RequestMethod.GET)
+	@RequestMapping(value="/free/write", method=RequestMethod.GET)
 	public String write() {		
-		return "board/write";
+		return "board/free/write";
 	}
-	@RequestMapping(value="/write", method=RequestMethod.POST)
+	@RequestMapping(value="/free/write", method=RequestMethod.POST)
 	public String write(Model model, Board board, 
 			@ModelAttribute("loginMember") Member loginMember) {
 		

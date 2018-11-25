@@ -16,7 +16,7 @@
 	<div>
 
 		<h4>[게시글 수정]</h4>
-		<form action="${pageContext.request.contextPath }/board/modify" method="post">
+		<form action="${pageContext.request.contextPath }/board/free/modify" method="post">
 			<input type="hidden" name="b_idx" value="${board.b_idx}" >
 			<div>
 				번호:${board.b_idx}
@@ -29,9 +29,9 @@
 				내용:<br>
 				<textarea name="contents" rows="5" cols="30">${board.contents }</textarea>
 			</div>
-			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/'">
+			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/free'">
 			<input type="submit" value="수정완료">
-			<input type="button" value="수정취소" onclick="location.href='${pageContext.request.contextPath }/board/view/${board.b_idx}'">
+			<input type="button" value="수정취소" onclick="location.href='${pageContext.request.contextPath }/board/free/view/${board.b_idx}'">
 			
 		</form>
 	</div>

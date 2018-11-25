@@ -40,7 +40,7 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="${pageContext.request.contextPath }/board/notice">공지사항</a></li>
             <li><a href="#">팁&정보공유</a></li>
-            <li><a href="${pageContext.request.contextPath }/board">자유게시판</a></li>
+            <li><a href="${pageContext.request.contextPath }/board/free">자유게시판</a></li>
           </ul>
         </li>
         <li class="dropdown">

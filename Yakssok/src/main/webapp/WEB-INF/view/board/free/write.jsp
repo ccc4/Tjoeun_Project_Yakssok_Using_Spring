@@ -15,7 +15,7 @@
 	
 	<div>
 
-		<form name="write" onsubmit="return check()" action="${pageContext.request.contextPath }/board/write" method="POST">
+		<form name="write" onsubmit="return check()" action="${pageContext.request.contextPath }/board/free/write" method="POST">
 			<div>
 				<c:if test="${!empty loginMember }">
 					닉네임: <label>${loginMember.nickname }</label>
@@ -30,7 +30,7 @@
 				<textarea name="contents" rows="5" cols="30" placeholder="내용을 입력하세요."></textarea>
 			</div>
 			<input type="submit" value="작성완료" >
-			<input type="button" value="작성취소" onclick="location.href='${pageContext.request.contextPath }/board/'">
+			<input type="button" value="작성취소" onclick="location.href='${pageContext.request.contextPath }/board/free'">
 		
 		</form>
 	</div>

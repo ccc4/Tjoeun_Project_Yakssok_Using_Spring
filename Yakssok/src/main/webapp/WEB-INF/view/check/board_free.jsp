@@ -9,6 +9,16 @@
 </head>
 <body>
 
+
+<script type="text/javascript">
+	function show(str) {
+		alert(str);
+		home();
+	}
+	function home() {
+		location.href="${pageContext.request.contextPath}/board/free";
+	}
+</script>
 <c:if test="${wrong == 1 }">
 	<script type="text/javascript">
 		alert("잘못된 접근입니다.");
@@ -25,40 +35,35 @@
 
 <c:if test="${write == 1 }">
 	<script type="text/javascript">
-		alert("작성 성공");
-		location.href= "${pageContext.request.contextPath}/board";
+		show("작성 완료");
 	</script>
 </c:if>
 <c:if test="${write == 0 }">
 	<script type="text/javascript">
-		alert("작성 실패");
-		location.href= "${pageContext.request.contextPath}/board";
+		show("작성 실패");
 	</script>
 </c:if>
 
 <c:if test="${modify == 1 }">
 	<script type="text/javascript">
-		alert("수정 성공");
-		location.href= "${pageContext.request.contextPath}/board/view/" + ${modifyIdx};
+		alert("수정 완료");
+		location.href= "${pageContext.request.contextPath}/board/free/view/" + ${modifyIdx};
 	</script>
 </c:if>
 <c:if test="${modify == 0 }">
 	<script type="text/javascript">
-		alert("수정 실패");
-		location.href= "${pageContext.request.contextPath}/board";
+		show("수정 실패");
 	</script>
 </c:if>
 
 <c:if test="${delete == 1 }">
 	<script type="text/javascript">
-		alert("삭제 성공");
-		location.href= "${pageContext.request.contextPath}/board";
+		show("삭제 완료");
 	</script>
 </c:if>
 <c:if test="${delete == 0 }">
 	<script type="text/javascript">
-		alert("삭제 실패");
-		location.href= "${pageContext.request.contextPath}/board";
+		show("삭제 실패");
 	</script>
 </c:if>
 

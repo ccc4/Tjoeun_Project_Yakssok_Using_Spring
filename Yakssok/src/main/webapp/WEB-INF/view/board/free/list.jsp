@@ -33,7 +33,7 @@
 	<div>
 		<!-- 검색창 -->
 		<div>
-			<form action="${pageContext.request.contextPath }/board" method="get">
+			<form action="${pageContext.request.contextPath }/board/free" method="get">
 				<select name="option">
 					<option value="t">제목</option>
 					<option value="c">내용</option>
@@ -49,7 +49,7 @@
 		<div>
 			${count}개의 게시물이 있습니다.
 			<c:if test="${!empty loginMember }">
-				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/board/write'">글쓰기</button>
+				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/board/free/write'">글쓰기</button>
 			</c:if>
 			<c:if test="${empty loginMember }">
 				<button class="btn btn-default" type="button" disabled>글쓰기</button>
@@ -70,7 +70,7 @@
 						<c:forEach var="l" items="${list }" >
 							<tr class="data">
 								<td><p>${l.b_idx }</p></td>
-								<td><a class="title" href="${pageContext.request.contextPath}/board/view/${l.b_idx }">${l.title }</a></td>
+								<td><a class="title" href="${pageContext.request.contextPath}/board/free/view/${l.b_idx }">${l.title }</a></td>
 								<td><p>${l.nickname }</td>
 								<td>
 									<p>
@@ -99,14 +99,14 @@
 		<nav style="text-align: center;">
 			<ul class="pagination pagination-sm">
 				<c:if test="${p.page != 1 }">
-					<li><a href="${pageContext.request.contextPath }/board?page=${p.startPage}&option=${option}&keyword=${keyword}"">처음</a></li>
+					<li><a href="${pageContext.request.contextPath }/board/free?page=${p.startPage}&option=${option}&keyword=${keyword}"">처음</a></li>
 				</c:if>
 				<c:if test="${p.page == 1 }">
 					<li class="disabled"><a href="#">처음</a></li>
 				</c:if>
 				
 				<c:if test="${p.page != p.startPage }">
-					<li><a href="${pageContext.request.contextPath }/board?page=${p.page - 1 }&option=${option}&keyword=${keyword}"">이전</a></li>
+					<li><a href="${pageContext.request.contextPath }/board/free?page=${p.page - 1 }&option=${option}&keyword=${keyword}"">이전</a></li>
 				</c:if>
 				<c:if test="${p.page == p.startPage }">
 					<li class="disabled"><a href="#">이전</a></li>
@@ -117,19 +117,19 @@
 						<li class="active"><a href="#"><b>${i }</b></a></li>
 					</c:if>
 					<c:if test="${i != p.page }">
-						<li><a href="${pageContext.request.contextPath }/board?page=${i}&option=${option}&keyword=${keyword}">${i}</a></li>
+						<li><a href="${pageContext.request.contextPath }/board/free?page=${i}&option=${option}&keyword=${keyword}">${i}</a></li>
 					</c:if>
 				</c:forEach>
 				
 				<c:if test="${p.page != p.endPage }">
-					<li><a href="${pageContext.request.contextPath }/board?page=${p.page + 1}&option=${option}&keyword=${keyword}"">다음</a></li>
+					<li><a href="${pageContext.request.contextPath }/board/free?page=${p.page + 1}&option=${option}&keyword=${keyword}"">다음</a></li>
 				</c:if>
 				<c:if test="${p.page == p.endPage }">
 					<li class="disabled"><a href="#">다음</a></li>
 				</c:if>
 				
 				<c:if test="${p.page != p.totalPage }">
-					<li><a href="${pageContext.request.contextPath }/board?page=${p.totalPage}&option=${option}&keyword=${keyword}"">끝</a></li>
+					<li><a href="${pageContext.request.contextPath }/board/free?page=${p.totalPage}&option=${option}&keyword=${keyword}"">끝</a></li>
 				</c:if>
 				<c:if test="${p.page == p.totalPage }">
 					<li class="disabled"><a href="#">끝</a></li>

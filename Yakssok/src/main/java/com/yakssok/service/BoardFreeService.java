@@ -7,18 +7,18 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yakssok.dao.BoardDAO;
+import com.yakssok.dao.BoardFreeDAO;
 import com.yakssok.model.board.B_paging;
 import com.yakssok.model.board.Board;
 
 @Service
-public class BoardService {
+public class BoardFreeService {
 	
 	private static final int ONE_PAGE = 5;
 	private static final int ONE_SECTION = 5;
 
 		@Autowired
-		private BoardDAO dao;
+		private BoardFreeDAO dao;
 		
 		public Board view(int b_idx) {
 			dao.read_cnt_plus(b_idx);

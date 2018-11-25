@@ -11,12 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.yakssok.model.board.Board;
 
 @Repository
-public class BoardDAO {
+public class BoardFreeDAO {
 
 		@Autowired
 		private SqlSessionTemplate sqlSession;
 		
-		private String strNameSpace = "board.model.Board.BoardMapper";
+		private String strNameSpace = "BoardFreeMapper";
 		
 		public int allCount() {
 			return sqlSession.selectOne(strNameSpace + ".allCount");

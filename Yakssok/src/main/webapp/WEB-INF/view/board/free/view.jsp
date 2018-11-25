@@ -16,7 +16,7 @@
 	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
 	<div>
-		<form action="${pageContext.request.contextPath }/board/modify" method="post">
+		<form action="${pageContext.request.contextPath }/board/free/modify" method="post">
 			<input type="hidden" name="b_idx" value="${board.b_idx}" >
 			<div>
 				번호:${board.b_idx}
@@ -32,10 +32,10 @@
 				내용:<br>
 				<textarea name="contents" rows="5" cols="30" readOnly>${board.contents }</textarea>
 			</div>
-			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/'">
+			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/free'">
 			
 			<c:if test="${loginMember.m_idx == board.m_idx }">
-				<input type="button" value="수정하기" onclick="location.href='${pageContext.request.contextPath}/board/modify?b_idx=${board.b_idx }'">
+				<input type="button" value="수정하기" onclick="location.href='${pageContext.request.contextPath}/board/free/modify?b_idx=${board.b_idx }'">
 				<input type="button" value="삭제하기" onclick="deleteConfirm()">
 			</c:if>
 			<c:if test="${empty loginMember || loginMember.m_idx != board.m_idx }">
@@ -55,7 +55,7 @@
 	function deleteConfirm(){
 		var check = confirm("정말 삭제하시겠습니까?");
 		if(check){
-			location.href='${pageContext.request.contextPath}/board/delete?b_idx=${board.b_idx }';
+			location.href='${pageContext.request.contextPath}/board/free/delete?b_idx=${board.b_idx }';
 		}
 	}
 </script>
