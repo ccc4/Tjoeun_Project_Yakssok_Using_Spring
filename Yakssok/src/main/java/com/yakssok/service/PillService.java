@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yakssok.dao.PillDAO;
-import com.yakssok.model.P_company;
-import com.yakssok.model.P_detail_1;
-import com.yakssok.model.P_detail_2;
-import com.yakssok.model.P_effect;
-import com.yakssok.model.P_ingredient;
-import com.yakssok.model.P_list;
-import com.yakssok.model.P_list_helper;
-import com.yakssok.model.P_one;
-import com.yakssok.model.P_paging;
-import com.yakssok.model.P_rating;
-import com.yakssok.model.Pill;
+import com.yakssok.model.Search_helper;
+import com.yakssok.model.pill.P_company;
+import com.yakssok.model.pill.P_detail_1;
+import com.yakssok.model.pill.P_detail_2;
+import com.yakssok.model.pill.P_effect;
+import com.yakssok.model.pill.P_ingredient;
+import com.yakssok.model.pill.P_list;
+import com.yakssok.model.pill.P_one;
+import com.yakssok.model.pill.P_paging;
+import com.yakssok.model.pill.P_rating;
+import com.yakssok.model.pill.Pill;
 
 @Service
 public class PillService {
@@ -79,21 +79,17 @@ public class PillService {
 				detail_2.add(dao.get_p_caution(Integer.parseInt(array[i])));
 			}
 		}
-		
-		
-		
-		
 		p_one.setDetail_2(detail_2);
 		return p_one;
 	}
 	
-	public P_paging list(int m_idx, int page, String type, String keyword) {
+	public P_paging list(int m_idx, int page, String option, String keyword) {
 		
 		int allCount = 0;
-		if(type == null) {	// 전체목록인 경우
+		if(option == null) {	// 전체목록인 경우
 			allCount = dao.all_list_count();
 		} else {
-			allCount = dao.type_list_count(type, keyword);
+			allCount = dao.type_list_count(option, keyword);
 		}
 		if(allCount == 0) {	
 			return null;	//	해당 결과 존재하지 않을 시 null 리턴
@@ -113,13 +109,13 @@ public class PillService {
 		int endPage = startPage + oneSection - 1;
 		if(endPage > totalPage) endPage = totalPage;
 		
-		P_list_helper p_list_helper = new P_list_helper((page - 1) * onePage, onePage);
+		Search_helper search_helper = new Search_helper((page - 1) * onePage, onePage);
 		List<P_list> list = null;
-		if(type == null) {
-			list = dao.all_list(p_list_helper);
+		if(option == null) {
+			list = dao.all_list(search_helper);
 		} else {
-			p_list_helper.setKeyword(keyword);
-			list = dao.type_list(type, p_list_helper);
+			search_helper.setKeyword(keyword);
+			list = dao.type_list(option, search_helper);
 		} 
 		if(list == null) {
 			return null;	//	해당 결과 존재하지 않을 시 null 리턴

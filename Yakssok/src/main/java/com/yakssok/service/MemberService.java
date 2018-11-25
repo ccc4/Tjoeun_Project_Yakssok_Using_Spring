@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yakssok.dao.MemberDAO;
-import com.yakssok.model.DeleteMember;
-import com.yakssok.model.Member;
+import com.yakssok.model.member.DeleteMember;
+import com.yakssok.model.member.Member;
 
 
 

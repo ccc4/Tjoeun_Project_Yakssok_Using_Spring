@@ -14,7 +14,7 @@
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
-	<div>
+	<%-- <div>
 		<form class="form-inline" action="${pageContext.request.contextPath }/pill/list" method="GET" style="margin-bottom: 20px">
 			<select class="form-control" name="type">
 				<option selected>약품명</option>
@@ -26,9 +26,12 @@
 			<input class="form-control" type="text" name="keyword" placeholder="검색어 입력">
 			<button class="btn btn-default" type="submit">검색</button>
 		</form>
-	</div>
+	</div> --%>
 	
 	
+	
+	
+	<!-- 해당 index 는 사용하지 않을 계획 --> 
 	
 	
 </div>

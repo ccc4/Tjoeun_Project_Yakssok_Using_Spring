@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yakssok.model.Member;
+import com.yakssok.model.member.Member;
 import com.yakssok.service.MemberService;
 
 @RestController

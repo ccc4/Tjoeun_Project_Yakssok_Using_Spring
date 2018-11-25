@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM p_list_view
 	</select>
 
-	<select id="all_list" parameterType="p_list_helper" resultType="p_list">
+	<select id="all_list" parameterType="Search_helper" resultType="p_list">
 		SELECT * FROM p_list_view LIMIT #{p1}, #{p2}
 	</select>
 	
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM p_list_view WHERE name LIKE #{keyword}
 	</select>
 	
-	<select id="name_list" parameterType="p_list_helper" resultType="p_list">
+	<select id="name_list" parameterType="Search_helper" resultType="p_list">
 		SELECT * FROM p_list_view WHERE name LIKE #{keyword} LIMIT #{p1}, #{p2}
 	</select>
 	
@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM p_list_view WHERE effect_main LIKE #{keyword}
 	</select>
 	
-	<select id="effect_list" parameterType="p_list_helper" resultType="p_list">
+	<select id="effect_list" parameterType="Search_helper" resultType="p_list">
 		SELECT * FROM p_list_view WHERE effect_main LIKE #{keyword} LIMIT #{p1}, #{p2}
 	</select>
 	
@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*) FROM p_list_view WHERE company_name LIKE #{keyword}
 	</select>
 	
-	<select id="company_list" parameterType="p_list_helper" resultType="p_list">
+	<select id="company_list" parameterType="Search_helper" resultType="p_list">
 		SELECT * FROM p_list_view WHERE company_name LIKE #{keyword} LIMIT #{p1}, #{p2}
 	</select>
 	
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(distinct p.p_idx) FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng LIKE #{keyword} OR kor like #{keyword}
 	</select>
 	
-	<select id="ingredient_list" parameterType="p_list_helper" resultType="p_list">
+	<select id="ingredient_list" parameterType="Search_helper" resultType="p_list">
 		SELECT DISTINCT p.p_idx, name, imgPath, company_name, effect_main FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng like #{keyword} OR kor like #{keyword} LIMIT #{p1}, #{p2}
 	</select>
 	

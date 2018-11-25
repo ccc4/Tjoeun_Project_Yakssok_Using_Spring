@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yakssok.model.Drugstore;
-import com.yakssok.model.DrugstoreFS;
+import com.yakssok.model.drugstore.Drugstore;
+import com.yakssok.model.drugstore.DrugstoreFS;
 import com.yakssok.service.DrugstoreService;
 
 @Controller

@@ -17,9 +17,9 @@
 
 		<h4>[게시글 수정]</h4>
 		<form action="${pageContext.request.contextPath }/board/modify" method="post">
-			<input type="hidden" name="idx" value="${board.idx}" >
+			<input type="hidden" name="b_idx" value="${board.b_idx}" >
 			<div>
-				번호:${board.idx}
+				번호:${board.b_idx}
 			</div>
 			<div>
 				제목: <input type="text" name="title" value="${board.title }" >
@@ -31,7 +31,7 @@
 			</div>
 			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/'">
 			<input type="submit" value="수정완료">
-			<input type="button" value="수정취소" onclick="location.href='${pageContext.request.contextPath }/board/view/${board.idx}'">
+			<input type="button" value="수정취소" onclick="location.href='${pageContext.request.contextPath }/board/view/${board.b_idx}'">
 			
 		</form>
 	</div>

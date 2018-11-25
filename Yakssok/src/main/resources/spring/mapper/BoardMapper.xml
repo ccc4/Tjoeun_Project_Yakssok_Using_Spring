@@ -20,65 +20,61 @@
 	<select id="read_cnt_plus" parameterType="int">
 	    UPDATE board_free
 	    SET read_cnt = read_cnt + 1 
-	    WHERE idx = #{idx}
+	    WHERE b_idx = #{b_idx}
 	</select>
 	
   	<select id="list" parameterType="java.util.Map" resultType="board">
   		SELECT * 
   		FROM board_free_view 
-  		ORDER BY idx DESC LIMIT #{p1}, #{p2}
+  		ORDER BY b_idx DESC LIMIT #{p1}, #{p2}
   	</select>
   	
-  	<insert id="write" useGeneratedKeys="true"  keyProperty="idx">
-  	    insert into board_free
-     	(m_idx, title, contents)
-  	    values(#{m_idx}, #{title}, #{contents})
+  	<insert id="write" parameterType="board">
+  	    insert into board_free (m_idx, title, contents) values (#{m_idx}, #{title}, #{contents})
     </insert>
   	
   	<select id="view" parameterType="int" resultType="board">
   		SELECT * FROM board_free_view 
-  		WHERE idx = #{idx}
+  		WHERE b_idx = #{b_idx}
   	</select>
   	
   	<select id="modify" parameterType="board">
   		UPDATE board_free 
-  		SET title = #{title}, contents = #{contents}, modifyDate = sysdate() 
-  		WHERE idx = #{idx}
+  		SET title = #{title}, contents = #{contents}, modifyDate = now()
+  		WHERE b_idx = #{b_idx}
   	</select>
   	
   	<select id="delete" parameterType="int">
   		UPDATE board_free 
   		SET exist = 0
-  		WHERE idx = #{idx}
+  		WHERE b_idx = #{b_idx}
   	</select>
   	
   	<select id="searchList" parameterType="java.util.Map" resultType="board">
 		SELECT *
 		FROM board_free_view
-		WHERE idx
- 	    <include refid="search"/>	
- 	    ORDER BY idx desc, writeDate desc LIMIT #{p1}, #{p2}
+		<include refid="search"/>	
+ 	    ORDER BY b_idx desc, writeDate DESC LIMIT #{p1}, #{p2}
 	</select>
 	
     <select id="searchCount" resultType="int" >
 		SELECT count(*)
 		FROM board_free_view
-		where idx
  	    <include refid="search"/>	 	
 	</select>
 
 <sql id="search">
 
-		<if test="searchOption == 't'.toString()">
-			and title like CONCAT('%', #{keyword}, '%')
+		<if test="option == 't'.toString()">
+			WHERE title like CONCAT('%', #{keyword}, '%')
 		</if>
 
-		<if test="searchOption == 'c'.toString()">
-			and contents like CONCAT('%', #{keyword}, '%')
+		<if test="option == 'c'.toString()">
+			WHERE contents like CONCAT('%', #{keyword}, '%')
 		</if>
 
-		<if test="searchOption == 'tc'.toString()">
-			and title like CONCAT('%', #{keyword}, '%')
+		<if test="option == 'tc'.toString()">
+			WHERE title like CONCAT('%', #{keyword}, '%')
 			OR contents like CONCAT('%', #{keyword}, '%')
 		</if>
 

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.metadata.SqlServerCallMetaDataProvider;
 import org.springframework.stereotype.Repository;
 
-import com.yakssok.model.DeleteMember;
-import com.yakssok.model.Member;
+import com.yakssok.model.member.DeleteMember;
+import com.yakssok.model.member.Member;
 
 
 

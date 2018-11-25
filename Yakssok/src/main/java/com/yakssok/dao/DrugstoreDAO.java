@@ -6,8 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.yakssok.model.Drugstore;
-import com.yakssok.model.DrugstoreFS;
+import com.yakssok.model.drugstore.Drugstore;
+import com.yakssok.model.drugstore.DrugstoreFS;
 
 @Repository
 public class DrugstoreDAO {

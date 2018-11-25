@@ -15,7 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.yakssok.model.*;
+import com.yakssok.model.member.Member;
+import com.yakssok.model.pill.P_company;
+import com.yakssok.model.pill.P_detail_1;
+import com.yakssok.model.pill.P_detail_2;
+import com.yakssok.model.pill.P_effect;
+import com.yakssok.model.pill.P_ingredient;
+import com.yakssok.model.pill.P_paging;
+import com.yakssok.model.pill.Pill;
+import com.yakssok.model.pill.PillFormData;
 import com.yakssok.service.PillService;
 
 @Controller
@@ -52,7 +60,7 @@ public class PillController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model, HttpSession session, 
 			@RequestParam(name="page", defaultValue="1", required=false) int page, 
-			@RequestParam(name="type", required=false) String type, 
+			@RequestParam(name="option", required=false) String option, 
 			@RequestParam(name="keyword", required=false) String keyword) {
 		
 		int m_idx = 0;
@@ -63,11 +71,11 @@ public class PillController {
 			m_idx = loginMember.getM_idx();
 		}
 		
-		P_paging result = service.list(m_idx, page, type, "%" + keyword + "%");
+		P_paging result = service.list(m_idx, page, option, "%" + keyword + "%");
 
 		// 타입이 존재하고 result 도 null 이 아니면 타입과 키워드를 지니게 한다.
-		if(type != null && result != null) {
-			result.setType(type);
+		if(option != null && result != null) {
+			result.setOption(option);
 			result.setKeyword(keyword);
 		}
 		

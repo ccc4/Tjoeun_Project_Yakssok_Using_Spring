@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-import com.yakssok.model.Member;
-import com.yakssok.model.DeleteMember;
+import com.yakssok.model.member.DeleteMember;
+import com.yakssok.model.member.Member;
 import com.yakssok.service.MemberService;
 
 @Controller

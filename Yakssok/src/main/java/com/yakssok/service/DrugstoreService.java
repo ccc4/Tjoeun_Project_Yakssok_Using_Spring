@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yakssok.dao.DrugstoreDAO;
-import com.yakssok.model.Drugstore;
-import com.yakssok.model.DrugstoreFS;
+import com.yakssok.model.drugstore.Drugstore;
+import com.yakssok.model.drugstore.DrugstoreFS;
 
 @Service
 public class DrugstoreService {

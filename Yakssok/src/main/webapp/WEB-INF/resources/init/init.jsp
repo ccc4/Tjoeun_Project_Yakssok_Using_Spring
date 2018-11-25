@@ -7,6 +7,8 @@
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css" rel="stylesheet">
 
+
+
 <!-- 카카오 맵 api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=769b0855ff503f0c21d8ca6171bac898&libraries=services"></script>
 

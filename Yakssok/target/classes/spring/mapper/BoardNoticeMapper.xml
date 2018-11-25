@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="BoardNoticeMapper">
+
+
+	<insert id="write" parameterType="board">
+		INSERT INTO board_notice (m_idx, title, contents) VALUES (#{m_idx}, #{title}, #{contents});
+	</insert>
+
+	<select id="all_count" parameterType="search_helper" resultType="int">
+		SELECT count(*) FROM b_notice_view
+		<include refid="search"/>
+	</select>
+	
+	<select id="all_list" parameterType="search_helper" resultType="board">
+		SELECT * FROM b_notice_view 
+		<include refid="search"/>
+		LIMIT #{p1}, #{p2}
+	</select>
+	
+	<sql id="search">
+		<if test="option == '제목'">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="option == '글쓴이'">
+			WHERE nickname LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="option == '내용'">
+			WHERE contents LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="option == '제목+내용'">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%') 
+			OR contents LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+	</sql>
+
+	<update id="read_cnt_plus" parameterType="int">
+		UPDATE board_notice SET read_cnt = read_cnt + 1 WHERE b_idx = #{b_idx};
+	</update>
+
+	<select id="view" parameterType="int" resultType="board">
+		SELECT * FROM b_notice_view WHERE b_idx = #{b_idx}
+	</select>
+	
+	<update id="modify" parameterType="board">
+		UPDATE board_notice SET title = #{title}, contents = #{contents}, modifyDate = now() WHERE b_idx = #{b_idx}
+	</update>
+	
+	<update id="delete" parameterType="int">
+		UPDATE board_notice SET exist = 0, modifyDate = now() WHERE b_idx = #{b_idx}
+	</update>
+
+
+
+
+	<select id="main" resultType="board">
+		SELECT * FROM b_notice_view LIMIT 0, 5
+	</select>
+	
+</mapper>

@@ -8,38 +8,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yakssok.dao.BoardDAO;
-import com.yakssok.model.Board;
-import com.yakssok.model.Member;
-import com.yakssok.model.B_paging;
+import com.yakssok.model.board.B_paging;
+import com.yakssok.model.board.Board;
 
 @Service
 public class BoardService {
 	
-	private static final int ONE_PAGE = 10;
-	private static final int ONE_SECTION = 10;
+	private static final int ONE_PAGE = 5;
+	private static final int ONE_SECTION = 5;
 
 		@Autowired
 		private BoardDAO dao;
 		
-		public void setDao(BoardDAO dao) {
-			this.dao = dao;
-		}
-		
-		public Board view(int idx) {
-			dao.read_cnt_plus(idx);
-			return dao.view(idx);
+		public Board view(int b_idx) {
+			dao.read_cnt_plus(b_idx);
+			return dao.view(b_idx);
 		}
 		
 		public int write(Board board) {
-			return this.dao.write(board);
+			return dao.write(board);
 		}
 		
 		public int modify(Board board) {
 			return dao.modify(board);
 		}
 		
-		public int delete(int idx) {
-			return dao.delete(idx);
+		public int delete(int b_idx) {
+			return dao.delete(b_idx);
 		}
 
 		public B_paging list(int page, int count) {
@@ -71,8 +66,8 @@ public class BoardService {
 			
 		}
 		
-		public List<Board> searchList(int page, String searchOption, String keyword) {
-			int allCount = dao.searchCount(searchOption, keyword);
+		public List<Board> searchList(int page, String option, String keyword) {
+			int allCount = dao.searchCount(option, keyword);
 			int onePage = ONE_PAGE;
 			int oneSection = ONE_SECTION;
 			
@@ -91,7 +86,7 @@ public class BoardService {
 			
 			map.put("p1", (page - 1) * onePage);
 			map.put("p2", onePage);
-			map.put("searchOption", searchOption);
+			map.put("option", option);
 			map.put("keyword", keyword);
 			
 			return dao.searchList(map);

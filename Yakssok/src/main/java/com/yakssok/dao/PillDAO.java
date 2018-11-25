@@ -7,16 +7,16 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.yakssok.model.P_company;
-import com.yakssok.model.P_detail_1;
-import com.yakssok.model.P_detail_2;
-import com.yakssok.model.P_effect;
-import com.yakssok.model.P_ingredient;
-import com.yakssok.model.P_list;
-import com.yakssok.model.P_rating;
-import com.yakssok.model.Pill;
-import com.yakssok.model.P_list_helper;
-import com.yakssok.model.P_one;
+import com.yakssok.model.Search_helper;
+import com.yakssok.model.pill.P_company;
+import com.yakssok.model.pill.P_detail_1;
+import com.yakssok.model.pill.P_detail_2;
+import com.yakssok.model.pill.P_effect;
+import com.yakssok.model.pill.P_ingredient;
+import com.yakssok.model.pill.P_list;
+import com.yakssok.model.pill.P_one;
+import com.yakssok.model.pill.P_rating;
+import com.yakssok.model.pill.Pill;
 
 
 @Repository
@@ -57,32 +57,32 @@ public class PillDAO {
 		return sqlSession.selectOne(strNameSpace + ".all_list_count");
 	}
 	
-	public List<P_list> all_list(P_list_helper p_list_helper) {
-		return sqlSession.selectList(strNameSpace + ".all_list", p_list_helper);
+	public List<P_list> all_list(Search_helper search_helper) {
+		return sqlSession.selectList(strNameSpace + ".all_list", search_helper);
 	}
 	
-	public int type_list_count(String type, String keyword) {
-		if(type.equals("약품명")) {
+	public int type_list_count(String option, String keyword) {
+		if(option.equals("약품명")) {
 			return sqlSession.selectOne(strNameSpace + ".name_list_count", keyword);
-		} else if(type.equals("효능/효과")) {
+		} else if(option.equals("효능/효과")) {
 			return sqlSession.selectOne(strNameSpace + ".effect_list_count", keyword);
-		} else if(type.equals("회사")) {
+		} else if(option.equals("회사")) {
 			return sqlSession.selectOne(strNameSpace + ".company_list_count", keyword);
-		} else if(type.equals("성분(영문/한글)")) {
+		} else if(option.equals("성분(영문/한글)")) {
 			return sqlSession.selectOne(strNameSpace + ".ingredient_list_count", keyword);
 		} 
 		return 0;
 	}
 	
-	public List<P_list> type_list(String type, P_list_helper p_list_helper) {
-		if(type.equals("약품명")) {
-			return sqlSession.selectList(strNameSpace + ".name_list", p_list_helper);
-		} else if(type.equals("효능/효과")) {
-			return sqlSession.selectList(strNameSpace + ".effect_list", p_list_helper);
-		} else if(type.equals("회사")) {
-			return sqlSession.selectList(strNameSpace + ".company_list", p_list_helper);
-		} else if(type.equals("성분(영문/한글)")) {
-			return sqlSession.selectList(strNameSpace + ".ingredient_list", p_list_helper);
+	public List<P_list> type_list(String option, Search_helper search_helper) {
+		if(option.equals("약품명")) {
+			return sqlSession.selectList(strNameSpace + ".name_list", search_helper);
+		} else if(option.equals("효능/효과")) {
+			return sqlSession.selectList(strNameSpace + ".effect_list", search_helper);
+		} else if(option.equals("회사")) {
+			return sqlSession.selectList(strNameSpace + ".company_list", search_helper);
+		} else if(option.equals("성분(영문/한글)")) {
+			return sqlSession.selectList(strNameSpace + ".ingredient_list", search_helper);
 		} 
 		return null;
 	}
