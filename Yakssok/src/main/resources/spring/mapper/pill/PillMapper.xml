@@ -5,6 +5,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="PillMapper">
 
+	<select id="checkRating" parameterType="p_rating" resultType="p_rating">
+		SELECT * FROM p_rating WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
+	</select>
+	
+	<insert id="addRating" parameterType="p_rating">
+		INSERT INTO p_rating (p_idx, m_idx, good, bad) 
+		<if test="good == 1">
+			VALUES (#{p_idx}, #{m_idx}, 1, null);
+		</if>
+		<if test="bad == 1">
+			VALUES (#{p_idx}, #{m_idx}, null, 1);
+		</if>
+	</insert>
+	
+	<delete id="deleteRating" parameterType="p_rating">
+		DELETE FROM p_rating WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
+	</delete>
+	
+	<update id="updateRating" parameterType="p_rating">
+		UPDATE p_rating SET 
+		<if test="bad == 1">
+			good = 0 AND bad = 1 
+		</if>
+		<if test="good == 1">
+			good = 1 AND bad = 0 
+		</if>
+		WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
+	</update>
+
+
 	<select id="all_list_count" resultType="int">
 		SELECT COUNT(*) FROM p_list_view
 	</select>
@@ -75,10 +105,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="pi_list" parameterType="int" resultType="p_ingredient">
 		SELECT * FROM p_ingredient WHERE p_idx = #{p_idx}
-	</select>
-	
-	<select id="checkRating" parameterType="int" resultType="p_rating">
-		SELECT * FROM p_rating WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
 	</select>
 	
 	<select id="all_Good" parameterType="int" resultType="int">

@@ -20,15 +20,13 @@ public class MemberRestController {
     public  int idCheck(Model model, @PathVariable String id) {
 		
 		int result = service.checkId(id);
-		
         return result;
 	}
 	
-        @RequestMapping(value = "member/checkNick/{nickname}", method=RequestMethod.POST)
-        public  int nickCheck(Model model, @PathVariable String nickname) {
-    		
-    		int result = service.checkNick(nickname);
-    		
-            return result;   
+    @RequestMapping(value = "member/checkNick/{nickname}", method=RequestMethod.POST)
+    public  int nickCheck(Model model, @PathVariable String nickname) {
+		
+		int result = service.checkNick(nickname);
+        return result;   
     }	
 }

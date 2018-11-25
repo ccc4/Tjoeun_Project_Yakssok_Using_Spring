@@ -9,25 +9,41 @@
 </head>
 <body>
 
+<!-- 컨테이너 시작 -->
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+	<!-- 본문 시작 -->
+	<div style="width: 100%">
+		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
-	<div>
-		<c:if test="${menu == 'allDay' }">
-			<h2>연중무휴</h2>
-		</c:if>
-		<c:if test="${menu == 'night' }">
-			<h2>심야약국</h2>
-		</c:if>
-	</div>
+		<!-- article 시작 -->
+		<article style="margin-right: 20%">
 	
-	<div>
-		<c:forEach var="fv" items="${firstValues }">
-			<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }/${fv }'">${fv }</button>
-		</c:forEach>
+			<!-- 메뉴 구분 시작 -->
+			<div>
+				<c:if test="${menu == 'allDay' }">
+					<h2>연중무휴</h2>
+				</c:if>
+				<c:if test="${menu == 'night' }">
+					<h2>심야약국</h2>
+				</c:if>
+			</div>
+			<!-- 메뉴 구분 끝 -->
+			
+			<!-- 첫번째 주소 값 시작 -->
+			<div>
+				<c:forEach var="fv" items="${firstValues }">
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }/${fv }'">${fv }</button>
+				</c:forEach>
+			</div>
+			<!-- 두번째 주소 값 끝 -->
+			
+		</article>
+		<!-- article 끝 -->
 	</div>
+	<!-- 본문 끝 -->
 </div>
+<!-- 컨테이너 끝 -->
 
 </body>
 </html>

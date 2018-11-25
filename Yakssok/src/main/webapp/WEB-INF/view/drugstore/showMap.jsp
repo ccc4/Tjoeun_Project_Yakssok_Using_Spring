@@ -22,23 +22,33 @@
 </style>
 <body>
 
+<!-- 컨테이너 시작 -->
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+	<!-- 본문 시작 -->
+	<div style="width: 100%">
+		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
-	<h2>지도보기</h2>
+		<!-- article 시작 -->
+		<article style="margin-right: 20%">
 	
-	<button class="btn btn-default" type="button" onclick="history.back()">뒤로가기</button>
-	<p style="margin-top:12px">
-	    <em class="link">
-	        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-	            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-	        </a>
-	    </em>
-	</p>
-	<div id="map" style="width:100%;height:350px;"></div>
+			<h2>지도보기</h2>
+			<button class="btn btn-default" type="button" onclick="history.back()">뒤로가기</button>
+			<p style="margin-top:12px">
+			    <em class="link">
+			        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
+			            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
+			        </a>
+			    </em>
+			</p>
+			<div id="map" style="width:100%;height:350px;"></div>
 
+		</article>
+		<!-- article 끝 -->
+	</div>
+	<!-- 본문 끝 -->
 </div>
+<!-- 컨테이너 끝 -->
 
 
 <script type="text/javascript">

@@ -27,6 +27,32 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
+	public P_rating checkRating(P_rating p_rating) {
+		try {
+			System.out.println("dao 에서 p_rating p_idx : " + p_rating.getP_idx());
+			System.out.println("dao 에서 p_rating b_idx : " + p_rating.getP_idx());
+			System.out.println("dao 에서 try 들어옴");
+			return sqlSession.selectOne(strNameSpace + ".checkRating", p_rating);
+		} catch (Exception e) {
+			System.out.println("dao 에서 catch 들어옴");
+			return null;
+		}
+	}
+	
+	public int addRating(P_rating p_rating) {
+		return sqlSession.insert(strNameSpace + ".addRating", p_rating);
+	}
+	
+	public int deleteRating(P_rating p_rating) {
+		return sqlSession.delete(strNameSpace + ".deleteRating", p_rating);
+	}
+	
+	public int updateRating(P_rating p_rating) {
+		return sqlSession.update(strNameSpace + ".updateRating", p_rating);
+	}
+	
+	
 	public P_one one_view(int p_idx) {
 		return sqlSession.selectOne(strNameSpace + ".one_view", p_idx);
 	}
@@ -91,14 +117,6 @@ public class PillDAO {
 	
 	public List<P_ingredient> pi_list(int p_idx) {
 		return sqlSession.selectList(strNameSpace + ".pi_list", p_idx);
-	}
-	
-	public P_rating checkRating(P_rating p_rating) {
-		try {
-			return sqlSession.selectOne(strNameSpace + ".checkRating", p_rating);
-		} catch (Exception e) {
-			return null;
-		}
 	}
 	
 	public int all_Good(int p_idx) {

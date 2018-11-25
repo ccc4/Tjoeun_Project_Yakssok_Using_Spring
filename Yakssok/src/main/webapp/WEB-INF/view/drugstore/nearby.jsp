@@ -33,42 +33,54 @@
 </head>
 <body>
 
+<!-- 컨테이너 시작 -->
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+	<!-- 본문 시작 -->
+	<div style="width: 100%">
+		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
-	<h2>내 주변 약국</h2>
-		
-	<div class="map_wrap">
-		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-		<ul id="category" style="display: none;">
-	       <!--  <li id="BK9" data-order="0"> 
-	            <span class="category_bg bank"></span>
-	            은행
-	        </li>       
-	        <li id="MT1" data-order="1"> 
-	            <span class="category_bg mart"></span>
-	            마트
-	        </li>   -->
-	        <li id="PM9" data-order="2"> 
-	            <span class="category_bg pharmacy"></span>
-	            약국
-	        </li>  
-	        <!-- <li id="OL7" data-order="3"> 
-	            <span class="category_bg oil"></span>
-	            주유소
-	        </li>  
-	        <li id="CE7" data-order="4"> 
-	            <span class="category_bg cafe"></span>
-	            카페
-	        </li>  
-	        <li id="CS2" data-order="5"> 
-	            <span class="category_bg store"></span>
-	            편의점
-	        </li>       -->
-	    </ul>
+		<!-- article 시작 -->
+		<article style="margin-right: 20%">
+	
+			<h2>내 주변 약국</h2>
+			<div class="map_wrap">
+				<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+				<ul id="category" style="display: none;">
+			       <!--  <li id="BK9" data-order="0"> 
+			            <span class="category_bg bank"></span>
+			            은행
+			        </li>       
+			        <li id="MT1" data-order="1"> 
+			            <span class="category_bg mart"></span>
+			            마트
+			        </li>   -->
+			        <li id="PM9" data-order="2"> 
+			            <span class="category_bg pharmacy"></span>
+			            약국
+			        </li>  
+			        <!-- <li id="OL7" data-order="3"> 
+			            <span class="category_bg oil"></span>
+			            주유소
+			        </li>  
+			        <li id="CE7" data-order="4"> 
+			            <span class="category_bg cafe"></span>
+			            카페
+			        </li>  
+			        <li id="CS2" data-order="5"> 
+			            <span class="category_bg store"></span>
+			            편의점
+			        </li>       -->
+			    </ul>
+			</div>
+	
+	
+		</article>
+		<!-- article 끝 -->
 	</div>
+	<!-- 본문 끝 -->
 </div>
+<!-- 컨테이너 끝 -->
 
 
 

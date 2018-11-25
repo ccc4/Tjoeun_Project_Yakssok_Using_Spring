@@ -30,14 +30,47 @@ public class PillService {
 	@Autowired
 	private PillDAO dao;
 	
+	
+	public String checkRating(int p_idx, int m_idx) {
+		P_rating p_rating = new P_rating(p_idx, m_idx);
+		System.out.println("p_idx: " + p_idx);
+		System.out.println("m_idx: " + m_idx);
+		P_rating return_p_rating = dao.checkRating(p_rating);	// 해당 약품에 로그인된 아이디로 평가했는지 여부 체크
+		if(return_p_rating == null) {
+			System.out.println("service 에서 null 로 진입");
+			return null;
+		} else if(return_p_rating.getGood() == 1) {
+			System.out.println("service 에서 good 으로 진입");
+			return "good";
+		} else if(return_p_rating.getBad() == 1) {
+			System.out.println("service 에서 bad 로 진입");
+			return "bad";
+		} 
+		return null;
+	}
+	
+	public int addRating(P_rating p_rating) {
+		return dao.addRating(p_rating);
+	}
+	
+	public int deleteRating(P_rating p_rating) {
+		return dao.deleteRating(p_rating);
+	}
+	
+	public int updateRating(P_rating p_rating) {
+		return dao.updateRating(p_rating);
+	}
+	
+	
+	
 	public P_one one_view(int p_idx, int m_idx) {
 		P_one p_one = dao.one_view(p_idx);
-		p_one.setRating(checkRating(p_idx, m_idx));
+		p_one.setRating(getRating(p_idx));
 		p_one.setIngredients(dao.pi_list(p_idx));
 		
 		List<String> detail_2 = new ArrayList<>();
 		
-		if(p_one.getP_dont_idx() != null) {
+		if(p_one.getP_dont_idx() != null) { 
 			String[] array = p_one.getP_dont_idx().split(" ");
 			for(int i=0;i<array.length;i++) {
 				detail_2.add(dao.get_p_dont(Integer.parseInt(array[i])));
@@ -135,31 +168,21 @@ public class PillService {
 			
 			// rating 저장하기
 			// 로그인 되어있는 경우만 null 값이 안되게
-			target.setRating(-1);
-			target.setRating(checkRating(target_idx, m_idx));
+			target.setRating(getRating(target_idx));
 		}
 		return new P_paging(list, page, totalPage, startPage, endPage);
-	}
-	
-	public double checkRating(int p_idx, int m_idx) {
-		if(m_idx == 0) {	// 1. 로그인 안되어있는 경우
-			return -1;	
-		}
-		P_rating p_rating = new P_rating();
-		p_rating.setP_idx(p_idx);
-		p_rating.setM_idx(m_idx);
-		P_rating return_p_rating = dao.checkRating(p_rating);	// 해당 약품에 로그인된 아이디로 평가했는지 여부 체크
-		if(return_p_rating != null) {
-			return getRating(p_idx);	// 3. 로그인 했고 평가도 했을 경우 퍼센트 보여줌
-		}
-		return -1;	// 2. 해당 아이디로 평가를 안했을 경우
 	}
 	
 	public double getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
 		double all_Good = dao.all_Good(p_idx);
 		double all_Bad = dao.all_Bad(p_idx);
 		
-		return all_Good / (all_Good + all_Bad) * 100;
+		double result = all_Good / (all_Good + all_Bad) * 100;
+		if(Double.isNaN(result)) {
+			return 0;
+		} else {
+            return result;
+        }
 		
 	}
 

@@ -7,6 +7,11 @@ public class P_rating {
 	private int good;
 	private int bad;
 	
+	public P_rating(int p_idx, int m_idx) {
+		this.p_idx = p_idx;
+		this.m_idx = m_idx;
+	}
+	
 	public int getP_rating_idx() {
 		return p_rating_idx;
 	}

@@ -18,6 +18,7 @@
 	
 		<!-- article 시작 -->
 		<article style="margin-right: 20%">
+		
 			<!-- 검색폼 -->
 			<form class="form-inline" action="${pageContext.request.contextPath }/pill/list" method="GET" style="margin-bottom: 20px">
 				<select class="form-control" name="option">
@@ -175,6 +176,8 @@
 				</nav>
 				<!-- 페이징 끝 -->
 			</c:if>
+			
+			
 		</article>
 		<!-- article 끝 -->
 	</div>
