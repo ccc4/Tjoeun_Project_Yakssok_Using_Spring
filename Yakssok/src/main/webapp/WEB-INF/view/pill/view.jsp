@@ -53,11 +53,11 @@
 						        <c:if test="${result.rating != -1}">
 						        	<div>
 								        <c:if test="${result.rating >= 50}">
-								        	<img alt="" src="${pageContext.request.contextPath }/resources/pill/rating/good.png" width="30">
+								        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30">
 							        		<span>${result.rating } %</span>
 							        	</c:if>
 								        <c:if test="${result.rating < 50}">
-								        	<img alt="" src="${pageContext.request.contextPath }/resources/pill/rating/bad.png" width="30">
+								        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30">
 							        		<span>${result.rating } %</span>
 							        	</c:if>
 						        	</div>
