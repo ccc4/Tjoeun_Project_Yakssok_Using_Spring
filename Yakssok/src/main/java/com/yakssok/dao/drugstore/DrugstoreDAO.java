@@ -38,4 +38,9 @@ public class DrugstoreDAO {
 	}
 	
 	
+	/*public int save_crawling(Drugstore drugstore) {
+		return sqlSession.insert(strNameSpace + ".save_crawling", drugstore);
+	}*/
+	
+	
 }

@@ -103,8 +103,12 @@
 				<div>
 					<div>
 						회사이름: 
-						<button type="button" class="btn btn-default" data-toggle="popover" title="${l.company_name }" 
-							data-content="주소: ${result.company_address }<br>tel: ${result.company_tel}<br>fax: ${result.company_fax}<br>url: ${result.company_url}">
+						<%-- <button type="button" class="btn btn-default" data-toggle="popover" title="${result.company_name }" 
+							data-content="주소: ${result.company_address }\ntel: ${result.company_tel}\nfax: ${result.company_fax}\nurl: ${result.company_url}">
+							${result.company_name }
+						</button> --%>
+						<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" 
+							title="주소: ${result.company_address }<br>tel: ${result.company_tel}<br>fax: ${result.company_fax}<br>url: ${result.company_url}">
 							${result.company_name }
 						</button>
 					</div>	

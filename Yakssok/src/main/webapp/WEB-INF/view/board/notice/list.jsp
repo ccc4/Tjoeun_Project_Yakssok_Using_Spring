@@ -65,11 +65,11 @@
 					<table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
 						<thead>
 							<tr>
-								<th width="35px" style="background-color: #eeeeee; text-align: center;">번호</th>
-								<th width="300px" style="background-color: #eeeeee; text-align: center;">제목</th>
-								<th width="100px" style="background-color: #eeeeee; text-align: center;">글쓴이</th>
-								<th width="35px" style="background-color: #eeeeee; text-align: center;">날짜</th>
-								<th width="35px" style="background-color: #eeeeee; text-align: center;">조회</th>
+								<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
+								<th width="300px" style="background-color: black; color: white; text-align: center;">제목</th>
+								<th width="100px" style="background-color: black; color: white; text-align: center;">글쓴이</th>
+								<th width="35px" style="background-color: black; color: white; text-align: center;">날짜</th>
+								<th width="35px" style="background-color: black; color: white; text-align: center;">조회</th>
 							</tr>
 						</thead>
 						<tbody>

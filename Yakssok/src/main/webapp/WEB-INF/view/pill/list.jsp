@@ -81,7 +81,10 @@
 										<span>제조사/유통사 : ${l.company_name }</span>
 									</div>
 									<div>효능/효과 : 
-										<button type="button" class="btn btn-default" data-toggle="popover" title="효능/효과" data-content="${l.effect_main }">
+										<%-- <button type="button" class="btn btn-default" data-toggle="popover" title="효능/효과" data-content="${l.effect_main }">
+											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+										</button> --%>
+										<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="${l.effect_main }">
 											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 										</button>
 									</div>

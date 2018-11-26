@@ -39,7 +39,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="white">커뮤니티</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="${pageContext.request.contextPath }/board/notice">공지사항</a></li>
-            <li><a href="#">팁&정보공유</a></li>
+            <li><a href="${pageContext.request.contextPath }/board/share">팁&정보공유</a></li>
             <li><a href="${pageContext.request.contextPath }/board/free">자유게시판</a></li>
           </ul>
         </li>

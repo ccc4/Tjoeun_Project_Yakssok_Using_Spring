@@ -30,6 +30,9 @@
 	$(function () {
 	    $('[data-toggle="popover"]').popover()
 	})
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 </script>
 <!--End of Tawk.to Script-->
 

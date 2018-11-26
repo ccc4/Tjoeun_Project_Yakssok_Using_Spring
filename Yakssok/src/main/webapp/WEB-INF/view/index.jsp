@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,8 +21,6 @@
 	/* 링크는 다 검은색 유지되게 */
 	a, a:hover{
 		color: #000000;
-	}
-	a.h3{
 		text-decoration: none;
 	}
 </style>
@@ -54,13 +53,14 @@
 	
 	
 			<!-- 공지사항 시작-->
-			<div>
-				<table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
+			<div style="width: 30%">
+				<a href="${pageContext.request.contextPath}/board/notice"><h4>공지사항</h4></a>
+				<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
 					<thead>
 						<tr>
-							<th width="35px" style="background-color: #eeeeee; text-align: center;">번호</th>
-							<th width="150px" style="background-color: #eeeeee; text-align: center;">제목</th>
-							<th width="35px" style="background-color: #eeeeee; text-align: center;">날짜</th>
+							<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
+							<th width="150px" style="background-color: black; color: white; text-align: center;">제목</th>
+							<th width="50px" style="background-color: black; color: white; text-align: center;">날짜</th>
 						</tr>
 					</thead>
 					<tbody>
