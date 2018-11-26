@@ -21,7 +21,12 @@
 
 			<!-- 버튼모음 -->
 			<div>
-				<button class="btn btn-default" type="button" onclick="history.back()">뒤로가기</button>
+				<c:if test="${!empty option }">
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}&option=${option}&keyword=${keyword}'">뒤로가기</button>
+				</c:if>
+				<c:if test="${empty option }">
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}'">뒤로가기</button>
+				</c:if>
 				<button class="btn btn-default" type="button" onclick="alert('준비중입니다.')">수정건의</button>
 			</div>
 		

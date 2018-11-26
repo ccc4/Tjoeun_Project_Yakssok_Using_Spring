@@ -126,7 +126,6 @@ public class PillDAO {
 		try {
 			return sqlSession.selectOne(strNameSpace + ".all_Good", p_idx);
 		} catch (Exception e) {
-			System.out.println("all_Good exception 들어옴");
 			return 0;
 		}
 	}
@@ -134,7 +133,6 @@ public class PillDAO {
 		try {
 			return sqlSession.selectOne(strNameSpace + ".all_Bad", p_idx);
 		} catch (Exception e) {
-			System.out.println("all_Bad exception 들어옴");
 			return 0;
 		}
 	}

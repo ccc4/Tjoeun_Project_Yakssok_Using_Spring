@@ -47,7 +47,7 @@
 						<!-- 반복되는 썸네일 -->
 						<div class="col-md-3">
 							<div class="thumbnail">
-								<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}">
+								<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
 									<c:if test="${!empty l.imgPath }">
 											<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
 									</c:if>
@@ -57,7 +57,7 @@
 								</a>
 								<div class="caption">
 									<div>
-										<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}">
+										<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
 											<span class="h5">${l.name }</span>
 										</a>
 									</div>

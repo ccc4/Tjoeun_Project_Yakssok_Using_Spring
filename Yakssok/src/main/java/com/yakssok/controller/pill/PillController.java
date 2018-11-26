@@ -45,7 +45,10 @@ public class PillController {
 	
 	@RequestMapping(value="/view/{p_idx}", method=RequestMethod.GET)
 	public String view(Model model, HttpSession session, 
-			@PathVariable int p_idx) {
+			@PathVariable int p_idx, 
+			@RequestParam(required=false) int page, 
+			@RequestParam(required=false) String option, 
+			@RequestParam(required=false) String keyword) {
 		
 		int m_idx = 0;
 		Member loginMember = (Member) session.getAttribute("loginMember");
@@ -53,6 +56,9 @@ public class PillController {
 			m_idx = loginMember.getM_idx();
 			model.addAttribute("checkRating", service.checkRating(p_idx, m_idx));
 		}
+		model.addAttribute("page", page);
+		model.addAttribute("option", option);
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("result", service.one_view(p_idx, m_idx));
 		return "pill/view";
 	}
