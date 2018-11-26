@@ -12,6 +12,16 @@ public class P_rating {
 		this.m_idx = m_idx;
 	}
 	
+	public P_rating(int p_rating_idx, int p_idx, int m_idx, int good, int bad) {
+		this.p_rating_idx = p_rating_idx;
+		this.p_idx = p_idx;
+		this.m_idx = m_idx;
+		this.good = good;
+		this.bad = bad;
+	}
+
+
+
 	public int getP_rating_idx() {
 		return p_rating_idx;
 	}

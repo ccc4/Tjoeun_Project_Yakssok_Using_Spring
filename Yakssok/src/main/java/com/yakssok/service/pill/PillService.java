@@ -33,18 +33,19 @@ public class PillService {
 	
 	public String checkRating(int p_idx, int m_idx) {
 		P_rating p_rating = new P_rating(p_idx, m_idx);
-		System.out.println("p_idx: " + p_idx);
-		System.out.println("m_idx: " + m_idx);
 		P_rating return_p_rating = dao.checkRating(p_rating);	// 해당 약품에 로그인된 아이디로 평가했는지 여부 체크
 		if(return_p_rating == null) {
-			System.out.println("service 에서 null 로 진입");
-			return null;
+			//System.out.println("service 에서 none 로 진입");
+			return "none";
 		} else if(return_p_rating.getGood() == 1) {
-			System.out.println("service 에서 good 으로 진입");
+			//System.out.println("service 에서 good 으로 진입");
 			return "good";
 		} else if(return_p_rating.getBad() == 1) {
-			System.out.println("service 에서 bad 로 진입");
+			//System.out.println("service 에서 bad 로 진입");
 			return "bad";
+		} else if(return_p_rating.getGood() == -1) {
+			//System.out.println("service 에서 error 로 진입");
+			return "error";
 		} 
 		return null;
 	}
@@ -59,6 +60,20 @@ public class PillService {
 	
 	public int updateRating(P_rating p_rating) {
 		return dao.updateRating(p_rating);
+	}
+	
+	
+	
+	public double getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
+		double all_Good = dao.all_Good(p_idx);
+		double all_Bad = dao.all_Bad(p_idx);
+		double result = all_Good / (all_Good + all_Bad) * 100;
+		if(Double.isNaN(result)) {
+			return -1;
+		} else {
+            return result;
+        }
+		
 	}
 	
 	
@@ -173,19 +188,6 @@ public class PillService {
 		return new P_paging(list, page, totalPage, startPage, endPage);
 	}
 	
-	public double getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
-		double all_Good = dao.all_Good(p_idx);
-		double all_Bad = dao.all_Bad(p_idx);
-		
-		double result = all_Good / (all_Good + all_Bad) * 100;
-		if(Double.isNaN(result)) {
-			return 0;
-		} else {
-            return result;
-        }
-		
-	}
-
 	public int getCompany_idx(String name) {
 		return dao.getCompany_idx(name);
 	}

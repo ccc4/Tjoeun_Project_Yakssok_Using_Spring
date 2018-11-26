@@ -15,7 +15,7 @@
     
     
 <header style="text-align: center">
-	<a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/init/img/title.png" width="250" height="150"/></a>
+	<a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/img/title.png" width="250" height="150"/></a>
 </header>
 
 <nav class="navbar navbar-inverse" style="margin-bottom: 40px">

@@ -24,35 +24,70 @@ public class PillRestController {
 	public int good(@RequestParam int p_idx, @ModelAttribute("loginMember") Member loginMember) {
 		
 		int check = 0;	// 결과 확인용
-		//	1-> 데이터없어서 good 입력
-		//	2-> 이미 good이여서 delete 취소
-		//	3-> bad 여서 update 갱신
 		int m_idx = loginMember.getM_idx();
 		P_rating p_rating = new P_rating(p_idx, m_idx);
 		
 		String exist = service.checkRating(p_idx, m_idx);
-		if(exist == null) {
+		
+		if(exist.equals("none")) {			// -> 데이터없어서 good 입력
 			p_rating.setGood(1);
-			System.out.println("bad 비어있는 값 체크: " + p_rating.getBad());
 			check = service.addRating(p_rating);
 			if(check == 1) {
 				return 1;
 			}
-		} else if(exist.equals("good")) {
+		} else if(exist.equals("good")) {	// -> 이미 good이여서 delete 취소
 			check = service.deleteRating(p_rating);
 			if(check == 1) {
 				return 2;
 			}
-		} else if(exist.equals("bad")) {
+		} else if(exist.equals("bad")) {	// -> bad 여서 update 갱신
+			p_rating.setGood(1);
+			check = service.updateRating(p_rating);
+			if(check == 1) {
+				return 1;
+			}
+		} else if(exist.equals("error")) {
+			System.out.println("error 발생");
+			return 4;
+		} 
+		return 4;
+	}
+	
+	@RequestMapping(value="/bad", method=RequestMethod.POST)
+	public int bad(@RequestParam int p_idx, @ModelAttribute("loginMember") Member loginMember) {
+		
+		int check = 0;
+		int m_idx = loginMember.getM_idx();
+		P_rating p_rating = new P_rating(p_idx, m_idx);
+		
+		String exist = service.checkRating(p_idx, m_idx);
+		if(exist.equals("none")) {
 			p_rating.setBad(1);
-			System.out.println("good 비어있는 값 체크: " + p_rating.getGood());
+			check = service.addRating(p_rating);
+			if(check == 1) {
+				return 3;
+			}
+		} else if(exist.equals("bad")) {
+			check = service.deleteRating(p_rating);
+			if(check == 1) {
+				return 2;
+			}
+		} else if(exist.equals("good")) {
+			p_rating.setBad(1);
 			check = service.updateRating(p_rating);
 			if(check == 1) {
 				return 3;
 			}
-		}
-		return 0;
+		} else if(exist.equals("error")) {
+			System.out.println("error 발생");
+			return 4;
+		} 
+		return 4;
 	}
 	
+	@RequestMapping(value="/refreshRating", method=RequestMethod.POST)
+	public double refreshRating(@RequestParam int p_idx) {
+		return service.getRating(p_idx);
+	}
 	
 }

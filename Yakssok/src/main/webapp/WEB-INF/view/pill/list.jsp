@@ -49,7 +49,7 @@
 							<div class="thumbnail">
 								<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}">
 									<c:if test="${!empty l.imgPath }">
-											<img src="${pageContext.request.contextPath }/resources/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
+											<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
 									</c:if>
 									<c:if test="${empty l.imgPath }">
 											<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200" style="margin: 0">
@@ -62,26 +62,20 @@
 										</a>
 									</div>
 									<div>
-								        <c:if test="${l.rating == -1}">
-								        	<button class="btn btn-primary" type="button">
-								        		Good&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-								        	</button> 
-								        	<button class="btn btn-danger" type="button">
-								        		Bad&nbsp;<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-								        	</button> 
-								        </c:if>
-								        <c:if test="${l.rating != -1}">
-								        	<div>
-										        <c:if test="${l.rating >= 50}">
-										        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30">
-									        		<span>${l.rating } %</span>
-									        	</c:if>
-										        <c:if test="${l.rating < 50}">
-										        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30">
-									        		<span>${l.rating } %</span>
-									        	</c:if>
-								        	</div>
-								        </c:if>
+							        	<div>
+									        <c:if test="${l.rating >= 50}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30">
+								        		<span>${l.rating } %</span>
+								        	</c:if>
+									        <c:if test="${l.rating < 50 && l.rating != -1}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30">
+								        		<span>${l.rating } %</span>
+								        	</c:if>
+									        <c:if test="${l.rating == -1}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30">
+								        		<span>평가없음</span>
+								        	</c:if>
+							        	</div>
 									</div>
 									<div>
 										<span>제조사/유통사 : ${l.company_name }</span>

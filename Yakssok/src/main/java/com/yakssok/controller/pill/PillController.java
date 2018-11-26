@@ -32,7 +32,7 @@ public class PillController {
 	
 	@ModelAttribute("realPath")
 	private String realPath(HttpServletRequest request) {
-		return request.getRealPath("WEB-INF/resources/pill/img");
+		return request.getRealPath("WEB-INF/resources/img/pill/img");
 	}
 	
 	private static final String CHECK_RESULT = "check/pill";
@@ -51,8 +51,8 @@ public class PillController {
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		if(loginMember != null) {
 			m_idx = loginMember.getM_idx();
+			model.addAttribute("checkRating", service.checkRating(p_idx, m_idx));
 		}
-		
 		model.addAttribute("result", service.one_view(p_idx, m_idx));
 		return "pill/view";
 	}

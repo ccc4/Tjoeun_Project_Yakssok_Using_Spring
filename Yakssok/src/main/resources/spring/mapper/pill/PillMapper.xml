@@ -12,10 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addRating" parameterType="p_rating">
 		INSERT INTO p_rating (p_idx, m_idx, good, bad) 
 		<if test="good == 1">
-			VALUES (#{p_idx}, #{m_idx}, 1, null);
+			VALUES (#{p_idx}, #{m_idx}, 1, 0);
 		</if>
 		<if test="bad == 1">
-			VALUES (#{p_idx}, #{m_idx}, null, 1);
+			VALUES (#{p_idx}, #{m_idx}, 0, 1);
 		</if>
 	</insert>
 	
@@ -26,10 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateRating" parameterType="p_rating">
 		UPDATE p_rating SET 
 		<if test="bad == 1">
-			good = 0 AND bad = 1 
+			good = 0, bad = 1 
 		</if>
 		<if test="good == 1">
-			good = 1 AND bad = 0 
+			good = 1, bad = 0 
 		</if>
 		WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
 	</update>

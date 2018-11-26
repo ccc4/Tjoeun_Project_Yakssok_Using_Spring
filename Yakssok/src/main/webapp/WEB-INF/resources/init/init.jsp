@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/init/img/Yakssok_Icon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/Yakssok_Icon.ico">
 <title>약쏙</title>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>

@@ -30,13 +30,16 @@ public class PillDAO {
 	
 	public P_rating checkRating(P_rating p_rating) {
 		try {
-			System.out.println("dao 에서 p_rating p_idx : " + p_rating.getP_idx());
-			System.out.println("dao 에서 p_rating b_idx : " + p_rating.getP_idx());
-			System.out.println("dao 에서 try 들어옴");
-			return sqlSession.selectOne(strNameSpace + ".checkRating", p_rating);
+			P_rating result = sqlSession.selectOne(strNameSpace + ".checkRating", p_rating);
+			if(result == null) {
+				return null;
+			} else {
+				return result;
+			}
 		} catch (Exception e) {
-			System.out.println("dao 에서 catch 들어옴");
-			return null;
+			e.printStackTrace();
+			P_rating result = new P_rating(-1, -1);
+			return result;
 		}
 	}
 	
@@ -123,6 +126,7 @@ public class PillDAO {
 		try {
 			return sqlSession.selectOne(strNameSpace + ".all_Good", p_idx);
 		} catch (Exception e) {
+			System.out.println("all_Good exception 들어옴");
 			return 0;
 		}
 	}
@@ -130,6 +134,7 @@ public class PillDAO {
 		try {
 			return sqlSession.selectOne(strNameSpace + ".all_Bad", p_idx);
 		} catch (Exception e) {
+			System.out.println("all_Bad exception 들어옴");
 			return 0;
 		}
 	}

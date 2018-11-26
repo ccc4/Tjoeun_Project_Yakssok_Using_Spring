@@ -32,11 +32,12 @@
 					<!-- 사진 -->
 					<div>
 						<c:if test="${!empty result.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/pill/img/${result.imgPath}" alt="${result.imgPath}" width="200" style="margin: 0">
+								<img src="${pageContext.request.contextPath }/resources/img/pill/img/${result.imgPath}" alt="${result.imgPath}" width="200" style="margin: 0">
 						</c:if>
 						<c:if test="${empty result.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200" style="margin: 0">
+								<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200" style="margin: 0">
 						</c:if>
+						
 						<!-- 평가 버튼 -->
 						<c:if test="${!empty loginMember }">
 							<div>
@@ -50,35 +51,6 @@
 						</c:if>
 						<!-- 평가 버튼 끝-->
 						
-<script type="text/javascript">
-	var p_idx = "${result.p_idx}";
-	
-	function good_click() {
-		$.ajax({
-			type: 'POST',
-			url: '${pageContext.request.contextPath }/pill/good',
-			data: {p_idx: p_idx},
-			success: function(result) {
-				if(result == 0) {
-					alert("문제 발생");
-				} else if(result == 1) {
-					$('#goodBtn').addClass('active');
-					$('#badBtn').removeClass('active');
-				} else if(result == 2) {
-					$('#goodBtn').removeClass('active');
-					$('#badBtn').removeClass('active');
-				} else if(result == 3) {
-					$('#goodBtn').addClass('active');
-					$('#badBtn').removeClass('active');
-				} 
-			}
-		})
-	}
-</script>
-						
-						
-						
-						
 					</div>
 					<!-- 사진 끝 -->
 					
@@ -86,14 +58,18 @@
 					<div>
 					
 						<!-- rating -->
-						<div>
+						<div id="rating">
 					        <c:if test="${result.rating >= 50}">
 					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30">
 				        		<span>${result.rating } %</span>
 				        	</c:if>
-					        <c:if test="${result.rating < 50}">
+					        <c:if test="${result.rating < 50 && result.rating != -1}">
 					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30">
 				        		<span>${result.rating } %</span>
+				        	</c:if>
+				        	<c:if test="${result.rating == -1}">
+					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30">
+				        		<span>평가없음</span>
 				        	</c:if>
 						</div>
 						<!-- rating 끝 -->
@@ -171,6 +147,85 @@
 </div>
 <!-- 컨테이너 끝 -->
 
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	var p_idx = ${result.p_idx};
+	var checkRating = ${checkRating};
+	if(checkRating == 'good') {
+		$('#goodBtn').addClass('active');
+	}
+	if(checkRating == 'bad') {
+		$('#badBtn').addClass('active');
+	}
+	
+	function good_click() {
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath }/pill/good',
+			data: {p_idx: p_idx},
+			success: function(result) {
+				checkResult(result);
+				refreshRating();
+			}
+		})
+	}
+	
+	function bad_click() {
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath }/pill/bad',
+			data: {p_idx: p_idx},
+			success: function(result) {
+				checkResult(result);
+				refreshRating();
+			}
+		})
+	}
+	
+	function checkResult(result) {
+		if(result == 0) {
+			alert("문제 발생");
+		} else if(result == 1) {	// good active
+			$('#goodBtn').addClass('active');
+			$('#badBtn').removeClass('active');
+		} else if(result == 2) {	// 평가 취소
+			$('#goodBtn').removeClass('active');
+			$('#badBtn').removeClass('active');
+		} else if(result == 3) {	// bad active
+			$('#goodBtn').removeClass('active');
+			$('#badBtn').addClass('active');
+		} else if(result == 4) {	// 에러
+			alert("에러");
+		} 
+	}
+	
+	function refreshRating() {
+		$.ajax({
+			type: 'POST', 
+			url: '${pageContext.request.contextPath}/pill/refreshRating', 
+			data: {p_idx : p_idx}, 
+			success: function(result) {
+				if(result >= 50) {
+					$("#rating").empty();
+					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>' + result + ' %</span>');
+				} else if(result < 50 && result != -1) {
+					$("#rating").empty();
+					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>' + result + ' %</span>');
+				} else if(result == -1) {
+					$("#rating").empty();
+					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>');
+				}
+			}
+		})
+	}
+</script>
 
 </body>
 </html>
