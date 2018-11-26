@@ -28,4 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
+<!-- 	<insert id="save_crawling" parameterType="drugstore">
+		INSERT INTO drugstore_night (name, tel, address, weekend, remarks) VALUES (#{name}, #{tel}, #{address}, #{weekend}, #{remarks});
+	</insert> -->
+	
+	
 </mapper>
