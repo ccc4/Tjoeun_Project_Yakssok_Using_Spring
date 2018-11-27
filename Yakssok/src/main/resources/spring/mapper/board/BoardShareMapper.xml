@@ -4,6 +4,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="BoardShareMapper">
+
+	<select id="allCount" parameterType="Search_helper" resultType="int">
+		select count(*) from board_share_view
+	</select>
 	
 	<select id="all_list" resultType="board">
 		select * from board_share_view 
@@ -16,7 +20,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="write" parameterType="board">
 		insert into board_share (m_idx, title, contents) 
-		values (#{m_idx}, #{title}, #{contents}); 
+		values (#{m_idx}, #{title}, #{contents})
 	</insert>
+	
+	<delete id="delete" parameterType="board" >
+		delete from board_share
+		where b_idx = #{b_idx}
+	</delete>
+	
+	<update id="edit" parameterType="board">
+		update board_share set title = #{title}, contents = #{contents}, modifyDate = now()
+		where b_idx = #{b_idx}
+	</update>
+	
+	<update id="read_cnt" parameterType="int">
+		update board_share set read_cnt = read_cnt+1 where b_idx = #{b_idx}
+	</update>
+	
+	<select id="main" resultType="board">
+		select * from board_share_view limit 0,10
+	</select>
 	
 </mapper>
