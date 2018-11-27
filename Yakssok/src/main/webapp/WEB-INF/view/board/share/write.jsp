@@ -20,7 +20,7 @@
 		
 		<div>
 		<form class="form-horizontal" action="${pageContext.request.contextPath}/board/share/write" method="post">
-			<h3>팁&정보 글 작성</h3>
+			<h3>팁&정보 작성</h3>
 			<div  class="form-group">
 				<div class="col-md-12">
 					<input class="form-control" type="text" name = "title" placeholder="제목" maxlength="255"><br/>
@@ -28,7 +28,7 @@
 				</div>
 			</div>
 			<button type="button" class="btn btn-success pull-left" onclick="location.href='${pageContext.request.contextPath }/board/share/'">목록</button>
-			<input type="submit" class="btn btn-primary pull-right">
+			<input type="submit" value = "등록" class="btn btn-primary pull-right">
 
 			</form>
 		

@@ -77,7 +77,7 @@
 						<tr>
 							<td>${list.b_idx}</td>
 							<td class="title">
-								<a href="${pageContext.request.contextPath}/boare/share/view/${list.b_idx}">${list.title}</a></td>
+								<a href="${pageContext.request.contextPath}/board/share/view/${list.b_idx}">${list.title}</a></td>
 							<td>${list.nickname}</td>
 							
 							<%-- <td>${list.writeDate}</td> --%>

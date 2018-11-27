@@ -23,5 +23,33 @@
 	</script>
 </c:if>
 
+<c:if test="${delete eq 0 }">
+	<script type="text/javascript">
+		alert("삭제실패");
+		location.href= "${pageContext.request.contextPath}/board/share"
+	</script>
+</c:if>
+	
+<c:if test="${delete eq 1 }">
+	<script type="text/javascript">
+		alert("삭제완료");
+		location.href= "${pageContext.request.contextPath}/board/share"
+	</script>
+</c:if>
+
+<c:if test="${edit eq 0 }">
+	<script type="text/javascript">
+		alert("수정실패");
+		location.href= "${pageContext.request.contextPath}/board/share"
+	</script>
+</c:if>
+
+<c:if test="${edit eq 1 }">
+	<script type="text/javascript">
+		alert("수정완료");
+		location.href= "${pageContext.request.contextPath}/board/share"
+	</script>
+</c:if>
+
 </body>
 </html>

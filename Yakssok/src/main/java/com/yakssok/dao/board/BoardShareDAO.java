@@ -16,19 +16,31 @@ public class BoardShareDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	public List<Board> allList(){
-		return sqlSession.selectList(strNameSpace+".all_list");
-	}
-	
-	public List<Board> main(){
-		return sqlSession.selectList(strNameSpace+".main");
+		return sqlSession.selectList(strNameSpace + ".all_list");
 	}
 	
 	public int write(Board board) {
-		return sqlSession.insert(strNameSpace+".write", board);
+		return sqlSession.insert(strNameSpace + ".write", board);
 	}
 	
 	public Board view(int b_idx) {
-		return sqlSession.selectOne(strNameSpace+".view", b_idx);
+		return sqlSession.selectOne(strNameSpace + ".view", b_idx);
+	}
+	
+	public int delete(int b_idx) {
+		return sqlSession.delete(strNameSpace + ".delete", b_idx);
+	}
+	
+	public int edit(Board board) {
+		return sqlSession.update(strNameSpace + ".edit", board);
+	}
+	
+	public int read_cnt(int b_idx) {
+		return sqlSession.update(strNameSpace + ".read_cnt", b_idx);
+	}
+	
+	public List<Board> main(){
+		return sqlSession.selectList(strNameSpace + ".main");
 	}
 	
 }
