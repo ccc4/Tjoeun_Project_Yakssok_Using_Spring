@@ -22,10 +22,10 @@
 			<!-- 버튼모음 -->
 			<div>
 				<c:if test="${!empty option }">
-					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}&option=${option}&keyword=${keyword}'">뒤로가기</button>
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}&option=${option}&keyword=${keyword}'">목록</button>
 				</c:if>
 				<c:if test="${empty option }">
-					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}'">뒤로가기</button>
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}'">목록</button>
 				</c:if>
 				<button class="btn btn-default" type="button" onclick="alert('준비중입니다.')">수정건의</button>
 			</div>
