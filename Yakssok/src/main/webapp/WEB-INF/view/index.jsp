@@ -23,6 +23,12 @@
 		color: #000000;
 		text-decoration: none;
 	}
+	.col-md-3{
+		padding: 0 10px;
+	}
+	.thumbnail{
+		margin-bottom: 0;
+	}
 </style>
 
 <!-- 컨테이너 시작 -->
@@ -50,46 +56,198 @@
 				</form>
 			</div>
 			<!-- 의약품 검색 끝-->
-	
-	
-			<!-- 공지사항 시작-->
-			<div style="width: 30%">
-				<a href="${pageContext.request.contextPath}/board/notice"><h4>공지사항</h4></a>
-				<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
-					<thead>
-						<tr>
-							<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
-							<th width="150px" style="background-color: black; color: white; text-align: center;">제목</th>
-							<th width="50px" style="background-color: black; color: white; text-align: center;">날짜</th>
-						</tr>
-					</thead>
-					<tbody>
-						<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
-						<fmt:timeZone value="KST">
-							<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
-							<c:forEach var="bn" items="${bNotice }">
-							<tr>
-								<td>${bn.b_idx }</td>
-								<td class="title"><a href="${pageContext.request.contextPath}/board/notice/view/${bn.b_idx}">${bn.title }</a></td>
-								<td>
-									<fmt:formatDate value="${bn.writeDate }" pattern="MM-dd" var="date"/>
-									<fmt:formatDate value="${bn.writeDate }" pattern="HH:mm" var="time"/>
-									<c:choose>
-										<c:when test="${date == toDay }">
-											<c:out value="${time }"></c:out>
-										</c:when>
-										<c:otherwise>
-											<c:out value="${date }"></c:out>
-										</c:otherwise>
-									</c:choose>
-								</td>
-							</tr>
-							</c:forEach>
-						</fmt:timeZone>
-					</tbody>
-				</table>
+			
+			<!-- 약 효과 랭킹 -->
+				<div style="border: 1px solid black; border-radius: 4px; width: 100%; height: 430px; margin-bottom: 10px">
+					<div>
+						<ul class="nav nav-tabs">
+							<li class="active"><a href="#두통" data-toggle="tab">두통</a></li>
+							<li><a href="#해열" data-toggle="tab">해열</a></li>
+							<li><a href="#소화" data-toggle="tab">소화</a></li>
+						</ul>
+					</div>
+					      
+					<div class="tab-content" style="margin-top: 10px">
+						<div class="tab-pane fade active in" id="두통">
+							<c:forEach var="l" items="${rank['두통'] }">
+								<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div>
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
 			</div>
-			<!-- 공지사항 끝-->
+			<div>
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30px">
+	        		<span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30px">
+	        		<span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30px">
+	        		<span>평가없음</span>
+	        	</c:if>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+							</c:forEach>
+							
+						</div>
+						  
+						<div class="tab-pane fade" id="해열">
+							<c:forEach var="l" items="${rank['해열'] }">
+								<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div>
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
+			</div>
+			<div>
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30px">
+	        		<span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30px">
+	        		<span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30px">
+	        		<span>평가없음</span>
+	        	</c:if>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+							</c:forEach>
+						</div>
+						
+						<div class="tab-pane fade" id="소화">
+							<c:forEach var="l" items="${rank['소화'] }">
+								<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div>
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
+			</div>
+			<div>
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30px">
+	        		<span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30px">
+	        		<span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30px">
+	        		<span>평가없음</span>
+	        	</c:if>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+							</c:forEach>
+						</div>
+					
+					</div>
+				
+				</div>
+			<!-- 약 효과 랭킹 끝-->
+
+
+<!-- 부트스트랩 탭 가능하게 해주는 js -->
+<script type="text/javascript">
+$(function(){
+    $('ul.nav-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+})
+</script>
+	
+			<!-- 게시판 미리보기 -->
+			<div>
+				<!-- 공지사항 시작-->
+				<div style="width: 30%">
+					<a href="${pageContext.request.contextPath}/board/notice"><h4>공지사항</h4></a>
+					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
+						<thead>
+							<tr>
+								<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
+								<th width="150px" style="background-color: black; color: white; text-align: center;">제목</th>
+								<th width="50px" style="background-color: black; color: white; text-align: center;">날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
+							<fmt:timeZone value="KST">
+								<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
+								<c:forEach var="bn" items="${bNotice }">
+								<tr>
+									<td>${bn.b_idx }</td>
+									<td class="title"><a href="${pageContext.request.contextPath}/board/notice/view/${bn.b_idx}">${bn.title }</a></td>
+									<td>
+										<fmt:formatDate value="${bn.writeDate }" pattern="MM-dd" var="date"/>
+										<fmt:formatDate value="${bn.writeDate }" pattern="HH:mm" var="time"/>
+										<c:choose>
+											<c:when test="${date == toDay }">
+												<c:out value="${time }"></c:out>
+											</c:when>
+											<c:otherwise>
+												<c:out value="${date }"></c:out>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+								</c:forEach>
+							</fmt:timeZone>
+						</tbody>
+					</table>
+				</div>
+				<!-- 공지사항 끝-->
+			
+			</div>
+			<!-- 게시판 미리보기 끝-->
 	
 	
 	

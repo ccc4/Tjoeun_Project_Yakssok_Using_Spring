@@ -59,7 +59,7 @@ public class PillController {
 		model.addAttribute("page", page);
 		model.addAttribute("option", option);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("result", service.one_view(p_idx, m_idx));
+		model.addAttribute("l", service.one_view(p_idx, m_idx));
 		return "pill/view";
 	}
 	
@@ -77,7 +77,7 @@ public class PillController {
 			m_idx = loginMember.getM_idx();
 		}
 		
-		P_paging result = service.list(m_idx, page, option, "%" + keyword + "%");
+		P_paging result = service.list(m_idx, page, option, keyword);
 
 		// 타입이 존재하고 result 도 null 이 아니면 타입과 키워드를 지니게 한다.
 		if(option != null && result != null) {

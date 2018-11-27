@@ -7,7 +7,8 @@ public class P_one {
 	private String name;
 	private String imgPath;
 	
-	private double rating;
+	private int rating;
+	private int total;
 	
 	private List<P_ingredient> ingredients;
 	
@@ -41,11 +42,17 @@ public class P_one {
 	public void setDetail_2(List<String> detail_2) {
 		this.detail_2 = detail_2;
 	}
-	public double getRating() {
+	public int getRating() {
 		return rating;
 	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
 	public void setRating(double rating) {
-		this.rating = rating;
+		this.rating = (int)rating;
 	}
 	public List<P_ingredient> getIngredients() {
 		return ingredients;

@@ -36,10 +36,10 @@
 				<div>
 					<!-- 사진 -->
 					<div>
-						<c:if test="${!empty result.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/img/pill/img/${result.imgPath}" alt="${result.imgPath}" width="200" style="margin: 0">
+						<c:if test="${!empty l.imgPath }">
+								<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
 						</c:if>
-						<c:if test="${empty result.imgPath }">
+						<c:if test="${empty l.imgPath }">
 								<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200" style="margin: 0">
 						</c:if>
 						
@@ -64,15 +64,15 @@
 					
 						<!-- rating -->
 						<div id="rating">
-					        <c:if test="${result.rating >= 50}">
+					        <c:if test="${!empty l.total && l.rating >= 50}">
 					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30">
-				        		<span>${result.rating } %</span>
+				        		<span>${l.rating } %</span>
 				        	</c:if>
-					        <c:if test="${result.rating < 50 && result.rating != -1}">
+					        <c:if test="${!empty l.total && l.rating < 50 && l.rating != -1}">
 					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30">
-				        		<span>${result.rating } %</span>
+				        		<span>${l.rating } %</span>
 				        	</c:if>
-				        	<c:if test="${result.rating == -1}">
+				        	<c:if test="${empty l.total || l.rating == -1}">
 					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30">
 				        		<span>평가없음</span>
 				        	</c:if>
@@ -81,15 +81,15 @@
 						
 						<!-- 이름 -->
 						<div>
-							이름: ${result.name }
+							이름: ${l.name }
 						</div>
 						
 						<!-- 성분/함량 -->
 						<div>
 							성분/함량: 
-							<c:forEach var="ri" items="${result.ingredients }">
+							<c:forEach var="li" items="${l.ingredients }">
 								<div>
-									<span>${ri.eng } | ${ri.kor } | ${ri.content }</span>
+									<span>${li.eng } | ${li.kor } | ${li.content }</span>
 								</div>
 							</c:forEach>
 						</div>
@@ -103,41 +103,41 @@
 				<div>
 					<div>
 						회사이름: 
-						<%-- <button type="button" class="btn btn-default" data-toggle="popover" title="${result.company_name }" 
-							data-content="주소: ${result.company_address }\ntel: ${result.company_tel}\nfax: ${result.company_fax}\nurl: ${result.company_url}">
-							${result.company_name }
+						<%-- <button type="button" class="btn btn-default" data-toggle="popover" title="${l.company_name }" 
+							data-content="주소: ${l.company_address }\ntel: ${l.company_tel}\nfax: ${l.company_fax}\nurl: ${l.company_url}">
+							${l.company_name }
 						</button> --%>
 						<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" 
-							title="주소: ${result.company_address }<br>tel: ${result.company_tel}<br>fax: ${result.company_fax}<br>url: ${result.company_url}">
-							${result.company_name }
+							title="주소: ${l.company_address }<br>tel: ${l.company_tel}<br>fax: ${l.company_fax}<br>url: ${l.company_url}">
+							${l.company_name }
 						</button>
 					</div>	
 					<div>
-						<div>전문/일반 : ${result.sg }</div>
-						<div>투입경로 : ${result.route }</div>
+						<div>전문/일반 : ${l.sg }</div>
+						<div>투입경로 : ${l.route }</div>
 					</div>
 					<div>
-						생김새: ${result.look }
+						생김새: ${l.look }
 					</div>
 					<div>
-						포장단위: ${result.packing }
+						포장단위: ${l.packing }
 					</div>
 					<div>
 						효능/효과
-						<div>주 효과: ${result.effect_main }</div>
-						<c:if test="${!empty result.effect_etc }">
+						<div>주 효과: ${l.effect_main }</div>
+						<c:if test="${!empty l.effect_etc }">
 							<div>그 외: 
-								${result.effect_etc }
+								${l.effect_etc }
 							</div>
 						</c:if>
 					</div>
 					<div>
 						참고정보: 
-						<c:if test="${empty result.detail_2 }">
+						<c:if test="${empty l.detail_2 }">
 							참고정보가 존재하지 않습니다.
 						</c:if>
-						<c:if test="${!empty result.detail_2 }">
-							<c:forEach var="rd" items="${result.detail_2 }">
+						<c:if test="${!empty l.detail_2 }">
+							<c:forEach var="rd" items="${l.detail_2 }">
 								<img alt="" src="${pageContext.request.contextPath }${rd }"  width="100px" height="120px">
 							</c:forEach>
 						</c:if>
@@ -165,7 +165,7 @@
 
 
 <script type="text/javascript">
-	var p_idx = ${result.p_idx};
+	var p_idx = ${l.p_idx};
 	var checkRating = ${checkRating};
 	if(checkRating == 'good') {
 		$('#goodBtn').addClass('active');

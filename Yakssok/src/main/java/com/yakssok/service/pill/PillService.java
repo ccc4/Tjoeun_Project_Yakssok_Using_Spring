@@ -24,11 +24,17 @@ import com.yakssok.model.pill.Pill;
 @Service
 public class PillService {
 	
-	private static final int ONE_PAGE = 1;
+	private static final int ONE_PAGE = 4;
 	private static final int ONE_SECTION = 5;
 	
 	@Autowired
 	private PillDAO dao;
+	
+	
+	public List<P_list> main_rank(String effect) {
+		return dao.main_rank(effect);
+	}
+	
 	
 	
 	public String checkRating(int p_idx, int m_idx) {
@@ -63,24 +69,23 @@ public class PillService {
 	}
 	
 	
-	
-	public double getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
+	// only AJAX 기능으로 평가 후 바로 점수 적용할 때 사용
+	public int getRating(int p_idx) {		// 투표한 경우 good/bad 비율 계산해서 퍼센트(%) 로 보여주는 메소드
 		double all_Good = dao.all_Good(p_idx);
 		double all_Bad = dao.all_Bad(p_idx);
 		double result = all_Good / (all_Good + all_Bad) * 100;
 		if(Double.isNaN(result)) {
 			return -1;
 		} else {
-            return result;
+            return (int)result;
         }
-		
 	}
 	
 	
 	
 	public P_one one_view(int p_idx, int m_idx) {
 		P_one p_one = dao.one_view(p_idx);
-		p_one.setRating(getRating(p_idx));
+//		p_one.setRating(getRating(p_idx));
 		p_one.setIngredients(dao.pi_list(p_idx));
 		
 		List<String> detail_2 = new ArrayList<>();
@@ -134,11 +139,8 @@ public class PillService {
 	public P_paging list(int m_idx, int page, String option, String keyword) {
 		
 		int allCount = 0;
-		if(option == null) {	// 전체목록인 경우
-			allCount = dao.all_list_count();
-		} else {
-			allCount = dao.type_list_count(option, keyword);
-		}
+		Search_helper search_helper = new Search_helper(option, keyword);
+		allCount = dao.all_count(search_helper);
 		if(allCount == 0) {	
 			return null;	//	해당 결과 존재하지 않을 시 null 리턴
 		}
@@ -157,14 +159,10 @@ public class PillService {
 		int endPage = startPage + oneSection - 1;
 		if(endPage > totalPage) endPage = totalPage;
 		
-		Search_helper search_helper = new Search_helper((page - 1) * onePage, onePage);
+		search_helper.setP1((page - 1) * onePage);	// limit 에 넣을 값 입력
+		search_helper.setP2(onePage);
 		List<P_list> list = null;
-		if(option == null) {
-			list = dao.all_list(search_helper);
-		} else {
-			search_helper.setKeyword(keyword);
-			list = dao.type_list(option, search_helper);
-		} 
+		list = dao.all_list(search_helper);
 		if(list == null) {
 			return null;	//	해당 결과 존재하지 않을 시 null 리턴
 		}
@@ -181,9 +179,8 @@ public class PillService {
 			// 위에서 구한 idx 로 해당 약품의 구성 성분들 리스트로 뽑아서 저장
 			target.setP_ingredients(dao.pi_list(target_idx));
 			
-			// rating 저장하기
-			// 로그인 되어있는 경우만 null 값이 안되게
-			target.setRating(getRating(target_idx));
+//			// rating 저장하기
+//			target.setRating(getRating(target_idx));
 		}
 		return new P_paging(list, page, totalPage, startPage, endPage);
 	}

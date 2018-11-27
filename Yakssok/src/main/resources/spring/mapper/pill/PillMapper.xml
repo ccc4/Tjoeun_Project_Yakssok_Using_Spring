@@ -5,6 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="PillMapper">
 
+	<select id="main_rank" parameterType="String" resultType="p_list">
+		SELECT * FROM p_list_view WHERE effect_main LIKE CONCAT('%', #{keyword}, '%') 
+		ORDER BY rating DESC, total DESC LIMIT 0, 4;
+	</select>
+
+
+
+
+
 	<select id="checkRating" parameterType="p_rating" resultType="p_rating">
 		SELECT * FROM p_rating WHERE p_idx = #{p_idx} AND m_idx = #{m_idx}
 	</select>
@@ -35,45 +44,67 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 
-	<select id="all_list_count" resultType="int">
-		SELECT COUNT(*) FROM p_list_view
+
+
+
+
+	<select id="all_count" parameterType="search_helper" resultType="int">
+		<include refid="search_count"/>
 	</select>
 
-	<select id="all_list" parameterType="Search_helper" resultType="p_list">
-		SELECT * FROM p_list_view LIMIT #{p1}, #{p2}
+	<select id="all_list" parameterType="search_helper" resultType="p_list">
+		<include refid="search_list"/> 
+		LIMIT #{p1}, #{p2}
 	</select>
 	
-	<select id="name_list_count" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM p_list_view WHERE name LIKE #{keyword}
-	</select>
+	<sql id="search_count">
+		<if test="option == '성분(영문/한글)'">
+			SELECT COUNT(distinct p.p_idx) 
+			FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx 
+			WHERE eng LIKE CONCAT('%', #{keyword}, '%') OR kor like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="option != '성분(영문/한글)'">
+			SELECT count(*) FROM p_list_view 
+			<include refid="search"/>
+		</if>
+	</sql>
 	
-	<select id="name_list" parameterType="Search_helper" resultType="p_list">
-		SELECT * FROM p_list_view WHERE name LIKE #{keyword} LIMIT #{p1}, #{p2}
-	</select>
+	<sql id="search_list">
+		<if test="option == '성분(영문/한글)'">
+			SELECT DISTINCT p.p_idx, name, imgPath, company_name, effect_main 
+			FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx 
+			WHERE eng like CONCAT('%', #{keyword}, '%') OR kor like CONCAT('%', #{keyword}, '%') 
+			ORDER BY rating DESC, total DESC
+		</if>
+		<if test="option != '성분(영문/한글)'">
+			SELECT * FROM p_list_view 
+			<include refid="search"/>
+		</if>
+	</sql>
 	
-	<select id="effect_list_count" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM p_list_view WHERE effect_main LIKE #{keyword}
-	</select>
+	<sql id="search">
+		<if test="option == null">
+			ORDER BY name ASC
+		</if>
+		<if test="option != null">
+			<if test="option == '약품명'">
+				WHERE name LIKE CONCAT('%', #{keyword}, '%') 
+			</if>
+			<if test="option == '효능/효과'">
+				WHERE effect_main LIKE CONCAT('%', #{keyword}, '%') 
+			</if>
+			<if test="option == '회사'">
+				WHERE company_name LIKE CONCAT('%', #{keyword}, '%') 
+			</if>
+			ORDER BY rating DESC, total DESC
+		</if>
+	</sql>
 	
-	<select id="effect_list" parameterType="Search_helper" resultType="p_list">
-		SELECT * FROM p_list_view WHERE effect_main LIKE #{keyword} LIMIT #{p1}, #{p2}
-	</select>
 	
-	<select id="company_list_count" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM p_list_view WHERE company_name LIKE #{keyword}
-	</select>
 	
-	<select id="company_list" parameterType="Search_helper" resultType="p_list">
-		SELECT * FROM p_list_view WHERE company_name LIKE #{keyword} LIMIT #{p1}, #{p2}
-	</select>
 	
-	<select id="ingredient_list_count" parameterType="String" resultType="int">
-		SELECT COUNT(distinct p.p_idx) FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng LIKE #{keyword} OR kor like #{keyword}
-	</select>
 	
-	<select id="ingredient_list" parameterType="Search_helper" resultType="p_list">
-		SELECT DISTINCT p.p_idx, name, imgPath, company_name, effect_main FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx WHERE eng like #{keyword} OR kor like #{keyword} LIMIT #{p1}, #{p2}
-	</select>
+	
 	
 	<!-- 하나의 약품정보 보기 -->
 	<select id="one_view" parameterType="int" resultType="p_one">

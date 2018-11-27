@@ -28,6 +28,12 @@ public class PillDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	
+	public List<P_list> main_rank(String effect) {
+		return sqlSession.selectList(strNameSpace + ".main_rank", effect);
+	}
+	
+	
+	
 	public P_rating checkRating(P_rating p_rating) {
 		try {
 			P_rating result = sqlSession.selectOne(strNameSpace + ".checkRating", p_rating);
@@ -82,41 +88,13 @@ public class PillDAO {
 		return sqlSession.selectOne(strNameSpace + ".get_p_caution", p_caution_idx);
 	}
 	
-	public int all_list_count() {
-		return sqlSession.selectOne(strNameSpace + ".all_list_count");
+	public int all_count(Search_helper search_helper) {
+		return sqlSession.selectOne(strNameSpace + ".all_count", search_helper);
 	}
 	
 	public List<P_list> all_list(Search_helper search_helper) {
 		return sqlSession.selectList(strNameSpace + ".all_list", search_helper);
 	}
-	
-	public int type_list_count(String option, String keyword) {
-		if(option.equals("약품명")) {
-			return sqlSession.selectOne(strNameSpace + ".name_list_count", keyword);
-		} else if(option.equals("효능/효과")) {
-			return sqlSession.selectOne(strNameSpace + ".effect_list_count", keyword);
-		} else if(option.equals("회사")) {
-			return sqlSession.selectOne(strNameSpace + ".company_list_count", keyword);
-		} else if(option.equals("성분(영문/한글)")) {
-			return sqlSession.selectOne(strNameSpace + ".ingredient_list_count", keyword);
-		} 
-		return 0;
-	}
-	
-	public List<P_list> type_list(String option, Search_helper search_helper) {
-		if(option.equals("약품명")) {
-			return sqlSession.selectList(strNameSpace + ".name_list", search_helper);
-		} else if(option.equals("효능/효과")) {
-			return sqlSession.selectList(strNameSpace + ".effect_list", search_helper);
-		} else if(option.equals("회사")) {
-			return sqlSession.selectList(strNameSpace + ".company_list", search_helper);
-		} else if(option.equals("성분(영문/한글)")) {
-			return sqlSession.selectList(strNameSpace + ".ingredient_list", search_helper);
-		} 
-		return null;
-	}
-	
-	
 	
 	public List<P_ingredient> pi_list(int p_idx) {
 		return sqlSession.selectList(strNameSpace + ".pi_list", p_idx);

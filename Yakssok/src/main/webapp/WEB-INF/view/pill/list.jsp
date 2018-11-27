@@ -49,10 +49,10 @@
 							<div class="thumbnail">
 								<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
 									<c:if test="${!empty l.imgPath }">
-											<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
+											<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
 									</c:if>
 									<c:if test="${empty l.imgPath }">
-											<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200" style="margin: 0">
+											<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
 									</c:if>
 								</a>
 								<div class="caption">
@@ -62,20 +62,18 @@
 										</a>
 									</div>
 									<div>
-							        	<div>
-									        <c:if test="${l.rating >= 50}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30">
-								        		<span>${l.rating } %</span>
-								        	</c:if>
-									        <c:if test="${l.rating < 50 && l.rating != -1}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30">
-								        		<span>${l.rating } %</span>
-								        	</c:if>
-									        <c:if test="${l.rating == -1}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30">
-								        		<span>평가없음</span>
-								        	</c:if>
-							        	</div>
+								        <c:if test="${l.rating >= 50}">
+								        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30px">
+							        		<span>${l.rating } %</span>
+							        	</c:if>
+								        <c:if test="${l.rating < 50 && l.rating != -1}">
+								        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30px">
+							        		<span>${l.rating } %</span>
+							        	</c:if>
+								        <c:if test="${l.rating == -1}">
+								        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30px">
+							        		<span>평가없음</span>
+							        	</c:if>
 									</div>
 									<div>
 										<span>제조사/유통사 : ${l.company_name }</span>
@@ -88,11 +86,11 @@
 											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 										</button>
 									</div>
-									<c:forEach var="lp" items="${l.p_ingredients }">
-										<div>
+									<div>
+										<c:forEach var="lp" items="${l.p_ingredients }">
 											<span>${lp.eng } | ${lp.kor } | ${lp.content }</span>
-										</div>
-									</c:forEach>
+										</c:forEach>
+									</div>
 								</div>
 							</div>
 						</div>
