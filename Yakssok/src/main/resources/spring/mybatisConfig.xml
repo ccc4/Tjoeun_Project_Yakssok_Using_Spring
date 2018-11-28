@@ -24,5 +24,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
  		<typeAlias type="com.yakssok.model.pill.P_one" alias="p_one" />
  		
  		<typeAlias type="com.yakssok.model.pill.P_rating" alias="p_rating" />
+ 		<typeAlias type="com.yakssok.model.pill.P_review" alias="p_review" />
  	</typeAliases>
  </configuration>

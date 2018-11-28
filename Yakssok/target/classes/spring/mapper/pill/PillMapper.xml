@@ -4,6 +4,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="PillMapper">
+	
+	<select id="review_list" parameterType="int" resultType="p_review">
+		SELECT * FROM p_review_view WHERE p_idx = #{p_idx} ORDER BY p_review_idx DESC
+	</select>
+
+	<insert id="write_review" parameterType="p_review">
+		INSERT INTO p_review (p_idx, m_idx, contents) VALUES (#{p_idx}, #{m_idx}, #{contents});
+	</insert>
+	
+	<update id="modify_review" parameterType="p_review">
+		UPDATE p_review SET contents = #{contents} WHERE p_review_idx = #{p_review_idx} AND m_idx = #{m_idx}
+	</update>
+	
+	<update id="delete_review" parameterType="int">
+		UPDATE p_review SET exist = 0 WHERE p_review_idx = #{p_review_idx}
+	</update>
+
 
 	<select id="main_rank" parameterType="String" resultType="p_list">
 		SELECT * FROM p_list_view WHERE effect_main LIKE CONCAT('%', #{keyword}, '%') 

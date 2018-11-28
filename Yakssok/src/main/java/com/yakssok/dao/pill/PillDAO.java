@@ -1,7 +1,6 @@
 package com.yakssok.dao.pill;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_list;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_rating;
+import com.yakssok.model.pill.P_review;
 import com.yakssok.model.pill.Pill;
 
 
@@ -27,6 +27,21 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public int delete_review(int p_review_idx) {
+		return sqlSession.update(strNameSpace + ".delete_review", p_review_idx);
+	}
+	
+	public int modify_review(P_review p_review) {
+		return sqlSession.update(strNameSpace + ".modify_review", p_review);
+	}
+	
+	public int write_review(P_review p_review) {
+		return sqlSession.insert(strNameSpace + ".write_review", p_review);
+	}
+	
+	public List<P_review> review_list(int p_idx) {
+		return sqlSession.selectList(strNameSpace + ".review_list", p_idx);
+	}
 	
 	public List<P_list> main_rank(String effect) {
 		return sqlSession.selectList(strNameSpace + ".main_rank", effect);

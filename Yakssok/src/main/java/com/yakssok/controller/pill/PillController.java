@@ -21,6 +21,7 @@ import com.yakssok.model.pill.P_detail_1;
 import com.yakssok.model.pill.P_detail_2;
 import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
+import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
 import com.yakssok.model.pill.Pill;
 import com.yakssok.model.pill.PillFormData;
@@ -59,7 +60,8 @@ public class PillController {
 		model.addAttribute("page", page);
 		model.addAttribute("option", option);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("l", service.one_view(p_idx, m_idx));
+		P_one p_one = service.one_view(p_idx, m_idx);
+		model.addAttribute("l", p_one);
 		return "pill/view";
 	}
 	

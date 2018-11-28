@@ -19,6 +19,7 @@ import com.yakssok.model.pill.P_list;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
 import com.yakssok.model.pill.P_rating;
+import com.yakssok.model.pill.P_review;
 import com.yakssok.model.pill.Pill;
 
 @Service
@@ -30,6 +31,17 @@ public class PillService {
 	@Autowired
 	private PillDAO dao;
 	
+	public int delete_review(int p_review_idx) {
+		return dao.delete_review(p_review_idx);
+	}
+	
+	public int modify_review(P_review p_review) {
+		return dao.modify_review(p_review);
+	}
+	
+	public int write_review(P_review p_review) {
+		return dao.write_review(p_review);
+	}
 	
 	public List<P_list> main_rank(String effect) {
 		return dao.main_rank(effect);
@@ -133,6 +145,7 @@ public class PillService {
 			}
 		}
 		p_one.setDetail_2(detail_2);
+		p_one.setReview(dao.review_list(p_idx));
 		return p_one;
 	}
 	

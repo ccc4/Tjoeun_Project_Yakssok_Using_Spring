@@ -2,6 +2,7 @@ package com.yakssok.controller.pill;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yakssok.model.member.Member;
 import com.yakssok.model.pill.P_rating;
+import com.yakssok.model.pill.P_review;
 import com.yakssok.service.pill.PillService;
 
 @RestController
@@ -89,5 +91,36 @@ public class PillRestController {
 	public double refreshRating(@RequestParam int p_idx) {
 		return service.getRating(p_idx);
 	}
+	
+	@RequestMapping(value="/write_review/{p_idx}", method=RequestMethod.POST)
+	public int write_review(@PathVariable int p_idx, @RequestParam String contents, 
+			@ModelAttribute("loginMember") Member loginMember) {
+		
+		P_review p_review = new P_review();
+		p_review.setP_idx(p_idx);
+		p_review.setM_idx(loginMember.getM_idx());
+		p_review.setContents(contents);
+		
+		return service.write_review(p_review);
+	}
+	
+	@RequestMapping(value="/modify_review/{p_review_idx}", method=RequestMethod.POST)
+	public int modify_review(@PathVariable int p_review_idx, @RequestParam String contents, 
+			@ModelAttribute("loginMember") Member loginMember) {
+		
+		P_review p_review = new P_review();
+		p_review.setP_review_idx(p_review_idx);
+		p_review.setM_idx(loginMember.getM_idx());
+		p_review.setContents(contents);
+		
+		return service.modify_review(p_review);
+	}
+	
+	@RequestMapping(value="/delete_review/{p_review_idx}", method=RequestMethod.POST)
+	public int modify_review(@PathVariable int p_review_idx) {
+		return service.delete_review(p_review_idx);
+	}
+	
+	
 	
 }

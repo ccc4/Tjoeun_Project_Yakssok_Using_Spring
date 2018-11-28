@@ -66,6 +66,8 @@ public class BoardNoticeController {
 		board.setM_idx(loginMember.getM_idx());
 		/*줄바꿈은 <br> 로 변경*/
 		board.setContents(board.getContents().replace("\r\n", "<br>"));
+		System.out.println(board.getTitle());
+		System.out.println(board.getContents());
 		model.addAttribute("write", service.write(board));
 		return CHECK_RESULT;
 	}

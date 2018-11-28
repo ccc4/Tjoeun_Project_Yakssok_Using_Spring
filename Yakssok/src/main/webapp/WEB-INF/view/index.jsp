@@ -44,7 +44,7 @@
 			<!-- 의약품 검색 시작-->
 			<div>
 				<form class="form-inline" action="${pageContext.request.contextPath }/pill/list" method="GET" style="margin-bottom: 20px">
-					<select class="form-control" name="type">
+					<select class="form-control" name="option">
 						<option selected>약품명</option>
 						<option>효능/효과</option>
 						<option>회사</option>
