@@ -196,6 +196,25 @@
 								</tr>
 								</c:forEach>
 							</table>
+							
+							<!-- 테이블 페이지네이션 -->
+							<nav style="text-align: center;">
+								<ul class="pagination pagination-sm">
+									<li class="disabled"><a onclick="page('first')">처음</a></li>
+								
+									<li class="disabled"><a onclick="page('prev')">이전</a></li>
+									
+									<c:forEach var="i" begin="1" end="5">
+										<li><a onclick="page(${i})">${i }</a></li>
+									</c:forEach>
+									
+									<li class="disabled"><a onclick="page('next')">다음</a></li>
+								
+									<li class="disabled"><a onclick="page('last')">끝</a></li>
+								</ul>
+							</nav>
+							<!-- 테이블 페이지네이션 끝-->
+							
 						</c:if>
 					</div>
 					<!-- 테이블 끝 -->
@@ -225,6 +244,24 @@
 <script type="text/javascript">
 	var p_idx = ${l.p_idx};
 	
+	function page(value) {
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/pill/ajaxList_review', 
+			data: {p_idx : p_idx, page : page}, 
+			success: function(result) {
+				if(result == 1) {
+					alert("수정 성공!");
+					window.location.reload();
+				} else {
+					alert("수정 실패");
+					$("#review_contents").focus();
+				}
+			}
+		})
+	}
+	
+	
 	function write_review() {	// 나중에 이미 작성한 사람일 경우 수정이나 삭제 후 등록 가능하게 변경할 것
 		if(!$("#review_contents").val()) {
 			alert("리뷰를 작성해주세요.");
@@ -243,8 +280,8 @@
 		
 		$.ajax({
 			type: 'POST',
-			url: '${pageContext.request.contextPath}/pill/write_review/' + p_idx, 
-			data: {contents : contents}, 
+			url: '${pageContext.request.contextPath}/pill/write_review/', 
+			data: {contents : contents, p_idx : p_idx}, 
 			success: function(result) {
 				if(result == 1) {
 					alert("작성 성공!");
@@ -279,7 +316,8 @@
 			
 			$.ajax({
 				type: 'POST',
-				url: '${pageContext.request.contextPath}/pill/delete_review/' + p_review_idx, 
+				url: '${pageContext.request.contextPath}/pill/delete_review/', 
+				data: {p_review_idx : p_review_idx}, 
 				success: function(result) {
 					if(result == 1) {
 						alert("삭제 완료!");
@@ -335,8 +373,8 @@
 		
 		$.ajax({
 			type: 'POST',
-			url: '${pageContext.request.contextPath}/pill/modify_review/' + p_review_idx, 
-			data: {contents : contents}, 
+			url: '${pageContext.request.contextPath}/pill/modify_review/', 
+			data: {contents : contents, p_review_idx : p_review_idx}, 
 			success: function(result) {
 				if(result == 1) {
 					alert("수정 성공!");

@@ -20,6 +20,7 @@ import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
+import com.yakssok.model.pill.P_review_paging;
 import com.yakssok.model.pill.Pill;
 
 @Service
@@ -27,6 +28,8 @@ public class PillService {
 	
 	private static final int ONE_PAGE = 4;
 	private static final int ONE_SECTION = 5;
+	private static final int REVIEW_ONE_PAGE = 3;
+	private static final int REVIEW_ONE_SECTION = 3;
 	
 	@Autowired
 	private PillDAO dao;
@@ -45,6 +48,31 @@ public class PillService {
 	
 	public List<P_list> main_rank(String effect) {
 		return dao.main_rank(effect);
+	}
+	
+	public P_review_paging getList_review(int p_idx, int page) {
+		
+		int allCount = dao.review_count(p_idx);
+		int onePage = REVIEW_ONE_PAGE;
+		int oneSection = REVIEW_ONE_SECTION;
+		
+		int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
+		
+		if(page < 1 || page > totalPage) {
+			return null;
+		}
+		
+		int startPage = (page - 1) / oneSection * oneSection;
+		if(startPage % oneSection == 0) startPage += 1;
+		
+		int endPage = startPage + oneSection - 1;
+		if(endPage > totalPage) endPage = totalPage;
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("p1", (page - 1) * onePage);
+		map.put("p2", onePage);
+		
+		return new P_review_paging(list, page, totalPage, startPage, endPage);
 	}
 	
 	

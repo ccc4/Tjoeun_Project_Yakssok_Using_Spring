@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.yakssok.model.member.Member;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
+import com.yakssok.model.pill.P_review_paging;
 import com.yakssok.service.pill.PillService;
 
 @RestController
@@ -92,8 +93,8 @@ public class PillRestController {
 		return service.getRating(p_idx);
 	}
 	
-	@RequestMapping(value="/write_review/{p_idx}", method=RequestMethod.POST)
-	public int write_review(@PathVariable int p_idx, @RequestParam String contents, 
+	@RequestMapping(value="/write_review", method=RequestMethod.POST)
+	public int write_review(@RequestParam int p_idx, @RequestParam String contents, 
 			@ModelAttribute("loginMember") Member loginMember) {
 		
 		P_review p_review = new P_review();
@@ -104,8 +105,8 @@ public class PillRestController {
 		return service.write_review(p_review);
 	}
 	
-	@RequestMapping(value="/modify_review/{p_review_idx}", method=RequestMethod.POST)
-	public int modify_review(@PathVariable int p_review_idx, @RequestParam String contents, 
+	@RequestMapping(value="/modify_review", method=RequestMethod.POST)
+	public int modify_review(@RequestParam int p_review_idx, @RequestParam String contents, 
 			@ModelAttribute("loginMember") Member loginMember) {
 		
 		P_review p_review = new P_review();
@@ -116,9 +117,19 @@ public class PillRestController {
 		return service.modify_review(p_review);
 	}
 	
-	@RequestMapping(value="/delete_review/{p_review_idx}", method=RequestMethod.POST)
-	public int modify_review(@PathVariable int p_review_idx) {
+	@RequestMapping(value="/delete_review", method=RequestMethod.POST)
+	public int modify_review(@RequestParam int p_review_idx) {
 		return service.delete_review(p_review_idx);
+	}
+	
+	@RequestMapping(value="/ajaxList_review", method=RequestMethod.POST)
+	public P_review_paging ajaxList_review(@RequestParam int p_idx, 
+			@RequestParam(name="page", defaultValue="1", required=false) int page) {
+		
+		System.out.println("p_idx: " + p_idx);
+		System.out.println("page: " + page);
+		
+		return null;
 	}
 	
 	

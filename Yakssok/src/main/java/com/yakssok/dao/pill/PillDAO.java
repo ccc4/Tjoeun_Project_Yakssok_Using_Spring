@@ -27,6 +27,10 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public int review_count(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".review_count", p_idx);
+	}
+	
 	public int delete_review(int p_review_idx) {
 		return sqlSession.update(strNameSpace + ".delete_review", p_review_idx);
 	}
