@@ -47,7 +47,7 @@
 <c:if test="${modify == 1 }">
 	<script type="text/javascript">
 		alert("수정 완료");
-		location.href= "${pageContext.request.contextPath}/board/free/view/" + ${modifyIdx};
+		location.href= "${pageContext.request.contextPath}/board/free/view/" + ${b_idx};
 	</script>
 </c:if>
 <c:if test="${modify == 0 }">

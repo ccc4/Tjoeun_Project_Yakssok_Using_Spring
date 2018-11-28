@@ -37,17 +37,17 @@
 	</script>
 </c:if>
 
-<c:if test="${edit eq 0 }">
+<c:if test="${modify eq 0 }">
 	<script type="text/javascript">
 		alert("수정실패");
 		location.href= "${pageContext.request.contextPath}/board/share"
 	</script>
 </c:if>
 
-<c:if test="${edit eq 1 }">
+<c:if test="${modify eq 1 }">
 	<script type="text/javascript">
 		alert("수정완료");
-		location.href= "${pageContext.request.contextPath}/board/share"
+		location.href= "${pageContext.request.contextPath}/board/share/view/" + ${b_idx};
 	</script>
 </c:if>
 

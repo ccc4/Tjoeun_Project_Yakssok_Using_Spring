@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.yakssok.model.board.B_paging;
 import com.yakssok.model.board.Board;
 import com.yakssok.model.member.Member;
 import com.yakssok.service.board.BoardFreeService;
-
 
 @Controller
 @RequestMapping("/board")
@@ -31,18 +31,16 @@ public class BoardFreeController {
 	public String list(Model model, 
 			@RequestParam(name="page", defaultValue="1", required=false) int page,
 			@RequestParam(defaultValue="title") String option,
-			@RequestParam(defaultValue="") String keyword)throws Exception {
+			@RequestParam(defaultValue="", required=false) String keyword)throws Exception {
 		
-		List<Board> list = service.searchList(page, option, keyword);
-		int count = service.searchCount(option, keyword);
+		B_paging result = service.list(page, option, keyword);
 		
-		Object result = service.list(page, count);
-
-		model.addAttribute("p", result);		
-		model.addAttribute("list", list);
-		model.addAttribute("count", count);
-		model.addAttribute("option", option);
-		model.addAttribute("keyword", keyword);
+		// option & keyword 가 존재하고 result 도 null 이 아니면 타입과 키워드를 지니게 한다.(페이징에서 활용)
+		if(result != null && option != null && keyword != null) {
+			result.setOption(option);
+			result.setKeyword(keyword);
+		}
+		model.addAttribute("p", result);
 			
 		return "board/free/list";
 	}
@@ -50,14 +48,20 @@ public class BoardFreeController {
 	@RequestMapping(value="/free/view/{b_idx}", method=RequestMethod.GET)
 	public String view(Model model, @PathVariable int b_idx) {
 		
-		Object result = service.view(b_idx);
+		Board result = service.view(b_idx);
+		result.setContents(result.getContents().replace("\r\n", "<br>"));
+		result.setContents(result.getContents().replace("&amp", "&"));
+		result.setContents(result.getContents().replace("&lt", "<"));
+		result.setContents(result.getContents().replace(" ", "&nbsp"));
+		
 		model.addAttribute("board", result);
 		
 		return "board/free/view";
+		
 	}
 	
-	@RequestMapping(value="/free/modify", method=RequestMethod.GET)
-	public String modify(Model model, @RequestParam int b_idx) {
+	@RequestMapping(value="/free/modify/{b_idx}", method=RequestMethod.GET)
+	public String modify(Model model, @PathVariable int b_idx) {
 		
 		Board result = service.view(b_idx);
 		model.addAttribute("board", result);
@@ -68,8 +72,9 @@ public class BoardFreeController {
 	public String modify(Model model, Board board) {
 		
 		Object result = service.modify(board);
+		
 		model.addAttribute("modify", result);
-		model.addAttribute("modifyIdx", board.getB_idx());
+		model.addAttribute("b_idx", board.getB_idx());
 		
 		return RESULT_CHECK;
 	}
@@ -90,7 +95,7 @@ public class BoardFreeController {
 	@RequestMapping(value="/free/write", method=RequestMethod.POST)
 	public String write(Model model, Board board, 
 			@ModelAttribute("loginMember") Member loginMember) {
-		
+
         board.setM_idx(loginMember.getM_idx());		
 		model.addAttribute("write", service.write(board));		
 		return RESULT_CHECK;

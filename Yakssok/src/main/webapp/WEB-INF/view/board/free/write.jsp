@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>         
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>       
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,35 +9,41 @@
 </head>
 <body>
 
+<!-- 컨테이너 시작 -->
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
-	
-	<div>
-
-		<form name="write" onsubmit="return check()" action="${pageContext.request.contextPath }/board/free/write" method="POST">
+	<!-- 본문 시작 -->
+	<div style="width: 100%">
+		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+			
+		<!-- article 시작 -->
+		<article style="margin-right: 20%">
+			<!-- 게시글 작성 -->
 			<div>
-				<c:if test="${!empty loginMember }">
-					닉네임: <label>${loginMember.nickname }</label>
-				</c:if>
+				<h3>자유게시판 작성</h3>
+				<form id="wr" class="form-horizontal" action="${pageContext.request.contextPath }/board/free/write" method="POST" >
+					<div class="form-group">
+						<div class="col-md-12">
+							<input class="form-control" type="text" id="title" name="title" placeholder="제목" maxlength="255">							
+							<textarea class="form-control" rows="13" name="contents" placeholder="내용" maxlength="1000"></textarea>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success pull-left" onclick="location.href='${pageContext.request.contextPath }/board/free/'"/>목록</button>
+					<button type="button" class="btn btn-primary pull-right" onclick="title_check()" >작성</button>
+				</form>
 			</div>
-			<div>
-				제목: <input type="text" name="title" placeholder="제목을 입력하세요.">
-				<span class="error" id="titleMsg" style="display: none" role="alert"></span>
-			</div>
-			<div>
-				내용:<br>
-				<textarea name="contents" rows="5" cols="30" placeholder="내용을 입력하세요."></textarea>
-			</div>
-			<input type="submit" value="작성완료" >
-			<input type="button" value="작성취소" onclick="location.href='${pageContext.request.contextPath }/board/free'">
-		
-		</form>
+			<!-- 게시글 작성 끝 -->			
+		</article>
+		<!-- article 끝 -->
 	</div>
+	<!-- 본문 끝 -->
 </div>
+<!-- 컨테이너 끝 -->
 
+<!-- 제목이 비어있는지 검사하는 js 파일 -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/title_check.js"></script>
 
-
+<!-- 
 <script type="text/javascript">
 function check(){
 	if(document.write.title.value == 0){
@@ -49,6 +55,7 @@ function check(){
 	}
 }
 </script>
-
+ -->
+ 
 </body>
 </html>

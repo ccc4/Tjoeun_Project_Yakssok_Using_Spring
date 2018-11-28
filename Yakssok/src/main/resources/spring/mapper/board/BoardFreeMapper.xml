@@ -6,28 +6,11 @@
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="BoardFreeMapper">
 
-	<select id="allCount" resultType="int">
-		SELECT count(*)
-		FROM board_free_view 
-		<include refid="search"/>		
-	</select>
-	
-	<select id="selectList" resultType="board">
-		SELECT *
-        FROM board_free_view    	
-	</select>
-
 	<select id="read_cnt_plus" parameterType="int">
 	    UPDATE board_free
 	    SET read_cnt = read_cnt + 1 
 	    WHERE b_idx = #{b_idx}
 	</select>
-	
-  	<select id="list" parameterType="java.util.Map" resultType="board">
-  		SELECT * 
-  		FROM board_free_view 
-  		ORDER BY b_idx DESC LIMIT #{p1}, #{p2}
-  	</select>
   	
   	<insert id="write" parameterType="board">
   	    insert into board_free (m_idx, title, contents) values (#{m_idx}, #{title}, #{contents})
@@ -53,20 +36,24 @@
   	<select id="searchList" parameterType="java.util.Map" resultType="board">
 		SELECT *
 		FROM board_free_view
-		<include refid="search"/>	
- 	    ORDER BY b_idx desc, writeDate DESC LIMIT #{p1}, #{p2}
+		<include refid="search"/>
+		ORDER BY b_idx desc, writeDate desc LIMIT #{p1}, #{p2}
 	</select>
 	
-    <select id="searchCount" resultType="int" >
+    <select id="searchCount" parameterType="java.util.Map" resultType="int" >
 		SELECT count(*)
 		FROM board_free_view
- 	    <include refid="search"/>	 	
+ 	    <include refid="search"/>
 	</select>
 
 <sql id="search">
 
 		<if test="option == 't'.toString()">
 			WHERE title like CONCAT('%', #{keyword}, '%')
+		</if>
+		
+		<if test="option == 'n'.toString()">
+			WHERE nickname like CONCAT('%', #{keyword}, '%')
 		</if>
 
 		<if test="option == 'c'.toString()">

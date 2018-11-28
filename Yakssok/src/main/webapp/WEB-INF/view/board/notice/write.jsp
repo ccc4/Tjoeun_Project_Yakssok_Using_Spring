@@ -20,26 +20,27 @@
 			<!-- 게시글 작성 -->
 			<div>
 				<h3>공지사항 작성</h3>
-				<form class="form-horizontal" action="${pageContext.request.contextPath }/board/notice/write" method="POST" >
+				<form id="wr" class="form-horizontal" action="${pageContext.request.contextPath }/board/notice/write" method="POST" >
 					<div class="form-group">
 						<div class="col-md-12">
-							<input class="form-control" type="text" name="title" placeholder="제목" maxlength="255">
+							<input class="form-control" type="text" name="title" id="title" placeholder="제목" maxlength="255">
 							<textarea class="form-control" rows="13" name="contents" placeholder="내용" maxlength="1000"></textarea>
 						</div>
 					</div>
 					<button type="button" class="btn btn-success pull-left" onclick="location.href='${pageContext.request.contextPath }/board/notice/'">목록</button>
-					<button type="submit" class="btn btn-primary pull-right">작성</button>
+					<button type="button" class="btn btn-primary pull-right" onclick="title_check()" >작성</button>
 				</form>
 			</div>
-			<!-- 게시글 작성 끝 -->
-			
-			
+			<!-- 게시글 작성 끝 -->		
 		</article>
 		<!-- article 끝 -->
 	</div>
 	<!-- 본문 끝 -->
 </div>
 <!-- 컨테이너 끝 -->
+
+<!-- 제목이 비어있는지 검사하는 js 파일 -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/title_check.js"></script>
 		
 </body>
 </html>

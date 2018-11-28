@@ -9,33 +9,37 @@
 </head>
 <body>
 
+<!-- 컨테이너 시작 -->
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
-	
-	<div>
-
-		<h4>[게시글 수정]</h4>
-		<form action="${pageContext.request.contextPath }/board/free/modify" method="post">
-			<input type="hidden" name="b_idx" value="${board.b_idx}" >
+	<!-- 본문 시작 -->
+	<div style="width: 100%">
+		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+		<!-- article 시작 -->
+		<article style="margin-right: 20%">
+			<!-- 게시글 작성 -->
 			<div>
-				번호:${board.b_idx}
+				<h3>자유게시판 수정</h3>
+				<form class="form-horizontal" action="${pageContext.request.contextPath }/board/free/modify" method="POST" >
+				<!-- 게시글 b_idx 를 숨겨서 같이 넘겨줌 -->
+				<input type="hidden" name="b_idx" value="${board.b_idx }">
+					<div class="form-group">
+						<div class="col-md-12">
+							<input class="form-control" type="text" name="title" value="${board.title }" maxlength="255">
+							<textarea class="form-control" rows="13" name="contents" maxlength="1000">${board.contents }</textarea>
+						</div>
+					</div>
+					<button type="button" class="btn btn-success pull-left" onclick="location.href='${pageContext.request.contextPath }/board/free'"/>목록</button>					
+					<button class="btn btn-primary pull-right">작성</button>
+				</form>
 			</div>
-			<div>
-				제목: <input type="text" name="title" value="${board.title }" >
-				<c:if test="${errors.title }">제목을 입력 하세요.</c:if>
-			</div>
-			<div>
-				내용:<br>
-				<textarea name="contents" rows="5" cols="30">${board.contents }</textarea>
-			</div>
-			<input type="button" value="목록보기" onclick="location.href='${pageContext.request.contextPath }/board/free'">
-			<input type="submit" value="수정완료">
-			<input type="button" value="수정취소" onclick="location.href='${pageContext.request.contextPath }/board/free/view/${board.b_idx}'">
-			
-		</form>
+			<!-- 게시글 작성 끝 -->			
+		</article>
+		<!-- article 끝 -->
 	</div>
+	<!-- 본문 끝 -->
 </div>
+<!-- 컨테이너 끝 -->
 
 </body>
 </html>

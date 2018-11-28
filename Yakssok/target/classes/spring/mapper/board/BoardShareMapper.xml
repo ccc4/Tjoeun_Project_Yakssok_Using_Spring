@@ -4,41 +4,59 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="BoardShareMapper">
-
-	<select id="allCount" parameterType="Search_helper" resultType="int">
-		select count(*) from board_share_view
-	</select>
 	
-	<select id="all_list" resultType="board">
-		select * from board_share_view 
-	</select>
-
-	<select id ="view" parameterType="int" resultType="board">
-		select * from board_share_view 
-		where b_idx = #{b_idx}
-	</select>
-
 	<insert id="write" parameterType="board">
-		insert into board_share (m_idx, title, contents) 
-		values (#{m_idx}, #{title}, #{contents})
+		INSERT INTO board_share (m_idx, title, contents) VALUES (#{m_idx}, #{title}, #{contents});
 	</insert>
+
+	<select id="all_count" parameterType="search_helper" resultType="int">
+		SELECT count(*) FROM board_share_view
+		<include refid="search"/>
+	</select>
 	
-	<delete id="delete" parameterType="board" >
-		delete from board_share
-		where b_idx = #{b_idx}
-	</delete>
+	<select id="all_list" parameterType="search_helper" resultType="board">
+		SELECT * FROM board_share_view 
+		<include refid="search"/>
+		ORDER BY b_idx desc, writeDate desc LIMIT #{p1}, #{p2}
+	</select>
 	
-	<update id="edit" parameterType="board">
-		update board_share set title = #{title}, contents = #{contents}, modifyDate = now()
-		where b_idx = #{b_idx}
+	<sql id="search">
+		<if test="option == '제목'">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="option == '글쓴이'">
+			WHERE nickname LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="option == '내용'">
+			WHERE contents LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+		<if test="option == '제목+내용'">
+			WHERE title LIKE CONCAT('%', #{keyword}, '%') 
+			OR contents LIKE CONCAT('%', #{keyword}, '%') 
+		</if>
+	</sql>
+
+	<update id="read_cnt_plus" parameterType="int">
+		UPDATE board_share SET read_cnt = read_cnt + 1 WHERE b_idx = #{b_idx};
+	</update>
+
+	<select id="view" parameterType="int" resultType="board">
+		SELECT * FROM board_share_view WHERE b_idx = #{b_idx}
+	</select>
+	
+	<update id="modify" parameterType="board">
+		UPDATE board_share SET title = #{title}, contents = #{contents}, modifyDate = now() WHERE b_idx = #{b_idx}
 	</update>
 	
-	<update id="read_cnt" parameterType="int">
-		update board_share set read_cnt = read_cnt+1 where b_idx = #{b_idx}
+	<update id="delete" parameterType="int">
+		UPDATE board_share SET exist = 0, modifyDate = now() WHERE b_idx = #{b_idx}
 	</update>
-	
+
+
+
+
 	<select id="main" resultType="board">
-		select * from board_share_view limit 0,10
+		SELECT * FROM board_share_view LIMIT 0, 5
 	</select>
 	
 </mapper>

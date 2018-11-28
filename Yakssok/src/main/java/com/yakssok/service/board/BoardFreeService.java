@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yakssok.dao.board.BoardFreeDAO;
+import com.yakssok.model.Search_helper;
 import com.yakssok.model.board.B_paging;
 import com.yakssok.model.board.Board;
 
@@ -37,63 +38,52 @@ public class BoardFreeService {
 			return dao.delete(b_idx);
 		}
 
-		public B_paging list(int page, int count) {
+		public B_paging list(int page, String option, String keyword) {
 			
-			int allCount = count;
+			int allCount = 0;
+			Search_helper search_helper = new Search_helper(option, keyword);
+			allCount = dao.searchCount(search_helper);	// null 이든 아니든 해당 정보를 이용해 전체 필드 개수를 구한다.(mapper 참고)
+			if(allCount == 0) {	
+				return null;	//	해당 결과 존재하지 않을 시 null 리턴
+			}
+			
 			int onePage = ONE_PAGE;
 			int oneSection = ONE_SECTION;
 			
-			int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);			
+			int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
+			
 			if(page < 1 || page > totalPage) {
-				return null;
+				return null;	// 잘못된 페이지를 고의로 입력했을 경우 null 리턴
 			}
-				
-			int startPage = ((page - 1) / oneSection) * oneSection + 1 ;
+			
+			int startPage = (page - 1) / oneSection * oneSection;
 			if(startPage % oneSection == 0) startPage += 1;
-
+			
 			int endPage = startPage + oneSection - 1;
 			if(endPage > totalPage) endPage = totalPage;
-
-			Map<String, Integer> map = new HashMap<>();
-			map.put("p1", (page - 1) * onePage);
-			map.put("p2", onePage);
 			
-			return new B_paging(dao.list(map), page, totalPage, startPage, endPage);
-		}
-		
-		public int searchCount(String searchOption, String keyword) {	
-			return dao.searchCount(searchOption, keyword);
-			
-		}
-		
-		public List<Board> searchList(int page, String option, String keyword) {
-			int allCount = dao.searchCount(option, keyword);
-			int onePage = ONE_PAGE;
-			int oneSection = ONE_SECTION;
-			
-			int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);			
-			if(page < 1 || page > totalPage) {
-				return null;
+			search_helper.setP1((page - 1) * onePage);	// limit 에 넣을 값 입력
+			search_helper.setP2(onePage);
+			List<Board> list = null;
+			list = dao.searchList(search_helper);
+			if(list == null) {
+				return null;	//	해당 결과 존재하지 않을 시 null 리턴
 			}
-				
-			int startPage = ((page - 1) / oneSection) * oneSection + 1 ;
-			if(startPage % oneSection == 0) startPage += 1;
-
-			int endPage = startPage + oneSection - 1;
-			if(endPage > totalPage) endPage = totalPage;
-
-			Map<String, Object> map = new HashMap<>();
-			
-			map.put("p1", (page - 1) * onePage);
-			map.put("p2", onePage);
-			map.put("option", option);
-			map.put("keyword", keyword);
-			
-			return dao.searchList(map);
+			return new B_paging(list, page, totalPage, startPage, endPage);	// 게시판 구성에 필요한 게시글 리스트, 페이징 통째로 반환
 		}
-
+		
+		public int searchCount(Search_helper search_helper) {	
+			return dao.searchCount(search_helper);
+			
+		}
+		
+		public List<Board> searchList(Search_helper search_helper) {			
+			return dao.searchList(search_helper);
+		}
 
 	
 	}
 	
+	
+
 	
