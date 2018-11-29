@@ -58,128 +58,126 @@
 	
 			<!-- 게시판 -->
 			<div>
-					<table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
-						<thead>
+				<table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
+					<thead>
+						<tr>
+							<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
+							<th width="300px" style="background-color: black; color: white; text-align: center;">제목</th>
+							<th width="100px" style="background-color: black; color: white; text-align: center;">글쓴이</th>
+							<th width="35px" style="background-color: black; color: white; text-align: center;">날짜</th>
+							<th width="35px" style="background-color: black; color: white; text-align: center;">조회</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
+						<fmt:timeZone value="KST">
+							<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
+							<c:forEach var="l" items="${p.list }">
 							<tr>
-								<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
-								<th width="300px" style="background-color: black; color: white; text-align: center;">제목</th>
-								<th width="100px" style="background-color: black; color: white; text-align: center;">글쓴이</th>
-								<th width="35px" style="background-color: black; color: white; text-align: center;">날짜</th>
-								<th width="35px" style="background-color: black; color: white; text-align: center;">조회</th>
+								<td>${l.b_idx }</td>
+								<td class="title"><a href="${pageContext.request.contextPath}/board/free/view/${l.b_idx}">${l.title }</a></td>
+								<td>${l.nickname }</td>
+								
+								<td>
+									<fmt:formatDate value="${l.writeDate }" pattern="MM-dd" var="date"/>
+									<fmt:formatDate value="${l.writeDate }" pattern="HH:mm" var="time"/>
+									<c:choose>
+										<c:when test="${date == toDay }">
+											<c:out value="${time }"></c:out>
+										</c:when>
+										<c:otherwise>
+											<c:out value="${date }"></c:out>
+										</c:otherwise>
+									</c:choose>
+								</td>
+								
+								<td>${l.read_cnt }</td>
 							</tr>
-						</thead>
-						<tbody>
-							<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
-							<fmt:timeZone value="KST">
-								<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
-								<c:forEach var="l" items="${p.list }">
-								<tr>
-									<td>${l.b_idx }</td>
-									<td class="title"><a href="${pageContext.request.contextPath}/board/free/view/${l.b_idx}">${l.title }</a></td>
-									<td>${l.nickname }</td>
-									
-									<td>
-										<fmt:formatDate value="${l.writeDate }" pattern="MM-dd" var="date"/>
-										<fmt:formatDate value="${l.writeDate }" pattern="HH:mm" var="time"/>
-										<c:choose>
-											<c:when test="${date == toDay }">
-												<c:out value="${time }"></c:out>
-											</c:when>
-											<c:otherwise>
-												<c:out value="${date }"></c:out>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									
-									<td>${l.read_cnt }</td>
-								</tr>
-								</c:forEach>
-							</fmt:timeZone>
-							<!-- 페이지 존재여부 확인하여 없다면 게시판 제목과 같이 출력 -->
-								<tr>
-								  <td style="text-align: center;" colspan="5">
-								    <c:if test="${empty p.list }">
-					                    <span>데이터가 존재하지 않습니다.</span>
-				                    </c:if>
-				                    <c:if test="${!empty p.list }"></c:if>
-								  </td>
-								</tr>
-						</tbody>
-					</table>
-					<!-- 회원 타입이 관리자 타입인지 체크 (관리자 타입 -> 2) -->
-					<c:if test="${loginMember.type == 2 }">
-						<input type="button" class="btn btn-default btn-sm pull-right" value="글작성" onclick="location.href='${pageContext.request.contextPath }/board/free/write'">
-					</c:if>
-
-
-
-					<!-- 페이징 시작 -->
-					<nav style="text-align: center;">
-						<ul class="pagination pagination-sm">
-							<c:if test="${p.page != 1 }">
-								<c:if test="${empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free">처음</a></li>
-								</c:if>
-								<c:if test="${!empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?option=${p.option}&keyword=${p.keyword}">처음</a></li>
-								</c:if>
-							</c:if>
-							<c:if test="${p.page == 1 }">
-								<li class="disabled"><a href="#">처음</a></li>
-							</c:if>
-							
-							<c:if test="${p.page != p.startPage }">
-								<c:if test="${empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?page=${p.page - 1}">이전</a></li>
-								</c:if>
-								<c:if test="${!empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?page=${p.page - 1}&option=${p.option}&keyword=${p.keyword}">이전</a></li>
-								</c:if>
-							</c:if>
-							<c:if test="${p.page == p.startPage }">
-								<li class="disabled"><a href="#">이전</a></li>
-							</c:if>
-							
-							<c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
-								<c:if test="${i == p.page }">
-									<li class="active"><a href="#"><b>${i }</b></a></li>
-								</c:if>
-								<c:if test="${i != p.page }">
-									<c:if test="${empty p.option }">
-										<li><a href="${pageContext.request.contextPath }/board/free?page=${i}">${i }</a></li>
-									</c:if>
-									<c:if test="${!empty p.option }">
-										<li><a href="${pageContext.request.contextPath }/board/free?page=${i}&option=${p.option}&keyword=${p.keyword}">${i }</a></li>
-									</c:if>
-								</c:if>
 							</c:forEach>
-							
-							<c:if test="${p.page != p.totalPage }">
+						</fmt:timeZone>
+						<!-- 페이지 존재여부 확인하여 없다면 게시판 제목과 같이 출력 -->
+							<tr>
+							  <td style="text-align: center;" colspan="5">
+							    <c:if test="${empty p.list }">
+				                    <span>데이터가 존재하지 않습니다.</span>
+			                    </c:if>
+			                    <c:if test="${!empty p.list }"></c:if>
+							  </td>
+							</tr>
+					</tbody>
+				</table>
+				<!-- 로그인 체크 -->
+				<c:if test="${!empty loginMember }">
+					<input type="button" class="btn btn-default btn-sm pull-right" value="글작성" onclick="location.href='${pageContext.request.contextPath }/board/free/write'">
+				</c:if>
+
+				<!-- 페이징 시작 -->
+				<nav style="text-align: center;">
+					<ul class="pagination pagination-sm">
+						<c:if test="${p.page != 1 }">
+							<c:if test="${empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free">처음</a></li>
+							</c:if>
+							<c:if test="${!empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?option=${p.option}&keyword=${p.keyword}">처음</a></li>
+							</c:if>
+						</c:if>
+						<c:if test="${p.page == 1 }">
+							<li class="disabled"><a>처음</a></li>
+						</c:if>
+						
+						<c:if test="${p.startPage != 1 }">
+							<c:if test="${empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?page=${p.startPage - 1}">이전</a></li>
+							</c:if>
+							<c:if test="${!empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?page=${p.startPage - 1}&option=${p.option}&keyword=${p.keyword}">이전</a></li>
+							</c:if>
+						</c:if>
+						<c:if test="${p.startPage == 1 }">
+							<li class="disabled"><a>이전</a></li>
+						</c:if>
+						
+						<c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
+							<c:if test="${i == p.page }">
+								<li class="active"><a><b>${i }</b></a></li>
+							</c:if>
+							<c:if test="${i != p.page }">
 								<c:if test="${empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?page=${p.page + 1}">다음</a></li>
+									<li><a href="${pageContext.request.contextPath }/board/free?page=${i}">${i }</a></li>
 								</c:if>
 								<c:if test="${!empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?page=${p.page + 1}&option=${p.option}&keyword=${p.keyword}">다음</a></li>
+									<li><a href="${pageContext.request.contextPath }/board/free?page=${i}&option=${p.option}&keyword=${p.keyword}">${i }</a></li>
 								</c:if>
 							</c:if>
-							<c:if test="${p.page == p.totalPage }">
-								<li class="disabled"><a href="#">다음</a></li>
+						</c:forEach>
+						
+						<c:if test="${p.endPage != p.totalPage }">
+							<c:if test="${empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?page=${p.endPage + 1}">다음</a></li>
 							</c:if>
-							
-							<c:if test="${p.page != p.totalPage }">
-								<c:if test="${empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?page=${p.totalPage}">끝</a></li>
-								</c:if>
-								<c:if test="${!empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/free?page=${p.totalPage}&option=${p.option}&keyword=${p.keyword}">끝</a></li>
-								</c:if>
+							<c:if test="${!empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?page=${p.endPage + 1}&option=${p.option}&keyword=${p.keyword}">다음</a></li>
 							</c:if>
-							<c:if test="${p.page == p.totalPage }">
-								<li class="disabled"><a href="#">끝</a></li>
+						</c:if>
+						<c:if test="${p.endPage == p.totalPage }">
+							<li class="disabled"><a>다음</a></li>
+						</c:if>
+						
+						<c:if test="${p.page != p.totalPage }">
+							<c:if test="${empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?page=${p.totalPage}">끝</a></li>
 							</c:if>
-						</ul>
-					</nav>
-					<!-- 페이징 끝 -->
+							<c:if test="${!empty p.option }">
+								<li><a href="${pageContext.request.contextPath }/board/free?page=${p.totalPage}&option=${p.option}&keyword=${p.keyword}">끝</a></li>
+							</c:if>
+						</c:if>
+						<c:if test="${p.page == p.totalPage }">
+							<li class="disabled"><a>끝</a></li>
+						</c:if>
+					</ul>
+				</nav>
+				<!-- 페이징 끝 -->
 			</div>
 			<!-- 게시판 끝 -->
 			

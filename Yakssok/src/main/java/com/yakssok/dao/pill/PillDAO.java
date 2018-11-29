@@ -28,8 +28,17 @@ public class PillDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	public int review_count(int p_idx) {
-		return sqlSession.selectOne(strNameSpace + ".review_count", p_idx);
+		try {
+			return sqlSession.selectOne(strNameSpace + ".review_count", p_idx);
+		} catch (Exception e) {
+			return 0;
+		}
 	}
+	
+	public List<P_review> review_list(Search_helper search_helper) {
+		return sqlSession.selectList(strNameSpace + ".review_list", search_helper);
+	}
+	
 	
 	public int delete_review(int p_review_idx) {
 		return sqlSession.update(strNameSpace + ".delete_review", p_review_idx);
@@ -41,10 +50,6 @@ public class PillDAO {
 	
 	public int write_review(P_review p_review) {
 		return sqlSession.insert(strNameSpace + ".write_review", p_review);
-	}
-	
-	public List<P_review> review_list(int p_idx) {
-		return sqlSession.selectList(strNameSpace + ".review_list", p_idx);
 	}
 	
 	public List<P_list> main_rank(String effect) {

@@ -5,13 +5,28 @@ public class Search_helper {
 	private int p2;
 	private String option;
 	private String keyword;
+	private int p_idx;
 	
+	public int getP_idx() {
+		return p_idx;
+	}
+
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
+	}
+
 	public Search_helper(String option, String keyword) {
 		this.option = option;
 		this.keyword = keyword;
 	}
 
 	public Search_helper(int p1, int p2) {
+		this.p1 = p1;
+		this.p2 = p2;
+	}
+	
+	public Search_helper(int p_idx, int p1, int p2) {
+		this.p_idx = p_idx;
 		this.p1 = p1;
 		this.p2 = p2;
 	}

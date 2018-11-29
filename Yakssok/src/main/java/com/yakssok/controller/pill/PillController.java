@@ -23,6 +23,7 @@ import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
+import com.yakssok.model.pill.P_review_paging;
 import com.yakssok.model.pill.Pill;
 import com.yakssok.model.pill.PillFormData;
 import com.yakssok.service.pill.PillService;
@@ -43,11 +44,21 @@ public class PillController {
 	private PillService service;
 	
 	
+	@RequestMapping(value="/review/{p_idx}", method=RequestMethod.GET)
+	public String view(Model model, @PathVariable int p_idx, 
+			@RequestParam(name="page", defaultValue="1", required=false) int page) {
+		
+		model.addAttribute("p_idx", p_idx);
+		model.addAttribute("p", service.review_list(p_idx, page));
+		return "pill/review";
+	}
+	
+	
 	
 	@RequestMapping(value="/view/{p_idx}", method=RequestMethod.GET)
 	public String view(Model model, HttpSession session, 
 			@PathVariable int p_idx, 
-			@RequestParam(required=false) int page, 
+			@RequestParam(name="page", defaultValue="1", required=false) int page, 
 			@RequestParam(required=false) String option, 
 			@RequestParam(required=false) String keyword) {
 		
@@ -60,16 +71,15 @@ public class PillController {
 		model.addAttribute("page", page);
 		model.addAttribute("option", option);
 		model.addAttribute("keyword", keyword);
-		P_one p_one = service.one_view(p_idx, m_idx);
-		model.addAttribute("l", p_one);
+		model.addAttribute("l", service.one_view(p_idx, m_idx));
 		return "pill/view";
 	}
 	
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model, HttpSession session, 
 			@RequestParam(name="page", defaultValue="1", required=false) int page, 
-			@RequestParam(name="option", required=false) String option, 
-			@RequestParam(name="keyword", required=false) String keyword) {
+			@RequestParam(required=false) String option, 
+			@RequestParam(required=false) String keyword) {
 		
 		int m_idx = 0;
 		

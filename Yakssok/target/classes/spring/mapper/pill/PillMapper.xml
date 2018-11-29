@@ -9,9 +9,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(*) FROM p_review_view where p_idx = #{p_idx};
 	</select>
 	
-	<select id="review_list" parameterType="int" resultType="p_review">
-		SELECT * FROM p_review_view WHERE p_idx = #{p_idx} ORDER BY p_review_idx DESC
+	<select id="review_list" parameterType="search_helper" resultType="p_review">
+		SELECT * FROM p_review_view WHERE p_idx = #{p_idx} ORDER BY p_review_idx DESC LIMIT #{p1}, #{p2}
 	</select>
+
 
 	<insert id="write_review" parameterType="p_review">
 		INSERT INTO p_review (p_idx, m_idx, contents) VALUES (#{p_idx}, #{m_idx}, #{contents});

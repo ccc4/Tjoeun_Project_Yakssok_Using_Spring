@@ -18,7 +18,7 @@
 	<a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/img/title.png" width="250" height="150"/></a>
 </header>
 
-<nav class="navbar navbar-inverse" style="margin-bottom: 40px">
+<nav class="navbar navbar-inverse" style="margin-bottom: 20px">
   <div class="container-fluid">
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,7 +45,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="white">고객센터</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">관리자 문의</a></li>
+            <li><a href="#">자주묻는 질문</a></li>
             <li><a href="#">약품 정보 등록 건의</a></li>
           </ul>
         </li>

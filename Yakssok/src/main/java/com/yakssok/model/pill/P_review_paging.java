@@ -3,27 +3,28 @@ package com.yakssok.model.pill;
 import java.util.List;
 
 public class P_review_paging {
-	private List<P_review> list;
+	private List<P_review> review;
 	private int page;
 	private int totalPage;
 	private int startPage;
 	private int endPage;
 	
-	public P_review_paging(List<P_review> list, int page, int totalPage, int startPage, int endPage) {
-		super();
-		this.list = list;
+	public P_review_paging(List<P_review> review, int page, int totalPage, int startPage, int endPage) {
+		this.review = review;
 		this.page = page;
 		this.totalPage = totalPage;
 		this.startPage = startPage;
 		this.endPage = endPage;
 	}
 	
-	public List<P_review> getList() {
-		return list;
+	public List<P_review> getReview() {
+		return review;
 	}
-	public void setList(List<P_review> list) {
-		this.list = list;
+
+	public void setReview(List<P_review> review) {
+		this.review = review;
 	}
+
 	public int getPage() {
 		return page;
 	}

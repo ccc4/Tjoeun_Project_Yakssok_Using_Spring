@@ -34,6 +34,38 @@ public class PillService {
 	@Autowired
 	private PillDAO dao;
 	
+	
+	public P_review_paging review_list(int p_idx, int page) {
+		
+		int allCount = dao.review_count(p_idx);
+		if(allCount == 0) {
+			return null;
+		}
+		int onePage = REVIEW_ONE_PAGE;
+		int oneSection = REVIEW_ONE_SECTION;
+		
+		int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
+		
+		if(page < 1 || page > totalPage) {
+			return null;	// 잘못된 페이지를 고의로 입력했을 경우 null 리턴
+		}
+		
+		int startPage = (page - 1) / oneSection * oneSection;
+		if(startPage % oneSection == 0) startPage += 1;
+		
+		int endPage = startPage + oneSection - 1;
+		if(endPage > totalPage) endPage = totalPage;
+		
+		Search_helper search_helper = new Search_helper(p_idx, (page - 1) * onePage, onePage);
+		List<P_review> list = null;
+		list = dao.review_list(search_helper);
+		/*if(list == null) {
+			return null;	//	해당 결과 존재하지 않을 시 null 리턴
+		}*/
+		return new P_review_paging(list, page, totalPage, startPage, endPage);
+	}
+	
+	
 	public int delete_review(int p_review_idx) {
 		return dao.delete_review(p_review_idx);
 	}
@@ -49,32 +81,7 @@ public class PillService {
 	public List<P_list> main_rank(String effect) {
 		return dao.main_rank(effect);
 	}
-	
-/*	public P_review_paging getList_review(int p_idx, int page) {
-		
-		int allCount = dao.review_count(p_idx);
-		int onePage = REVIEW_ONE_PAGE;
-		int oneSection = REVIEW_ONE_SECTION;
-		
-		int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
-		
-		if(page < 1 || page > totalPage) {
-			return null;
-		}
-		
-		int startPage = (page - 1) / oneSection * oneSection;
-		if(startPage % oneSection == 0) startPage += 1;
-		
-		int endPage = startPage + oneSection - 1;
-		if(endPage > totalPage) endPage = totalPage;
-		
-		Map<String, Integer> map = new HashMap<>();
-		map.put("p1", (page - 1) * onePage);
-		map.put("p2", onePage);
-		
-		return new P_review_paging(list, page, totalPage, startPage, endPage);
-	}*/
-	
+
 	
 	
 	public String checkRating(int p_idx, int m_idx) {
@@ -125,7 +132,6 @@ public class PillService {
 	
 	public P_one one_view(int p_idx, int m_idx) {
 		P_one p_one = dao.one_view(p_idx);
-//		p_one.setRating(getRating(p_idx));
 		p_one.setIngredients(dao.pi_list(p_idx));
 		
 		List<String> detail_2 = new ArrayList<>();
@@ -173,7 +179,6 @@ public class PillService {
 			}
 		}
 		p_one.setDetail_2(detail_2);
-		p_one.setReview(dao.review_list(p_idx));
 		return p_one;
 	}
 	

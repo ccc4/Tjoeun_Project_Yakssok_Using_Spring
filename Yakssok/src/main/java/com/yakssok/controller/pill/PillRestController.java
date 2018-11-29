@@ -2,7 +2,6 @@ package com.yakssok.controller.pill;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.yakssok.model.member.Member;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
-import com.yakssok.model.pill.P_review_paging;
 import com.yakssok.service.pill.PillService;
 
 @RestController
@@ -121,17 +119,6 @@ public class PillRestController {
 	public int modify_review(@RequestParam int p_review_idx) {
 		return service.delete_review(p_review_idx);
 	}
-	
-	@RequestMapping(value="/ajaxList_review", method=RequestMethod.POST)
-	public P_review_paging ajaxList_review(@RequestParam int p_idx, 
-			@RequestParam(name="page", defaultValue="1", required=false) int page) {
-		
-		System.out.println("p_idx: " + p_idx);
-		System.out.println("page: " + page);
-		
-		return null;
-	}
-	
 	
 	
 }
