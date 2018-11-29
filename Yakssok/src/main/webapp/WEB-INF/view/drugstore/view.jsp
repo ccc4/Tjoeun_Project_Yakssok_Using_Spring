@@ -28,24 +28,24 @@
 		
 			<!-- 메뉴 구분 시작 -->
 			<div>
-				<c:if test="${menu == 'allDay' }">
+				<c:if test="${type == 'allDay' }">
 					<h2>연중무휴</h2>
 				</c:if>
-				<c:if test="${menu == 'night' }">
+				<c:if test="${type == 'night' }">
 					<h2>심야약국</h2>
 				</c:if>
 			</div>
 			<!-- 메뉴 구분 끝 -->
 			
 			<div style="margin-bottom: 10px">
-				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }'">처음으로</button>
-				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }/${first }'">${first } 전체목록</button>
+				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${type }'">처음으로</button>
+				<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${type }/${first }'">${first } 전체목록</button>
 			</div>
 			
 			<!-- 두번째 주소 값 시작 -->
 			<div style="margin-bottom: 30px">
 				<c:forEach var="sv" items="${secondValues }">
-					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/allDay/${first }/${sv }'">${sv }</button>&nbsp;
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${type }/${first }/${sv }'">${sv }</button>&nbsp;
 				</c:forEach>
 			</div>
 			<!-- 두번째 주소 값 끝 -->
@@ -72,7 +72,7 @@
 										<td style="text-align: left;">${l.address }</td>
 										<td>${l.weekend }</td>
 										<td style="text-align: left;">${l.remarks }</td>
-										<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${l.idx}">지도링크</a></td>
+										<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${type }/${l.idx}">지도링크</a></td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -98,7 +98,7 @@
 									<td style="text-align: left;">${l.address }</td>
 									<td>${l.weekend }</td>
 									<td style="text-align: left;">${l.remarks }</td>
-									<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${l.idx}">지도링크</a></td>
+									<td><a href="${pageContext.request.contextPath}/drugstore/showMap/${type }/${l.idx}">지도링크</a></td>
 								</tr>
 							</c:forEach>
 						</table>

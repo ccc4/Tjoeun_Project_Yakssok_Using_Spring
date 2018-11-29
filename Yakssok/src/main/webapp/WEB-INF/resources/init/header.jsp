@@ -47,6 +47,8 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">자주묻는 질문</a></li>
             <li><a href="#">약품 정보 등록 건의</a></li>
+            <li class="divider"></li>
+            <li><a href="#">건의목록</a></li>
           </ul>
         </li>
         <li class="dropdown">

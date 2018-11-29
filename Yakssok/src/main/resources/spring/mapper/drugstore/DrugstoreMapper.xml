@@ -5,26 +5,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="DrugstoreMapper">
 	
-	<select id="firstValues" resultType="String">
-		SELECT first FROM drugstore_allDay_view GROUP BY first;
+	<select id="firstValues" parameterType="drugstore_helper" resultType="String">
+		SELECT first FROM 
+		<include refid="search"/> 
+		GROUP BY first;
 	</select>
 	
-	<select id="secondListAll" parameterType="String" resultType="drugstore">
-		SELECT * FROM drugstore_allDay_view WHERE second = #{second} ORDER BY name;
+	<select id="secondListAll" parameterType="drugstore_helper" resultType="drugstore">
+		SELECT * FROM 
+		<include refid="search"/> 
+		WHERE second = #{second} ORDER BY name;
 	</select>
 	
-	<select id="secondValues" parameterType="String" resultType="String">
-		SELECT second FROM drugstore_allDay_view WHERE first = #{first} GROUP BY second order by second
+	<select id="secondValues" parameterType="drugstore_helper" resultType="String">
+		SELECT second FROM 
+		<include refid="search"/> 
+		WHERE first = #{first} GROUP BY second order by second
 	</select>
 	
-	<select id="secondListOne" parameterType="drugstoreFS" resultType="drugstore">
-		SELECT * FROM drugstore_allDay_view WHERE first = #{first} AND second = #{second} ORDER BY second
+	<select id="secondListOne" parameterType="drugstore_helper" resultType="drugstore">
+		SELECT * FROM 
+		<include refid="search"/> 
+		WHERE first = #{first} AND second = #{second} ORDER BY second
 	</select>
 	
-	<select id="getModel" parameterType="int" resultType="drugstore">
-		SELECT * FROM drugstore_allDay_view WHERE idx = #{idx}
+	<select id="getModel" parameterType="drugstore_helper" resultType="drugstore">
+		SELECT * FROM  
+		<include refid="search"/> 
+		WHERE idx = #{idx}
 	</select>
 	
+	<sql id="search">
+		<if test="type == 'allDay'">
+			drugstore_allDay_view
+		</if>
+		<if test="type == 'night'">
+			drugstore_night_view
+		</if>
+	</sql>
 	
 	
 	

@@ -66,20 +66,19 @@
 												<span class="h5">${l.name }</span>
 											</a>
 										</div>
-										<div>
-									        <c:if test="${l.rating >= 50}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30px">
-								        		<span>${l.rating } %</span>
+										<!-- rating -->
+										<div id="rating">
+									        <c:if test="${!empty l.total && l.rating >= 50}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
 								        	</c:if>
-									        <c:if test="${l.rating < 50 && l.rating != -1}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30px">
-								        		<span>${l.rating } %</span>
+									        <c:if test="${!empty l.total && l.rating < 50 && l.rating != -1}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
 								        	</c:if>
-									        <c:if test="${l.rating == -1}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30px">
-								        		<span>평가없음</span>
+								        	<c:if test="${empty l.total || l.rating == -1}">
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
 								        	</c:if>
 										</div>
+										<!-- rating 끝 -->
 										<div>
 											<span>제조사/유통사 : ${l.company_name }</span>
 										</div>

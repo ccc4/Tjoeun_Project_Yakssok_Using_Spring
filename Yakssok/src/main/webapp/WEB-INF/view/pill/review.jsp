@@ -55,52 +55,52 @@
 			</table>
 			
 			
+			<!-- 페이징 시작 -->
+			<nav style="text-align: center;">
+				<ul class="pagination pagination-sm">
+					<c:if test="${p.page != 1 }">
+						<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}">처음</a></li>
+					</c:if>
+					<c:if test="${p.page == 1 }">
+						<li class="disabled"><a>처음</a></li>
+					</c:if>
+					
+					<c:if test="${p.startPage != 1 }">
+						<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${p.startPage - 1}">이전</a></li>
+					</c:if>
+					<c:if test="${p.startPage == 1 }">
+						<li class="disabled"><a>이전</a></li>
+					</c:if>
+					
+					<c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
+						<c:if test="${i == p.page }">
+							<li class="active"><a><b>${i }</b></a></li>
+						</c:if>
+						<c:if test="${i != p.page }">
+							<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${i}">${i }</a></li>
+						</c:if>
+					</c:forEach>
+					
+					<c:if test="${p.endPage != p.totalPage }">
+						<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${p.endPage + 1}">다음</a></li>
+					</c:if>
+					<c:if test="${p.endPage == p.totalPage }">
+						<li class="disabled"><a>다음</a></li>
+					</c:if>
+					
+					<c:if test="${p.page != p.totalPage }">
+						<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${p.totalPage}">끝</a></li>
+					</c:if>
+					<c:if test="${p.page == p.totalPage }">
+						<li class="disabled"><a>끝</a></li>
+					</c:if>
+				</ul>
+			</nav>
+			<!-- 페이징 끝 -->
 		</c:if>
 	</div>
 	<!-- 테이블 끝 -->
 	
-	<!-- 페이징 시작 -->
-	<nav style="text-align: center;">
-		<ul class="pagination pagination-sm">
-			<c:if test="${p.page != 1 }">
-				<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}">처음</a></li>
-			</c:if>
-			<c:if test="${p.page == 1 }">
-				<li class="disabled"><a>처음</a></li>
-			</c:if>
-			
-			<c:if test="${p.startPage != 1 }">
-				<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${p.startPage - 1}">이전</a></li>
-			</c:if>
-			<c:if test="${p.startPage == 1 }">
-				<li class="disabled"><a>이전</a></li>
-			</c:if>
-			
-			<c:forEach var="i" begin="${p.startPage }" end="${p.endPage }">
-				<c:if test="${i == p.page }">
-					<li class="active"><a><b>${i }</b></a></li>
-				</c:if>
-				<c:if test="${i != p.page }">
-					<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${i}">${i }</a></li>
-				</c:if>
-			</c:forEach>
-			
-			<c:if test="${p.endPage != p.totalPage }">
-				<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${p.endPage + 1}">다음</a></li>
-			</c:if>
-			<c:if test="${p.endPage == p.totalPage }">
-				<li class="disabled"><a>다음</a></li>
-			</c:if>
-			
-			<c:if test="${p.page != p.totalPage }">
-				<li><a href="${pageContext.request.contextPath }/pill/review/${p_idx}?page=${p.totalPage}">끝</a></li>
-			</c:if>
-			<c:if test="${p.page == p.totalPage }">
-				<li class="disabled"><a>끝</a></li>
-			</c:if>
-		</ul>
-	</nav>
-	<!-- 페이징 끝 -->
 	
 </div>
 <!-- 리뷰 끝-->

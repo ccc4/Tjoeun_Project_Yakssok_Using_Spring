@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.yakssok.model.drugstore.Drugstore;
-import com.yakssok.model.drugstore.DrugstoreFS;
+import com.yakssok.model.drugstore.Drugstore_helper;
 import com.yakssok.service.drugstore.DrugstoreService;
 
 @Controller
@@ -26,54 +26,52 @@ public class DrugstoreController {
 		
 		return "drugstore/nearby";
 	}
-	@RequestMapping(value="/allDay", method=RequestMethod.GET)
-	public String allDay(Model model) {
-		model.addAttribute("menu", "allDay");
-		model.addAttribute("firstValues", service.firstValues());
-		return "drugstore/wide";
-	}
-	@RequestMapping(value="/night", method=RequestMethod.GET)
-	public String night(Model model) {
-		model.addAttribute("menu", "night");
+	@RequestMapping(value="/{type}", method=RequestMethod.GET)
+	public String type(Model model, @PathVariable String type) {
+		model.addAttribute("type", type);
+		model.addAttribute("firstValues", service.firstValues(type));
 		return "drugstore/wide";
 	}
 	
-	@RequestMapping(value="/allDay/{first}", method=RequestMethod.GET)
-	public String allDayWide(Model model, @PathVariable String first) {
+	@RequestMapping(value="/{type}/{first}", method=RequestMethod.GET)
+	public String Wide(Model model, 
+			@PathVariable String type, 
+			@PathVariable String first) {
 		
-		List<String> secondValues = service.secondValues(first);
-		Map<String, List<Drugstore>> map = service.secondListAll(secondValues);
+		List<String> secondValues = service.secondValues(type, first);
+		Map<String, List<Drugstore>> map = service.secondListAll(type, secondValues);
 		
-		model.addAttribute("menu", "allDay");
+		model.addAttribute("type", type);
 		model.addAttribute("first", first);
 		model.addAttribute("secondValues", secondValues);
 		model.addAttribute("map", map);
-		/*model.addAttribute("list", service.firstList(first));*/
 		
 		return "drugstore/view";
 	}
 	
-	@RequestMapping(value="/allDay/{first}/{second}", method=RequestMethod.GET)
-	public String allDayView(Model model, @PathVariable String first, @PathVariable String second) {
-		DrugstoreFS fs = new DrugstoreFS();
-		fs.setFirst(first);
-		fs.setSecond(second);
+	@RequestMapping(value="/{type}/{first}/{second}", method=RequestMethod.GET)
+	public String view(Model model, 
+			@PathVariable String type, 
+			@PathVariable String first, 
+			@PathVariable String second) {
 		
-		List<String> secondValues = service.secondValues(first);
+		List<String> secondValues = service.secondValues(type, first);
 		
-		model.addAttribute("menu", "allDay");
+		model.addAttribute("type", type);
 		model.addAttribute("first", first);
 		model.addAttribute("second", second);
 		model.addAttribute("secondValues", secondValues);
-		model.addAttribute("list", service.secondListOne(fs));
+		model.addAttribute("list", service.secondListOne(new Drugstore_helper(type, first, second)));
 		
 		return "drugstore/view";
 	}
 	
-	@RequestMapping(value="/showMap/{idx}", method=RequestMethod.GET)
-	public String showMap(Model model, @PathVariable int idx) {
+	@RequestMapping(value="/showMap/{type}/{idx}", method=RequestMethod.GET)
+	public String showMap(Model model, 
+			@PathVariable String type, 
+			@PathVariable int idx) {
 		
-		model.addAttribute("model", service.getModel(idx));
+		model.addAttribute("model", service.getModel(new Drugstore_helper(type, idx)));
 		
 		return "drugstore/showMap";
 	}

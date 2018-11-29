@@ -1,21 +1,15 @@
 package com.yakssok.service.drugstore;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yakssok.dao.drugstore.DrugstoreDAO;
 import com.yakssok.model.drugstore.Drugstore;
-import com.yakssok.model.drugstore.DrugstoreFS;
+import com.yakssok.model.drugstore.Drugstore_helper;
 
 @Service
 public class DrugstoreService {
@@ -23,28 +17,32 @@ public class DrugstoreService {
 	@Autowired
 	private DrugstoreDAO dao;
 	
-	public List<String> firstValues() {
-		return dao.firstValues();
+	public List<String> firstValues(String type) {
+		return dao.firstValues(new Drugstore_helper(type));
 	}
 
-	public Map<String, List<Drugstore>> secondListAll(List<String> secondValues) {
+	public Map<String, List<Drugstore>> secondListAll(String type, List<String> secondValues) {
 		Map<String, List<Drugstore>> map = new HashMap<String, List<Drugstore>>();
+		Drugstore_helper helper = new Drugstore_helper(type);
 		for(String second : secondValues) {
-			map.put(second, dao.secondListAll(second));
+			helper.setSecond(second);
+			map.put(second, dao.secondListAll(helper));
 		}
 		return map;
 	}
 
-	public List<String> secondValues(String first) {
-		return dao.secondValues(first);
+	public List<String> secondValues(String type, String first) {
+		Drugstore_helper helper = new Drugstore_helper(type);
+		helper.setFirst(first);
+		return dao.secondValues(helper);
 	}
 	
-	public List<Drugstore> secondListOne(DrugstoreFS fs) {
-		return dao.secondListOne(fs);
+	public List<Drugstore> secondListOne(Drugstore_helper drugstore_helper) {
+		return dao.secondListOne(drugstore_helper);
 	}
 	
-	public Drugstore getModel(int idx) {
-		return dao.getModel(idx);
+	public Drugstore getModel(Drugstore_helper drugstore_helper) {
+		return dao.getModel(drugstore_helper);
 	}
 	
 	

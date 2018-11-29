@@ -21,10 +21,10 @@
 	
 			<!-- 메뉴 구분 시작 -->
 			<div>
-				<c:if test="${menu == 'allDay' }">
+				<c:if test="${type == 'allDay' }">
 					<h2>연중무휴</h2>
 				</c:if>
-				<c:if test="${menu == 'night' }">
+				<c:if test="${type == 'night' }">
 					<h2>심야약국</h2>
 				</c:if>
 			</div>
@@ -33,7 +33,7 @@
 			<!-- 첫번째 주소 값 시작 -->
 			<div>
 				<c:forEach var="fv" items="${firstValues }">
-					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${menu }/${fv }'">${fv }</button>
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath}/drugstore/${type }/${fv }'">${fv }</button>
 				</c:forEach>
 			</div>
 			<!-- 두번째 주소 값 끝 -->
