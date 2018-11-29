@@ -21,6 +21,10 @@ public class BoardFreeService {
 		@Autowired
 		private BoardFreeDAO dao;
 		
+		public List<Board> main (){
+			return dao.main();
+		}
+		
 		public Board view(int b_idx) {
 			dao.read_cnt_plus(b_idx);
 			return dao.view(b_idx);

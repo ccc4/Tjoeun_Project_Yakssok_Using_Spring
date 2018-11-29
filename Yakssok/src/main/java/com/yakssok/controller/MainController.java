@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.yakssok.controller.board.BoardFreeController;
 import com.yakssok.model.pill.P_list;
+import com.yakssok.service.board.BoardFreeService;
 import com.yakssok.service.board.BoardNoticeService;
+import com.yakssok.service.board.BoardShareService;
 import com.yakssok.service.drugstore.DrugstoreService;
 import com.yakssok.service.pill.PillService;
 
@@ -23,8 +26,15 @@ public class MainController {
 	
 	@Autowired
 	private BoardNoticeService b_notice_service;
+	
+	@Autowired
+	private BoardShareService b_share_service;
+	@Autowired
+	private BoardFreeService b_free_service;
+	
 	@Autowired
 	private PillService p_service;
+	
 	
 	
 	
@@ -37,6 +47,8 @@ public class MainController {
 		map.put("소화", p_service.main_rank("소화"));
 		model.addAttribute("rank", map);
 		model.addAttribute("bNotice", b_notice_service.main());
+		model.addAttribute("bShare", b_share_service.main());
+		model.addAttribute("bFree",b_free_service.main());
 		return "index";
 	}
 	

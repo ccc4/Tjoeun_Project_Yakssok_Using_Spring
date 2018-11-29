@@ -73,6 +73,9 @@ public class BoardFreeController {
 		
 		Object result = service.modify(board);
 		
+		//타이틀에 앞뒤로 띄어쓰기가 있으면 자동으로 트림하여 데이터로 보냄.
+		board.setTitle(board.getTitle().trim());
+		
 		model.addAttribute("modify", result);
 		model.addAttribute("b_idx", board.getB_idx());
 		
@@ -95,7 +98,9 @@ public class BoardFreeController {
 	@RequestMapping(value="/free/write", method=RequestMethod.POST)
 	public String write(Model model, Board board, 
 			@ModelAttribute("loginMember") Member loginMember) {
-
+		
+		//타이틀에 앞뒤로 띄어쓰기가 있으면 자동으로 트림하여 데이터로 보냄.
+		board.setTitle(board.getTitle().trim());
         board.setM_idx(loginMember.getM_idx());		
 		model.addAttribute("write", service.write(board));		
 		return RESULT_CHECK;

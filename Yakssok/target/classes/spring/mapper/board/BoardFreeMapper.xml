@@ -67,6 +67,10 @@
 
 </sql>
 
+		<select id="main" resultType="board">
+			SELECT * FROM board_free_view LIMIT 0,5
+		</select>
+
 </mapper>
 
 

@@ -52,6 +52,9 @@ public class BoardShareController {
 	@RequestMapping(value="/share/write", method=RequestMethod.POST)
 	public String write(Model model, Board board, 
 			@ModelAttribute("loginMember") Member loginMember) {
+		
+		//타이틀에 앞뒤로 띄어쓰기가 있으면 자동으로 트림하여 데이터로 보냄.
+		board.setTitle(board.getTitle().trim());
 
 		/*접속자 m_idx 값 삽입*/
 		board.setM_idx(loginMember.getM_idx());
@@ -89,6 +92,9 @@ public class BoardShareController {
 	}
 	@RequestMapping(value="/share/modify", method=RequestMethod.POST)
 	public String modifyPOST(Model model, Board board) {
+		
+		//타이틀에 앞뒤로 띄어쓰기가 있으면 자동으로 트림하여 데이터로 보냄.
+		board.setTitle(board.getTitle().trim());
 		
 		model.addAttribute("modify", service.modify(board));
 		/*수정 성공하면 해당 게시글로 다시 돌아가기 위해 b_idx 전달*/

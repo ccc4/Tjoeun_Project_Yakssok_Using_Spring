@@ -47,6 +47,10 @@ public class BoardFreeDAO {
 		public List<Board> searchList(Search_helper search_helper) {				
 			return sqlSession.selectList(strNameSpace + ".searchList", search_helper);
 		}
+		
+		public List<Board> main(){
+			return sqlSession.selectList(strNameSpace + ".main" );
+		}
 
 		
 	}

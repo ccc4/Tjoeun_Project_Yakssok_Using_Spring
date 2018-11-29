@@ -208,7 +208,7 @@ $(function(){
 			<!-- 게시판 미리보기 -->
 			<div>
 				<!-- 공지사항 시작-->
-				<div style="width: 30%">
+				<div style="width: 33%; float: left ;">
 					<a href="${pageContext.request.contextPath}/board/notice"><h4>공지사항</h4></a>
 					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
 						<thead>
@@ -245,12 +245,86 @@ $(function(){
 					</table>
 				</div>
 				<!-- 공지사항 끝-->
-			
+				<!-- 공유게시판 시작  -->
+				<div style="width: 33%; float: left;">
+					<a href="${pageContext.request.contextPath}/board/share"><h4>팁&정보공유</h4></a>
+					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
+						<thead>
+							<tr>
+								<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
+								<th width="150px" style="background-color: black; color: white; text-align: center;">제목</th>
+								<th width="50px" style="background-color: black; color: white; text-align: center;">날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
+							<fmt:timeZone value="KST">
+								<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
+								<c:forEach var="bs" items="${bShare }">
+								<tr>
+									<td>${bs.b_idx }</td>
+									<td class="title"><a href="${pageContext.request.contextPath}/board/share/view/${bs.b_idx}">${bs.title }</a></td>
+									<td>
+										<fmt:formatDate value="${bs.writeDate }" pattern="MM-dd" var="date"/>
+										<fmt:formatDate value="${bs.writeDate }" pattern="HH:mm" var="time"/>
+										<c:choose>
+											<c:when test="${date == toDay }">
+												<c:out value="${time }"></c:out>
+											</c:when>
+											<c:otherwise>
+												<c:out value="${date }"></c:out>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+								</c:forEach>
+							</fmt:timeZone>
+						</tbody>
+					</table>
+				</div>
+				<!--공유게시판 끝-->
+				<!-- 자유게시판 시작  -->
+				<div style="width: 33%; float: left;">
+					<a href="${pageContext.request.contextPath}/board/free"><h4>자유게시판</h4></a>
+					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
+						<thead>
+							<tr>
+								<th width="35px" style="background-color: black; color: white; text-align: center;">번호</th>
+								<th width="150px" style="background-color: black; color: white; text-align: center;">제목</th>
+								<th width="50px" style="background-color: black; color: white; text-align: center;">날짜</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
+							<fmt:timeZone value="KST">
+								<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
+								<c:forEach var="bf" items="${bFree }">
+								<tr>
+									<td>${bf.b_idx }</td>
+									<td class="title"><a href="${pageContext.request.contextPath}/board/free/view/${bf.b_idx}">${bf.title }</a></td>
+									<td>
+										<fmt:formatDate value="${bf.writeDate }" pattern="MM-dd" var="date"/>
+										<fmt:formatDate value="${bf.writeDate }" pattern="HH:mm" var="time"/>
+										<c:choose>
+											<c:when test="${date == toDay }">
+												<c:out value="${time }"></c:out>
+											</c:when>
+											<c:otherwise>
+												<c:out value="${date }"></c:out>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+								</c:forEach>
+							</fmt:timeZone>
+						</tbody>
+					</table>
+				</div>
+				
+				
+				<!--자유게시판 끝-->
 			</div>
 			<!-- 게시판 미리보기 끝-->
-	
-	
-	
 		</article>
 		<!-- article 끝 -->
 	</div>
