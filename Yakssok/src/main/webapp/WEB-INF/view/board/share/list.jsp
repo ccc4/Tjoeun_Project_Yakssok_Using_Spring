@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
 
 <style type="text/css">
-	/* 게시글 제목 길면 알아서 생략하게 */
+   /* 게시글 제목 길면 알아서 생략하게  */
 	.title{
 		width: 300px;
 		text-overflow: ellipsis;

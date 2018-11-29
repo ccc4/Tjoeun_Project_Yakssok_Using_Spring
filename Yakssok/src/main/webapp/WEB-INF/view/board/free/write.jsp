@@ -25,11 +25,11 @@
 					<div class="form-group">
 						<div class="col-md-12">
 							<input class="form-control" type="text" id="title" name="title" placeholder="제목" maxlength="255">							
-							<textarea class="form-control" rows="13" name="contents" placeholder="내용" maxlength="1000"></textarea>
+							<textarea class="form-control" rows="13" id="contents" name="contents" placeholder="내용" maxlength="1000"></textarea>
 						</div>
 					</div>
 					<button type="button" class="btn btn-success pull-left" onclick="location.href='${pageContext.request.contextPath }/board/free/'"/>목록</button>
-					<button type="button" class="btn btn-primary pull-right" onclick="title_check()" >작성</button>
+					<button type="button" class="btn btn-primary pull-right" onclick="form_check()" >작성</button>
 				</form>
 			</div>
 			<!-- 게시글 작성 끝 -->			
@@ -41,21 +41,7 @@
 <!-- 컨테이너 끝 -->
 
 <!-- 제목이 비어있는지 검사하는 js 파일 -->
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/title_check.js"></script>
-
-<!-- 
-<script type="text/javascript">
-function check(){
-	if(document.write.title.value == 0){
-		alert("제목을 입력해 주세요.");
-		document.write.title.focus();
-		return false;
-	}else{
-		return true;
-	}
-}
-</script>
- -->
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/form_check.js"></script>
  
 </body>
 </html>

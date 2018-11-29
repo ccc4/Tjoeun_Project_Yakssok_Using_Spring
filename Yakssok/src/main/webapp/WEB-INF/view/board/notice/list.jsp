@@ -9,7 +9,7 @@
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
 
 <style type="text/css">
-	/* 게시글 제목 길면 알아서 생략하게 */
+   /* 게시글 제목 길면 알아서 생략하게 */
 	.title{
 		width: 300px;
 		text-overflow: ellipsis;
@@ -58,10 +58,6 @@
 	
 			<!-- 게시판 -->
 			<div>
-				<c:if test="${empty p }">
-					<span>데이터가 존재하지 않습니다.</span>
-				</c:if>
-				<c:if test="${!empty p }">
 					<table class="table table-hover" style="table-layout:fixed; word-break:break-all;">
 						<thead>
 							<tr>
@@ -99,6 +95,15 @@
 								</tr>
 								</c:forEach>
 							</fmt:timeZone>
+							<!-- 페이지 존재여부 확인하여 없다면 게시판 제목과 같이 출력 -->
+								<tr>
+								  <td style="text-align: center;" colspan="5">
+								    <c:if test="${empty p.list }">
+					                    <span>데이터가 존재하지 않습니다.</span>
+				                    </c:if>
+				                    <c:if test="${!empty p.list }"></c:if>
+								  </td>
+								</tr>
 						</tbody>
 					</table>
 					<!-- 회원 타입이 관리자 타입인지 체크 (관리자 타입 -> 2) -->
@@ -123,15 +128,15 @@
 								<li class="disabled"><a href="#">처음</a></li>
 							</c:if>
 							
-							<c:if test="${p.startPage != 1 }">
+							<c:if test="${p.page != p.startPage }">
 								<c:if test="${empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.startPage - 1}">이전</a></li>
+									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.page - 1}">이전</a></li>
 								</c:if>
 								<c:if test="${!empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.startPage - 1}&option=${p.option}&keyword=${p.keyword}">이전</a></li>
+									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.page - 1}&option=${p.option}&keyword=${p.keyword}">이전</a></li>
 								</c:if>
 							</c:if>
-							<c:if test="${p.startPage == 1 }">
+							<c:if test="${p.page == p.startPage }">
 								<li class="disabled"><a href="#">이전</a></li>
 							</c:if>
 							
@@ -149,15 +154,15 @@
 								</c:if>
 							</c:forEach>
 							
-							<c:if test="${p.endPage != p.totalPage }">
+							<c:if test="${p.page != p.totalPage }">
 								<c:if test="${empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.endPage + 1}">다음</a></li>
+									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.page + 1}">다음</a></li>
 								</c:if>
 								<c:if test="${!empty p.option }">
-									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.endPage + 1}&option=${p.option}&keyword=${p.keyword}">다음</a></li>
+									<li><a href="${pageContext.request.contextPath }/board/notice?page=${p.page + 1}&option=${p.option}&keyword=${p.keyword}">다음</a></li>
 								</c:if>
 							</c:if>
-							<c:if test="${p.endPage == p.totalPage }">
+							<c:if test="${p.page == p.totalPage }">
 								<li class="disabled"><a href="#">다음</a></li>
 							</c:if>
 							
@@ -175,8 +180,6 @@
 						</ul>
 					</nav>
 					<!-- 페이징 끝 -->
-
-				</c:if>
 			</div>
 			<!-- 게시판 끝 -->
 			

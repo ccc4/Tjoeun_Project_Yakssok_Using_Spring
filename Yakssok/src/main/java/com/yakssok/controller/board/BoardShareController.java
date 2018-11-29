@@ -55,26 +55,25 @@ public class BoardShareController {
 
 		/*접속자 m_idx 값 삽입*/
 		board.setM_idx(loginMember.getM_idx());
-		/*줄바꿈은 <br> 로 변경*/
-		board.setContents(board.getContents().replace("\r\n", "<br>"));
 		model.addAttribute("write", service.write(board));
 		return CHECK_RESULT;
 	}
 	
 	@RequestMapping(value="/share/view/{b_idx}", method=RequestMethod.GET)
 	public String view(Model model, @PathVariable int b_idx) {
-		/*게시글 보기위해 불러오면서 read_cnt 를 +1 해주는데, 안될 경우를 대비해 트랜잭션 사용. 걸리면 catch 로 넘어온다.(아마도?)*/
 		
 		Board result = service.view(b_idx);
+		/*글을 쓰거나 수정저장될때 자바형식의\r\n 줄바꿈은 <br> 로 변경
+		   나머지도 왼쪽의 것이 오른쪽것으로 변경
+		  html에서 띄어쓰기는 &nbsp 으로 인식 하기 때문에 " " 한칸 띄어 쓴 것을 &nbsp 으로 변환 하여 보여준다.*/
 		result.setContents(result.getContents().replace("\r\n", "<br>"));
 		result.setContents(result.getContents().replace("&amp", "&"));
 		result.setContents(result.getContents().replace("&lt", "<"));
-		result.setContents(result.getContents().replace(" ", "&nbsp"));
+		result.setContents(result.getContents().replace(" ", "&nbsp"));	
 		
-		model.addAttribute("board", result);
-		
+		/*게시글 보기위해 불러오면서 read_cnt 를 +1 해주는데, 안될 경우를 대비해 트랜잭션 사용. 걸리면 catch 로 넘어온다.(아마도?)*/		
 		try {
-			model.addAttribute("result", service.view(b_idx));
+			model.addAttribute("result", result);
 		} catch (Exception e) {
 			model.addAttribute("result", null);
 		}
@@ -83,16 +82,14 @@ public class BoardShareController {
 	
 	@RequestMapping(value="/share/modify/{b_idx}", method=RequestMethod.GET)
 	public String modifyGET(Model model, @PathVariable int b_idx) {
-		/*<br> 로 변경했던 줄바꿈을 다시 \r\n 으로 변경한다.*/
+		
 		Board result = service.view(b_idx);
-		result.setContents(result.getContents().replace("<br>", "\r\n"));
 		model.addAttribute("result", result);
 		return "board/share/modify";
 	}
 	@RequestMapping(value="/share/modify", method=RequestMethod.POST)
 	public String modifyPOST(Model model, Board board) {
-		/*저장할 땐 줄바꿈을 다시 <br> 로 변경*/
-		board.setContents(board.getContents().replace("\r\n", "<br>"));
+		
 		model.addAttribute("modify", service.modify(board));
 		/*수정 성공하면 해당 게시글로 다시 돌아가기 위해 b_idx 전달*/
 		model.addAttribute("b_idx", board.getB_idx());
