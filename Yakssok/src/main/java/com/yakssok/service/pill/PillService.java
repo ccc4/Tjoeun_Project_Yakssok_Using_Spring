@@ -50,7 +50,7 @@ public class PillService {
 		return dao.main_rank(effect);
 	}
 	
-	public P_review_paging getList_review(int p_idx, int page) {
+/*	public P_review_paging getList_review(int p_idx, int page) {
 		
 		int allCount = dao.review_count(p_idx);
 		int onePage = REVIEW_ONE_PAGE;
@@ -73,7 +73,7 @@ public class PillService {
 		map.put("p2", onePage);
 		
 		return new P_review_paging(list, page, totalPage, startPage, endPage);
-	}
+	}*/
 	
 	
 	
