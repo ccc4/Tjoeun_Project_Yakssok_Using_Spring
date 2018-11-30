@@ -28,3 +28,7 @@ function form_check(){
 	  document.getElementById('wr').submit();
 	  
 }
+
+
+
+

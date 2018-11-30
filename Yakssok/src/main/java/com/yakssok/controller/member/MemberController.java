@@ -37,7 +37,6 @@ public class MemberController {
 		return "/member/login";
 	}
 	
-	//@RequestMapping(value = "/loginResult", method  = RequestMethod.POST)
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, Member inputMember, 
 			HttpServletRequest request, 
@@ -53,24 +52,14 @@ public class MemberController {
 		
 		//로그인 실패
 		if(member == null) {
-			//session.setAttribute("loginResult", 0);
-			//session.removeAttribute("islogin");
-			//session.removeAttribute("loginMember");
 			model.addAttribute("login", 0);
-			model.addAttribute("islogin",false);
-			model.addAttribute("loginMember");
 			
 		}else if(!member.getPw().equals(inputMember.getPw())) {
 			model.addAttribute("login", 0);
-			model.addAttribute("loginMember");
 		//로그인 성공
 			
 		}else {
-			//session.setAttribute("loginResult", 1); 
-			//session.setAttribute("islogin", true);
-			//session.setAttribute("loginMember", member);
 			model.addAttribute("login", 1);
-			model.addAttribute("islogin",true);
 			model.addAttribute("loginMember",member);
 
 			if(request.getParameter("saveId") != null) {
@@ -83,11 +72,6 @@ public class MemberController {
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(Model model, SessionStatus status) { // SessionStatus 사용
-		//session.removeAttribute("islogin");
-		//session.removeAttribute("loginMember");
-		
-		/*model.addAttribute("islogin",false);
-		model.addAttribute("loginMember");*/
 		
 		status.setComplete();
 		model.addAttribute("logout", 1);

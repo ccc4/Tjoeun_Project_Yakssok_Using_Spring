@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="PillMapper">
 	
 	<select id="review_count" parameterType="int" resultType="int">
-		SELECT count(*) FROM p_review_view where p_idx = #{p_idx};
+		SELECT count(*) FROM p_review_view where p_idx = #{p_idx}
 	</select>
 	
 	<select id="review_list" parameterType="search_helper" resultType="p_review">

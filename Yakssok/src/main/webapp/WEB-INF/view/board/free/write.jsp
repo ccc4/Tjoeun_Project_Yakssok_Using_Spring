@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<div class="col-md-12">
 							<input class="form-control" type="text" id="title" name="title" placeholder="제목" maxlength="255">							
-							<textarea class="form-control" rows="13" id="contents" name="contents" placeholder="내용" maxlength="1000"></textarea>
+							<textarea class="form-control" rows="13" id="contents" name="contents" placeholder="내용" maxlength="1000" style="resize: none"></textarea>
 						</div>
 					</div>
 					<button type="button" class="btn btn-success pull-left" onclick="location.href='${pageContext.request.contextPath }/board/free/'"/>목록</button>

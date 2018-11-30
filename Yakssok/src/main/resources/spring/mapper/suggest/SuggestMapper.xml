@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="SuggestMapper">
+	
+	<select id="get_pill_name" parameterType="int" resultType="String">
+		SELECT name FROM pill where p_idx = #{p_idx};
+	</select>	
+	
+	<insert id="write" parameterType="suggest">
+		INSERT INTO suggest (nickname, title, contents, imgPath1, imgPath2, tel, email) VALUES 
+		(#{nickname}, #{title}, #{contents}, #{imgPath1}, #{imgPath2}, #{tel}, #{email});
+	</insert>
+	
+	<select id="all_count" resultType="int">
+		SELECT count(*) FROM suggest_view
+	</select>
+	
+	<select id="all_list" parameterType="search_helper" resultType="suggest">
+		SELECT idx, nickname, title, writeDate, state FROM suggest_view ORDER BY idx DESC LIMIT #{p1}, #{p2}
+	</select>
+	
+	<select id="view" parameterType="int" resultType="suggest">
+		SELECT * FROM suggest_view WHERE idx = #{idx}
+	</select>
+	
+	<update id="confirm" parameterType="int">
+		UPDATE suggest SET state = '완료' WHERE idx = #{idx}
+	</update>
+</mapper>
