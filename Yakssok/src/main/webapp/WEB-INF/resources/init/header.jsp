@@ -46,9 +46,9 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="white">고객센터</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">자주묻는 질문</a></li>
-            <li><a href="#">약품 정보 등록 건의</a></li>
+            <li><a href="${pageContext.request.contextPath }/suggest/write">약품 정보 등록 건의</a></li>
             <li class="divider"></li>
-            <li><a href="#">건의목록</a></li>
+            <li><a href="${pageContext.request.contextPath }/suggest/list">건의목록</a></li>
           </ul>
         </li>
         <li class="dropdown">

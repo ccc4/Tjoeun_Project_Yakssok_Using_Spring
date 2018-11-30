@@ -40,7 +40,7 @@
 
 			<!-- 버튼모음 -->
 			<div>
-				<button class="btn btn-default pull-right" style="margin-right: 5px" type="button" onclick="alert('준비중입니다.')">수정건의</button>
+				<button class="btn btn-success pull-right" style="margin-right: 5px" type="button" onclick="location.href='${pageContext.request.contextPath }/suggest/write?p_idx=${p_idx}'">수정건의</button>
 				<c:if test="${!empty option }">
 					<button class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}&option=${option}&keyword=${keyword}'">목록</button>
 				</c:if>
