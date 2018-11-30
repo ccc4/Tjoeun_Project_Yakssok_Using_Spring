@@ -155,30 +155,28 @@ function checkNick() {
 
 				if (inputed == "" && result == '0') {
 
-					$("#checkab").css("background-color", "#FFCECE");
+					$("#checkab").css("background-color", "#FFCECE");//핑크
 					nickCheck = 0;
 				} else if (result == '0') {
-					$("#checkab").css("background-color", "#B0F6AC");
-					nickCheck = 1;
-					if (nickCheck == 1) {
-						$(".modify").prop("disabled", false);
-						$(".modify").css("background-color", "#4CAF50");
-					}
-					$("#checkNickMsg").text("사용가능한 닉네임입니다.").css("color", "green");
+					$("#checkab").css("background-color", "#B0F6AC");//연두
+						
+						$(".modify").prop("disabled", false	);
+						
+						$(".modify").css("background-color", "#4CAF50");//초록
+						$("#checkNickMsg").text("사용가능한 닉네임입니다.").css("color", "green");
+					
+					
 				} else if (result == '1') {
 					$(".modify").prop("disabled", true);
-					$(".modify").css("background-color", "#aaaaaa");
-					$("#checkab").css("background-color", "#FFCECE");
-					nickCheck = 0;
+					$(".modify").css("background-color", "#aaaaaa");//회색
+					$("#checkab").css("background-color", "#FFCECE");//핑크
 					$("#checkNickMsg").text("중복된 닉네임입니다.").css("color", "red");
 				}
-
+				
 			}
 		});
 	}
-	
 
-	
 </script>
 </body>
 </html>
