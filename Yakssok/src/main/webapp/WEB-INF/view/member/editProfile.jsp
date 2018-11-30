@@ -7,17 +7,10 @@
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
 <style type="text/css">
-#checkIdMsg {
-	font-size: 12px;
-}
-
 #checkNickMsg {
 	font-size: 12px;
 }
 
-#checkPwMsg {
-	font-size: 12px;
-}
 </style>
 </head>
 <body>
@@ -46,7 +39,7 @@
 				</tr>
 				<tr>
 					<td>닉네임</td>
-					<td ><input type="text" name ="nickname" id = "checkab" maxlength="50" oninput="checkNick()" value="${loginMember.nickname }"><span id="checkNickMsg"></span></td>
+					<td ><input type="text" name ="nickname" id = "checkab" maxlength="50" onkeyup="checkNick()" value="${loginMember.nickname }"><span id="checkNickMsg"></span></td>
 				</tr>
 				<tr>
 					<td>이름</td>
@@ -67,25 +60,30 @@
 				<tr>
 					<td>우편번호</td>
 						<td>
-							<input type="text" id="sample6_postcode" placeholder="우편번호" name="address">
+							<input type="text" id="sample6_postcode"  placeholder="우편번호" name="address" value="${address0 }">
 							<input class="btn btn-default" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
 						</td>
 					</tr>
 					<tr>
 						<td>주소명</td>
 						<td >
-							<input type="text" id="sample6_address" placeholder="주소" name="address"><br>
+							<input type="text" id="sample6_address" value = "${address1}" placeholder="주소" name="address"><br>
 						</td>
 					</tr>
 					<tr>
 						<td>상세주소</td>
 						<td >
-							<input type="text" id="sample6_address2" placeholder="상세주소" name="address">
+							<c:if test="${!empty address2 }">
+								<input type="text" id="sample6_address2" placeholder="상세주소" name="address" value="${address2 }">
+							</c:if>
+							<c:if test="${empty address2 }">
+								<input type="text" id="sample6_address2" placeholder="상세주소" name="address">
+							</c:if>
 						</td>
 					</tr>
 			</table>
 			<button class="btn btn-default pull-right" type="submit" onclick="location.href='history.back()'">뒤로</button>
-			<button class="btn btn-default pull-right" type="submit">수정</button>
+			<button class="btn btn-default pull-right modify" type="submit">수정</button>
 			<button class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete'">회원탈퇴</button>
 		</diV>
 		</form>
@@ -138,7 +136,10 @@
             }
         }).open();
     }
-
+    
+   
+    
+ var nickCheck = 0;
 
 function checkNick() {
 		var inputed = $('#checkab').val();
@@ -153,22 +154,20 @@ function checkNick() {
 			success : function(result) {
 
 				if (inputed == "" && result == '0') {
-					$(".signup").prop("disabled", true);
-					$(".signup").css("background-color", "#aaaaaa");
+
 					$("#checkab").css("background-color", "#FFCECE");
 					nickCheck = 0;
 				} else if (result == '0') {
 					$("#checkab").css("background-color", "#B0F6AC");
 					nickCheck = 1;
-					if (idCheck == 1 && pwdCheck == 1 && nickCheck == 1) {
-						$(".signup").prop("disabled", false);
-						$(".signup").css("background-color", "#4CAF50");
-						signup();
+					if (nickCheck == 1) {
+						$(".modify").prop("disabled", false);
+						$(".modify").css("background-color", "#4CAF50");
 					}
 					$("#checkNickMsg").text("사용가능한 닉네임입니다.").css("color", "green");
 				} else if (result == '1') {
-					$(".signup").prop("disabled", true);
-					$(".signup").css("background-color", "#aaaaaa");
+					$(".modify").prop("disabled", true);
+					$(".modify").css("background-color", "#aaaaaa");
 					$("#checkab").css("background-color", "#FFCECE");
 					nickCheck = 0;
 					$("#checkNickMsg").text("중복된 닉네임입니다.").css("color", "red");
@@ -177,6 +176,8 @@ function checkNick() {
 			}
 		});
 	}
+	
+
 	
 </script>
 </body>

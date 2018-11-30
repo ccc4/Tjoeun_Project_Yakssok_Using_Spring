@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -297,7 +300,17 @@ public class MemberController {
 		}
 		
 		@RequestMapping(value ="/editProfile", method = RequestMethod.GET)
-		public String editProfile() {
+		public String editProfilej(Model model, @ModelAttribute("loginMember") Member loginMember) {
+			String address = loginMember.getAddress();
+			System.out.println(address);
+			String[] list = address.split(",");
+			for(int i=0;i<list.length;i++) {
+				System.out.println(list[i]);
+				model.addAttribute("address" + i, list[i]);
+			}
+			
+			
+			
 			return "/member/editProfile";
 		}
 		
