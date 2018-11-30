@@ -83,14 +83,14 @@
 					
 						<!-- rating -->
 						<div id="rating">
-					        <c:if test="${!empty l.total && l.rating >= 50}">
-					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good2.png" width="30"><span>${l.rating } %</span>
+					        <c:if test="${l.rating >= 50}">
+					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
 				        	</c:if>
-					        <c:if test="${!empty l.total && l.rating < 50 && l.rating != -1}">
-					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad2.png" width="30"><span>${l.rating } %</span>
+					        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
+					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
 				        	</c:if>
-				        	<c:if test="${empty l.total || l.rating == -1}">
-					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none2.png" width="30"><span>평가없음</span>
+				        	<c:if test="${l.total == 0 || l.rating == -1}">
+					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
 				        	</c:if>
 						</div>
 						<!-- rating 끝 -->
@@ -227,13 +227,13 @@
 			success: function(result) {
 				if(result >= 50) {
 					$("#rating").empty();
-					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good2.png" width="30"><span>' + result + ' %</span>');
+					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>' + result + ' %</span>');
 				} else if(result < 50 && result != -1) {
 					$("#rating").empty();
-					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad2.png" width="30"><span>' + result + ' %</span>');
+					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>' + result + ' %</span>');
 				} else if(result == -1) {
 					$("#rating").empty();
-					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none2.png" width="30"><span>평가없음</span>');
+					$("#rating").append('<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>');
 				}
 			}
 		})

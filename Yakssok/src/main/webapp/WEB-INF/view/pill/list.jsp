@@ -68,13 +68,13 @@
 										</div>
 										<!-- rating -->
 										<div id="rating">
-									        <c:if test="${!empty l.total && l.rating >= 50}">
+									        <c:if test="${l.rating >= 50}">
 									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
 								        	</c:if>
-									        <c:if test="${!empty l.total && l.rating < 50 && l.rating != -1}">
+									        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
 									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
 								        	</c:if>
-								        	<c:if test="${empty l.total || l.rating == -1}">
+								        	<c:if test="${l.total == 0 || l.rating == -1}">
 									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
 								        	</c:if>
 										</div>
