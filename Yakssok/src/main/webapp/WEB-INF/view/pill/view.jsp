@@ -33,10 +33,9 @@
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<!-- 본문 시작 -->
 	<div style="width: 100%">
-		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
 		<!-- article 시작 -->
-		<article style="margin-right: 20%">
+		<article>
 
 			<!-- 버튼모음 -->
 			<div>

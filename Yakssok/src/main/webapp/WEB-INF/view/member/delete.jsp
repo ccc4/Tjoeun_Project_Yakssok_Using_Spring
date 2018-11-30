@@ -10,26 +10,39 @@
 
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
+	<!-- 본문 시작 -->
+	<div style="width: 100%">
+		
 	
-	<div>
-		<form action="${pageContext.request.contextPath}/member/delete" method="post">
-			<table>
-				<caption>회원탈퇴</caption>
-				<tr>
-					<td>아이디:</td>
-					<td><input type="text" name="id"></td>
-				</tr>
-					<tr>
-					<td>비밀번호:</td>
-					<td><input type="password" name="pw"></td>
-				</tr>
-			</table>
-			<input type="submit" value="탈퇴">
-		</form>
-	</div>
-</div>
+		<!-- article 시작 -->
+		<article>
+	
+	
+	
+			<div>
+				<form action="${pageContext.request.contextPath}/member/delete" method="post">
+					<table>
+						<caption>회원탈퇴</caption>
+						<tr>
+							<td>아이디:</td>
+							<td><input type="text" name="id"></td>
+						</tr>
+							<tr>
+							<td>비밀번호:</td>
+							<td><input type="password" name="pw"></td>
+						</tr>
+					</table>
+					<input type="submit" value="탈퇴">
+				</form>
+			</div>
 
+
+		</article>
+		<!-- article 끝 -->
+	</div>
+	<!-- 본문 끝 -->
+</div>
+<!-- 컨테이너 끝 -->
 
 </body>
 </html>

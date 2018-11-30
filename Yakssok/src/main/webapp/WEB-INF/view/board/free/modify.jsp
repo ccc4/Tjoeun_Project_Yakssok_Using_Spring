@@ -14,9 +14,8 @@
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<!-- 본문 시작 -->
 	<div style="width: 100%">
-		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 		<!-- article 시작 -->
-		<article style="margin-right: 20%">
+		<article>
 			<!-- 게시글 작성 -->
 			<div>
 				<h3>자유게시판 수정</h3>

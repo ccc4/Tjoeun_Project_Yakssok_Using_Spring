@@ -21,7 +21,7 @@
 	
 	<div>
 		<div class="form-inline">
-			<input style="width: 837px" class="form-control" id="review_contents" type="text" name="contents" placeholder="한줄리뷰 남기기">
+			<input style="width: 93%" class="form-control" id="review_contents" type="text" name="contents" placeholder="한줄리뷰 남기기">
 			<button class="btn btn-default" type="button" onclick="write_review()">작성</button>
 		</div>
 	</div>

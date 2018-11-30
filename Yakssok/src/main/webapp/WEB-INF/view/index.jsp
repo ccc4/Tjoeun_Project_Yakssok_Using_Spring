@@ -247,7 +247,7 @@ $(function(){
 			<!-- 게시판 미리보기 -->
 			<div>
 				<!-- 공지사항 시작-->
-				<div style="width: 32%; float: left ;">
+				<div style="width: 32%; float: left; margin-right: 1.5%">
 					<a href="${pageContext.request.contextPath}/board/notice"><h4>공지사항</h4></a>
 					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
 						<thead>
@@ -285,7 +285,7 @@ $(function(){
 				</div>
 				<!-- 공지사항 끝-->
 				<!-- 공유게시판 시작  -->
-				<div style="width: 33%; float: left; position: relative; left: 2%;">
+				<div style="width: 32%; float: left; margin-right: 1.5%">
 					<a href="${pageContext.request.contextPath}/board/share"><h4>팁&정보공유</h4></a>
 					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
 						<thead>
@@ -323,7 +323,7 @@ $(function(){
 				</div>
 				<!--공유게시판 끝-->
 				<!-- 자유게시판 시작  -->
-				<div style="width: 32%; float: right; position: relative; left: 1%;">
+				<div style="width: 32%; float: left;">
 					<a href="${pageContext.request.contextPath}/board/free"><h4>자유게시판</h4></a>
 					<table class="table table-hover table-condensed" style="table-layout:fixed; word-break:break-all;">
 						<thead>
