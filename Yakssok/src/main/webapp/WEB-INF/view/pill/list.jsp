@@ -53,7 +53,7 @@
 							<div class="col-md-3">
 								<div class="thumbnail">
 									<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
-										<c:if test="${!empty l.imgPath }">
+										<c:if test="${!empty l.imgPath }"> 
 												<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
 										</c:if>
 										<c:if test="${empty l.imgPath }">
