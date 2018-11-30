@@ -63,5 +63,9 @@ public class MainController {
 //		return "check/crawling";
 //	}
 	
+	@RequestMapping("/qna")
+	public String qna() {
+		return "qna/qna";
+	}
 	
 }
