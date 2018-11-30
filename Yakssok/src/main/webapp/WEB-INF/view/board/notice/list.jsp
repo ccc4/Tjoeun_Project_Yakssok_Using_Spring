@@ -33,10 +33,9 @@
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	<!-- 본문 시작 -->
 	<div style="width: 100%">
-		<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
 		<!-- article 시작 -->
-		<article style="margin-right: 20%">
+		<article>
 			<div style="margin-bottom: 10px">
 				<a class="h3" href="${pageContext.request.contextPath }/board/notice/">공지사항</a>
 			</div>

@@ -10,7 +10,6 @@
 
 <div class="container">
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
-	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 	
 		<div style="width: 100%; text-align: center">
 			<div style="display: inline-block; text-align: left; width: 250px">
