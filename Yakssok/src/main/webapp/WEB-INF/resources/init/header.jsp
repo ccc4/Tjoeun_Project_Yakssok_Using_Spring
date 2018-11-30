@@ -64,8 +64,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><font color="red">긴급상황</font>&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">편의점 상비약</a></li>
-            <li><a href="#">응급처치</a></li>
+            <li><a href="${pageContext.request.contextPath }/medList/main">편의점 상비약</a></li>
+            <li><a href="${pageContext.request.contextPath }/firstAid/main">응급처치</a></li>
           </ul>
         </li>
       </ul>

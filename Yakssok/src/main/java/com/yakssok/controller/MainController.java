@@ -63,9 +63,47 @@ public class MainController {
 //		return "check/crawling";
 //	}
 	
-	@RequestMapping("/qna")
+	@RequestMapping(value="/qna", method=RequestMethod.GET)
 	public String qna() {
 		return "qna/qna";
+	}
+	
+	@RequestMapping(value="/medList/main", method=RequestMethod.GET)
+	public String medList_main() {
+		return "medList/main";
+	}
+	@RequestMapping(value="/medList/cold", method=RequestMethod.GET)
+	public String medList_cold() {
+		return "medList/cold";
+	}
+	@RequestMapping(value="/medList/fever", method=RequestMethod.GET)
+	public String medList_fever() {
+		return "medList/fever";
+	}
+	@RequestMapping(value="/medList/path", method=RequestMethod.GET)
+	public String medList_path() {
+		return "medList/path";
+	}
+	@RequestMapping(value="/medList/peptic", method=RequestMethod.GET)
+	public String medList_peptic() {
+		return "medList/peptic";
+	}
+	
+	@RequestMapping(value="/firstAid/main", method=RequestMethod.GET)
+	public String firstAid_main() {
+		return "firstAid/main";
+	}
+	@RequestMapping(value="/firstAid/heart", method=RequestMethod.GET)
+	public String firstAid_heart() {
+		return "firstAid/heart";
+	}
+	@RequestMapping(value="/firstAid/lifetime", method=RequestMethod.GET)
+	public String firstAid_lifetime() {
+		return "firstAid/lifetime";
+	}
+	@RequestMapping(value="/firstAid/gido", method=RequestMethod.GET)
+	public String firstAid_gido() {
+		return "firstAid/gido";
 	}
 	
 }
