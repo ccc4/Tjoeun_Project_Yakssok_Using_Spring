@@ -49,6 +49,9 @@ public class SuggestController {
 			suggest.setImgPath2(service.saveImg(realPath, suggest.getFile2()));
 		}
 		suggest.setContents(suggest.getContents().replace("\r\n", "<br>"));
+		suggest.setContents(suggest.getContents().replace("&amp", "&"));
+		suggest.setContents(suggest.getContents().replace("&lt", "<"));
+		suggest.setContents(suggest.getContents().replace(" ", "&nbsp"));
 		model.addAttribute("write", service.write(suggest));
 		return CHECK_RESULT;
 	}
