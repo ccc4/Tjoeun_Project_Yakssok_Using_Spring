@@ -14,8 +14,9 @@
     
     
     
-<header style="text-align: center">
+<header style="text-align: center; position: relative;">
 	<a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/img/title.png" width="250" height="150"/></a>
+	<jsp:include page="/WEB-INF/resources/init/login.jsp"/>
 </header>
 
 <nav class="navbar navbar-inverse" style="margin-bottom: 20px">

@@ -3,13 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style type="text/css">
-	@media screen and (min-width:600px) {
-	  .loginSection {
-	    float: right;
-	    width: 20%;
-	    margin-bottom: 10px;
-	    text-align: center;
-	  }
+	.loginSection {
+	 	top: 70px;
+		right: 0px;
+		width: 20%;
+		/* margin-bottom: 10px; */
+		text-align: center;
+		position: absolute;
+	
 	}
 </style>
 
