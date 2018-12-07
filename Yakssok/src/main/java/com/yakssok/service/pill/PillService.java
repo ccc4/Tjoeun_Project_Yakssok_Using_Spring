@@ -1,6 +1,8 @@
 package com.yakssok.service.pill;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,40 +32,105 @@ public class PillService {
 	private static final int ONE_SECTION = 5;
 	private static final int REVIEW_ONE_PAGE = 3;
 	private static final int REVIEW_ONE_SECTION = 3;
+	private static final int REVIEW_ITEM_COUNT = 2;
+	
 	
 	@Autowired
 	private PillDAO dao;
 	
+	public String review_list_ajax(int p_review_idx) {
+		
+		List<P_review> list = dao.review_list_ajax(p_review_idx);
+		Calendar cal = Calendar.getInstance();
+		
+		if(list != null) {
+			String str = "";
+			SimpleDateFormat pattern = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+			
+			for(int i=0;i<list.size();i++) {
+				str += "<tr id=review_\" + list.get(i).getP_review_idx() + \">";
+				str += "<td class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
+				str += "<td class=\"td_contents\">" + list.get(i).getContents() + "</td>";
+				
+				cal.setTime(list.get(i).getWriteDate());
+				cal.add(Calendar.HOUR, -9);
+				str += "<td class=\"td_writeDate\">" + pattern.format(cal.getTime()) + "</td>";
+				
+				str += "<td class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
+				str += "<td class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
+				str += "</tr>";
+			}
+			return str;
+		} else {
+			return "";
+		}
+	} 
 	
-	public P_review_paging review_list(int p_idx, int page) {
+	public String more_review(int p_idx, int mark) {
+		Search_helper search_helper = new Search_helper(mark, REVIEW_ITEM_COUNT);
+		search_helper.setP_idx(p_idx);
 		
-		int allCount = dao.review_count(p_idx);
-		if(allCount == 0) {
-			return null;
+		List<P_review> list = dao.review_list(search_helper);
+		Calendar cal = Calendar.getInstance();
+		
+		if(list != null) {
+			String str = "";
+			SimpleDateFormat pattern = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+			
+			for(int i=0;i<list.size();i++) {
+				str += "<tr id=review_\" + list.get(i).getP_review_idx() + \">";
+				str += "<td class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
+				str += "<td class=\"td_contents\">" + list.get(i).getContents() + "</td>";
+				
+				cal.setTime(list.get(i).getWriteDate());
+				cal.add(Calendar.HOUR, -9);
+				str += "<td class=\"td_writeDate\">" + pattern.format(cal.getTime()) + "</td>";
+				
+				str += "<td class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
+				str += "<td class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
+				str += "</tr>";
+			}
+			return str;
+		} else {
+			return "";
 		}
-		int onePage = REVIEW_ONE_PAGE;
-		int oneSection = REVIEW_ONE_SECTION;
-		
-		int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
-		
-		if(page < 1 || page > totalPage) {
-			return null;	// 잘못된 페이지를 고의로 입력했을 경우 null 리턴
-		}
-		
-		int startPage = (page - 1) / oneSection * oneSection;
-		if(startPage % oneSection == 0) startPage += 1;
-		
-		int endPage = startPage + oneSection - 1;
-		if(endPage > totalPage) endPage = totalPage;
-		
-		Search_helper search_helper = new Search_helper(p_idx, (page - 1) * onePage, onePage);
-		List<P_review> list = null;
-		list = dao.review_list(search_helper);
-		/*if(list == null) {
-			return null;	//	해당 결과 존재하지 않을 시 null 리턴
-		}*/
-		return new P_review_paging(list, page, totalPage, startPage, endPage);
 	}
+	
+	public List<P_review> review_list(int p_idx, int mark) {
+		Search_helper search_helper = new Search_helper(mark, REVIEW_ITEM_COUNT);
+		search_helper.setP_idx(p_idx);
+		return dao.review_list(search_helper);
+	}
+	
+//	public P_review_paging review_list(int p_idx, int page) {
+//		
+//		int allCount = dao.review_count(p_idx);
+//		if(allCount == 0) {
+//			return null;
+//		}
+//		int onePage = REVIEW_ONE_PAGE;
+//		int oneSection = REVIEW_ONE_SECTION;
+//		
+//		int totalPage = allCount / onePage + (allCount % onePage != 0 ? 1 : 0);
+//		
+//		if(page < 1 || page > totalPage) {
+//			return null;	// 잘못된 페이지를 고의로 입력했을 경우 null 리턴
+//		}
+//		
+//		int startPage = (page - 1) / oneSection * oneSection;
+//		if(startPage % oneSection == 0) startPage += 1;
+//		
+//		int endPage = startPage + oneSection - 1;
+//		if(endPage > totalPage) endPage = totalPage;
+//		
+//		Search_helper search_helper = new Search_helper(p_idx, (page - 1) * onePage, onePage);
+//		List<P_review> list = null;
+//		list = dao.review_list(search_helper);
+//		/*if(list == null) {
+//			return null;	//	해당 결과 존재하지 않을 시 null 리턴
+//		}*/
+//		return new P_review_paging(list, page, totalPage, startPage, endPage);
+//	}
 	
 	
 	public int delete_review(int p_review_idx) {
@@ -280,5 +347,6 @@ public class PillService {
 	public List<String> getCompanyNames() {
 		return dao.getCompanyNames();
 	}
+
 	
 }

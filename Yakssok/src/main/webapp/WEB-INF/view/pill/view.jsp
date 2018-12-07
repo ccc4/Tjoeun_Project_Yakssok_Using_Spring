@@ -164,7 +164,7 @@
 			<!-- 약 정보 페이지 끝 -->
 			
 			<!-- 리뷰 시작 -->
-			<iframe src="${pageContext.request.contextPath }/pill/review/${l.p_idx}" width="100%" height="400px" frameborder=0></iframe>
+			<iframe id="review_iframe" src="${pageContext.request.contextPath }/pill/review/${l.p_idx}" frameborder=0 scrolling="no" style="overflow-x.hidden; overflow:auto; width:100%; min-height:500px;"></iframe>
 			<!-- 리뷰 끝 -->
 		</article>
 		<!-- article 끝 -->
@@ -237,6 +237,15 @@
 			}
 		})
 	}
+	
+	function reviewHeight() {
+		var the_height = document.getElementById('review_iframe').contentWindow.document.body.scrollHeight;
+		
+		document.getElementById('review_iframe').height = the_height;
+		
+		document.getElementById('review_iframe').style.overflow = "hidden";
+	}
+	
 </script>
 
 </body>

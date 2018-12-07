@@ -120,5 +120,17 @@ public class PillRestController {
 		return service.delete_review(p_review_idx);
 	}
 	
+	@RequestMapping(value="/more_review", method=RequestMethod.POST, 
+			produces="application/text; charset=utf8")
+	public String more_review(@RequestParam int p_idx, @RequestParam int mark) {
+		return service.more_review(p_idx, mark);
+	}
+	
+	@RequestMapping(value="/refresh_review", method=RequestMethod.POST)
+	public String refresh_review(@RequestParam int p_review_idx) {
+		return service.review_list_ajax(p_review_idx);
+	}
+	
+	
 	
 }

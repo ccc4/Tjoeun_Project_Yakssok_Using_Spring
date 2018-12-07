@@ -45,13 +45,20 @@ public class PillController {
 	
 	
 	@RequestMapping(value="/review/{p_idx}", method=RequestMethod.GET)
-	public String view(Model model, @PathVariable int p_idx, 
-			@RequestParam(name="page", defaultValue="1", required=false) int page) {
+	public String view(Model model, @PathVariable int p_idx) {
 		
 		model.addAttribute("p_idx", p_idx);
-		model.addAttribute("p", service.review_list(p_idx, page));
+		model.addAttribute("p", service.review_list(p_idx, 0));
 		return "pill/review";
 	}
+//	@RequestMapping(value="/review/{p_idx}", method=RequestMethod.GET)
+//	public String view(Model model, @PathVariable int p_idx, 
+//			@RequestParam(name="page", defaultValue="1", required=false) int page) {
+//		
+//		model.addAttribute("p_idx", p_idx);
+//		model.addAttribute("p", service.review_list(p_idx, page));
+//		return "pill/review";
+//	}
 	
 	
 	

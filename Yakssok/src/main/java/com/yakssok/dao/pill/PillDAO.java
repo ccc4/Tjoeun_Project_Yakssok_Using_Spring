@@ -27,6 +27,10 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public List<P_review> review_list_ajax(int p_review_idx) {
+		return sqlSession.selectList(strNameSpace + ".review_list_ajax", p_review_idx);
+	}
+	
 	public int review_count(int p_idx) {
 		try {
 			return sqlSession.selectOne(strNameSpace + ".review_count", p_idx);

@@ -15,6 +15,21 @@
 </head>
 <body>
 
+<style type="text/css">
+	.td_nickname{
+		width="35px"
+	}
+	.td_contents{
+		width="150px"
+	}
+	.td_writeDate{
+		width="50px"
+	}
+	.td_btn{
+		width="20px"
+	}
+</style>
+
 <!-- 리뷰 -->
 <div style="width: 99%; margin-top: 20px">
 	<h3>한줄리뷰</h3>
@@ -33,29 +48,26 @@
 		</c:if>
 		<c:if test="${!empty p }">
 			<table class="table table-hover table-condensed" id="review_table" style="table-layout:fixed; word-break:break-all;">
-				<c:forEach var="r" items="${p.review }">
-				<tr>
-					<td width="35px">${r.nickname }</td>
-					<td width="150px">${r.contents }</td>
-					<td width="50px">
+				<c:forEach var="r" items="${p }">
+				<tr id="review_${r.p_review_idx }">
+					<td class="td_nickname">${r.nickname }</td>
+					<td class="td_contents">${r.contents }</td>
+					<td class="td_writeDate">
 						<fmt:timeZone value="KST">
-							<c:if test="${empty r.modifyDate }">
-								<fmt:formatDate value="${r.writeDate }" pattern="yy-MM-dd HH:mm:ss" var="datetime"/>
-							</c:if>
-							<c:if test="${!empty r.modifyDate }">
-								<fmt:formatDate value="${r.modifyDate }" pattern="yy-MM-dd HH:mm:ss" var="datetime"/>
-							</c:if>
+							<fmt:formatDate value="${r.writeDate }" pattern="yy-MM-dd HH:mm:ss" var="datetime"/>
 							<c:out value="${datetime }"/>
 						</fmt:timeZone>
 					</td>
-					<td width="20px"><button class="btn btn-default modify_review_btn" type="button" onclick="modify_review(this, ${r.p_review_idx})">수정</button></td>
-					<td width="20px"><button class="btn btn-default delete_review_btn" type="button" onclick="delete_review(this, ${r.p_review_idx})">삭제</button></td>
+					<td class="td_btn"><button class="btn btn-default modify_review_btn" type="button" onclick="modify_review(this, ${r.p_review_idx})">수정</button></td>
+					<td class="td_btn"><button class="btn btn-default delete_review_btn" type="button" onclick="delete_review(this, ${r.p_review_idx})">삭제</button></td>
 				</tr>
 				</c:forEach>
 			</table>
 			
+			<button type="button" onclick="more_review()">더 보기</button>
 			
-			<!-- 페이징 시작 -->
+			
+			<%-- <!-- 페이징 시작 -->
 			<nav style="text-align: center;">
 				<ul class="pagination pagination-sm">
 					<c:if test="${p.page != 1 }">
@@ -96,7 +108,7 @@
 					</c:if>
 				</ul>
 			</nav>
-			<!-- 페이징 끝 -->
+			<!-- 페이징 끝 --> --%>
 		</c:if>
 	</div>
 	<!-- 테이블 끝 -->
@@ -108,7 +120,31 @@
 
 
 <script type="text/javascript">
+	
+	var mark = 2;
 	var p_idx = ${p_idx};
+	
+	function more_review() {
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/pill/more_review', 
+			data: {p_idx : p_idx, mark : mark}, 
+			success: function(result) {
+				if(result.length != 0) {
+					$("#review_table").append(result);
+					mark += 2;
+				} else {
+					alert("불러올 데이터가 없습니다.");
+					return false;
+				}
+			}, 
+			error: function() {
+				alert("ajax 통신 에러");
+			}
+		})
+	}
+
+	
 	
 	function write_review() {	// 나중에 이미 작성한 사람일 경우 수정이나 삭제 후 등록 가능하게 변경할 것
 		if(!$("#review_contents").val()) {
@@ -179,6 +215,8 @@
 		}
 	}
 	
+	var contents = null;
+	
 	function modify_review(target, p_review_idx) {
 		var loginMember = '<c:out value="${loginMember}"/>';
 		if(!loginMember) {
@@ -201,6 +239,8 @@
 	}
 	
 	function modify_cancel() {
+		var value = $("#review_table tr:last").attr("id");
+		alert(value);
 		alert("수정 취소!");
 		window.location.reload();
 	}
