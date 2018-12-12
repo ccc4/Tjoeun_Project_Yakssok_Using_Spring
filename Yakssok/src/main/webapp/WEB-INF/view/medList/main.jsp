@@ -8,26 +8,17 @@
 <jsp:include page="/WEB-INF/resources/init/init.jsp" />
 <link href="${pageContext.request.contextPath }/resources/css/medList.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic+Coding|Sunflower:300" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!--  웹폰트 3가지 불러오기 -->
 
-<!--  메인은 호환성이 불필요하기 때문에 내부css로 처리 -->
 <style type="text/css">
-.list-group {
-	border: 1px solid;
-	width: 550px;
-	text-align: center;
-	font-family: 'Nanum Gothic Coding', monospace;
-	font-size: 20px;
-	padding: 0;
-	margin-top: 100px;
+.col-lg-3 {
+text-align: center;
 }
-.main_list {
-	font-family: 'Sunflower', sans-serif;
-	font-size: 20px; 
-	padding: 10px;
-	background: Gainsboro;
-}
+
+
 </style>
+
 </head>
 <body>
 
@@ -41,25 +32,34 @@
 		<article>
 
 			<!-- ~~ 시작-->
-			<div>
-				<div class="container list-group">
-					<a class="list-group-item list-group-item-info"> <strong>편의점 상비약 목록</strong>
-					</a>
-
-					<div class="main_list">
-						<a
-							href="${pageContext.request.contextPath }/medList/cold"
-							class="list-group-item list-group-item-action">감기약</a> <a
-							href="${pageContext.request.contextPath }/medList/fever"
-							class="list-group-item list-group-item-action">해열제</a> <a
-							href="${pageContext.request.contextPath }/medList/peptic"
-							class="list-group-item list-group-item-action">소화제</a> <a
-							href="${pageContext.request.contextPath }/medList/path"
-							class="list-group-item list-group-item-action">파스</a>
-					</div>
-				</div>
-			</div>
-			<!-- ~~ 끝-->
+			<h2 class="page-header">편의점 상비약</h2>
+	         <div class="row">
+                  <div class="col-lg-3">
+                    <img class="img-circle" src="${pageContext.request.contextPath }/resources/img/medList/1.png" alt="Generic placeholder image" width="140" height="140">
+                    <h2>감기약</h2>
+                    <p>기침, 콧물, 열 등 감기 증상이 심할 때</p>
+                    <p><a class="btn btn-default" href="${pageContext.request.contextPath }/medList/cold" role="button">자세히 보기 &raquo;</a></p>
+                  </div>
+                  <div class="col-lg-3">
+                    <img class="img-circle" src="${pageContext.request.contextPath }/resources/img/medList/2.png" alt="Generic placeholder image" width="140" height="140">
+                    <h2>해열제</h2>
+                    <p>체온이 높아져 열을 내리기 위할 때 </p>
+                    <p><a class="btn btn-default" href="${pageContext.request.contextPath }/medList/fever" role="button">자세히 보기 &raquo;</a></p>
+                  </div>
+                  <div class="col-lg-3">
+                    <img class="img-circle" src="${pageContext.request.contextPath }/resources/img/medList/3.png" alt="Generic placeholder image" width="140" height="140">
+                    <h2>소화제</h2>
+                    <p>위와 장의 소화기능을 높일 때</p>
+                    <p><a class="btn btn-default" href="${pageContext.request.contextPath }/medList/peptic" role="button">자세히 보기 &raquo;</a></p>
+                  </div>
+                  <div class="col-lg-3">
+                    <img class="img-circle" src="${pageContext.request.contextPath }/resources/img/medList/4.png" alt="Generic placeholder image" width="140" height="140">
+                    <h2>파스</h2>
+                    <p>근육통, 관절통, 어깨결림 등이 있을 때</p>
+                    <p><a class="btn btn-default" href="${pageContext.request.contextPath }/medList/path" role="button">자세히 보기 &raquo;</a></p>
+                  </div>
+              </div>
+			    <!-- ~~ 끝-->
 			
 		</article>
 		<!-- article 끝 -->

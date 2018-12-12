@@ -34,12 +34,12 @@
 									<th scope="col" style="text-align: center;">질문/답변</th>
 								</tr>
 							</thead>
-
+							<tbody>
 							<tr class="article" id="notice9">
 								<td>9</td>
 								<td class="taget q">
 								  <a id='btn' href="javascript:;">비타민C가 하루 권장량보다 더 많은데 복용해도 될까요?
-								    <span class="glyphicon glyphicon-menu-down pull-right" ></span>
+								    <span id="notice9" class="glyphicon glyphicon-menu-down pull-right" ></span>
 								  </a>
 								</td>
 							</tr>
@@ -200,6 +200,7 @@
 								  염화칼슘정제도 위에서 작용하지 않고 장에서 작용하는 것이 좋습니다. 우유나 유제품을 마시면 산성도가 높아진 위에서 작용하게 
 								  되어 위장장애가 발생할 수 있습니다. 출처 : 식품의약품안전처 (http://drug.mfds.go.kr)</td>
 							</tr>
+							</tbody>
 						</table>
 					</div>
 				</div>
