@@ -6,7 +6,16 @@ public class Search_helper {
 	private String option;
 	private String keyword;
 	private int p_idx;
+	private int p_review_idx;
 	
+	public int getP_review_idx() {
+		return p_review_idx;
+	}
+
+	public void setP_review_idx(int p_review_idx) {
+		this.p_review_idx = p_review_idx;
+	}
+
 	public int getP_idx() {
 		return p_idx;
 	}
@@ -15,6 +24,9 @@ public class Search_helper {
 		this.p_idx = p_idx;
 	}
 
+	public Search_helper() {
+	}
+	
 	public Search_helper(String option, String keyword) {
 		this.option = option;
 		this.keyword = keyword;

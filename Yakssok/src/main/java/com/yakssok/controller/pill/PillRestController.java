@@ -126,9 +126,11 @@ public class PillRestController {
 		return service.more_review(p_idx, mark);
 	}
 	
-	@RequestMapping(value="/refresh_review", method=RequestMethod.POST)
-	public String refresh_review(@RequestParam int p_review_idx) {
-		return service.review_list_ajax(p_review_idx);
+	@RequestMapping(value="/refresh_review", method=RequestMethod.POST, 
+			produces="application/text; charset=utf8")
+	public String refresh_review(@RequestParam int p_idx, @RequestParam String value) {
+		int p_review_idx = Integer.parseInt(value.substring(7));
+		return service.review_list_ajax(p_idx, p_review_idx);
 	}
 	
 	

@@ -172,7 +172,8 @@
 					history.back();
 				} else {
 					alert("리뷰 작성 완료");
-					window.location.reload();
+					var value = $("#review_table tr:last").attr("id");
+					refresh_review(value);
 				}
 			}
 		})
@@ -205,7 +206,8 @@
 				success: function(result) {
 					if(result == 1) {
 						alert("삭제 완료!");
-						window.location.reload();
+						var value = $("#review_table tr:last").attr("id");
+						refresh_review(value);
 					} else {
 						alert("삭제 실패");
 						return false;
@@ -239,10 +241,9 @@
 	}
 	
 	function modify_cancel() {
-		var value = $("#review_table tr:last").attr("id");
-		alert(value);
 		alert("수정 취소!");
-		window.location.reload();
+		var value = $("#review_table tr:last").attr("id");
+		refresh_review(value);
 	}
 	
 	function modify_send(p_review_idx) {
@@ -266,11 +267,27 @@
 			success: function(result) {
 				if(result == 1) {
 					alert("수정 성공!");
-					window.location.reload();
+					var value = $("#review_table tr:last").attr("id");
+					refresh_review(value);
 				} else {
 					alert("수정 실패");
 					$("#review_contents").focus();
 				}
+			}
+		})
+	}
+	
+	function refresh_review(value) {
+		$.ajax({
+			type: 'POST', 
+			url: '${pageContext.request.contextPath}/pill/refresh_review/', 
+			data: {p_idx : p_idx, value : value}, 
+			success: function(result) {
+				$("#review_table").empty();
+				$("#review_table").html(result);
+			}, 
+			error: function() {
+				alert("새로고침 에러");
 			}
 		})
 	}

@@ -30,17 +30,20 @@ public class PillService {
 	
 	private static final int ONE_PAGE = 4;
 	private static final int ONE_SECTION = 5;
-	private static final int REVIEW_ONE_PAGE = 3;
-	private static final int REVIEW_ONE_SECTION = 3;
+//	private static final int REVIEW_ONE_PAGE = 3;
+//	private static final int REVIEW_ONE_SECTION = 3;
 	private static final int REVIEW_ITEM_COUNT = 2;
 	
 	
 	@Autowired
 	private PillDAO dao;
 	
-	public String review_list_ajax(int p_review_idx) {
+	public String review_list_ajax(int p_idx, int p_review_idx) {
+		Search_helper helper = new Search_helper();
+		helper.setP_idx(p_idx);
+		helper.setP_review_idx(p_review_idx);
 		
-		List<P_review> list = dao.review_list_ajax(p_review_idx);
+		List<P_review> list = dao.review_list_ajax(helper);
 		Calendar cal = Calendar.getInstance();
 		
 		if(list != null) {
@@ -48,7 +51,8 @@ public class PillService {
 			SimpleDateFormat pattern = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 			
 			for(int i=0;i<list.size();i++) {
-				str += "<tr id=review_\" + list.get(i).getP_review_idx() + \">";
+				str += "<tbody>";
+				str += "<tr id=\"review_" + list.get(i).getP_review_idx() + "\">";
 				str += "<td class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
 				str += "<td class=\"td_contents\">" + list.get(i).getContents() + "</td>";
 				
@@ -59,6 +63,7 @@ public class PillService {
 				str += "<td class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
 				str += "<td class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
 				str += "</tr>";
+				str += "</tbody>";
 			}
 			return str;
 		} else {
@@ -78,7 +83,8 @@ public class PillService {
 			SimpleDateFormat pattern = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 			
 			for(int i=0;i<list.size();i++) {
-				str += "<tr id=review_\" + list.get(i).getP_review_idx() + \">";
+				str += "<tbody>";
+				str += "<tr id=\"review_" + list.get(i).getP_review_idx() + "\">";
 				str += "<td class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
 				str += "<td class=\"td_contents\">" + list.get(i).getContents() + "</td>";
 				
@@ -89,6 +95,7 @@ public class PillService {
 				str += "<td class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
 				str += "<td class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
 				str += "</tr>";
+				str += "</tbody>";
 			}
 			return str;
 		} else {
