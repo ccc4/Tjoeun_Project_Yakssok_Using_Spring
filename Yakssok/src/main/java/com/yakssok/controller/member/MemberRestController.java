@@ -16,17 +16,26 @@ public class MemberRestController {
 	@Autowired
 	private MemberService service;
 	
-	@RequestMapping(value = "member/checkId/{id}", method=RequestMethod.POST)
+	@RequestMapping(value = "/member/checkId/{id}", method=RequestMethod.POST)
     public  int idCheck(Model model, @PathVariable String id) {
-		
 		int result = service.checkId(id);
         return result;
 	}
 	
-    @RequestMapping(value = "member/checkNick/{nickname}", method=RequestMethod.POST)
+    @RequestMapping(value = "/member/checkNick/{nickname}", method=RequestMethod.POST)
     public  int nickCheck(Model model, @PathVariable String nickname) {
-		
 		int result = service.checkNick(nickname);
         return result;   
-    }	
+    }
+        
+//    @RequestMapping(value="/mId_check", method=RequestMethod.POST)
+//    public int mJoin(String id) {
+//    	return service.checkId(id);
+//    }
+//    
+//    @RequestMapping(value="/mJoin", method=RequestMethod.POST)
+//    public String mJoin(Member member) {
+//    	
+//    	return 
+//    }
 }
