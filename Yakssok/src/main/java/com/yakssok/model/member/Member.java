@@ -1,5 +1,6 @@
 package com.yakssok.model.member;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Member {
@@ -88,7 +89,7 @@ public class Member {
 		return joinDate;
 	}
 	public void setJoinDate(Date joinDate) {
-		this.joinDate = joinDate;
+		this.joinDate = joinDate;;
 	}
 	public int getPoint() {
 		return point;
