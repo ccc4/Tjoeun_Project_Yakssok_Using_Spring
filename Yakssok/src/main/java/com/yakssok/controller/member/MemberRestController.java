@@ -92,4 +92,34 @@ public class MemberRestController {
 //    	
 //    	return 
 //    }
+	
+	 @RequestMapping(value="/mJoin", method=RequestMethod.POST
+			   )
+	    public String mJoin(HttpSession session, Member member, 
+	    		String id, String pw, String nickname, String name, String age, String gender, String tel, String email, String address ) {
+		   
+		   Gson gson = new Gson();
+			String strJson = null;			
+			
+			member.setId(id);
+			member.setPw(pw);
+			member.setNickname(nickname);
+			member.setName(name);
+			member.setAge(Integer.parseInt(age));
+			member.setAddress(address);
+			member.setGender(Integer.parseInt(gender));
+			member.setTel(tel);
+			member.setEmail(email);
+			member.setAddress(address);
+				   
+		   service.join(member);
+		   
+		   if(member == null) {
+			   System.out.println("회원가입 실패");
+		   }else {
+			   System.out.println("회원가입 성공" + member.getId());
+		   }
+ 
+	    	return strJson;
+  }
 }
