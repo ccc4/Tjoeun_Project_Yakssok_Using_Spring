@@ -21,6 +21,10 @@ public class BoardFreeService {
 		@Autowired
 		private BoardFreeDAO dao;
 		
+		public List<Board> all_mList() {
+			return dao.all_mList();
+		}
+		
 		public List<Board> main (){
 			return dao.main();
 		}

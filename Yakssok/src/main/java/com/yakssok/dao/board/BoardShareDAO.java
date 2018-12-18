@@ -17,6 +17,11 @@ public class BoardShareDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	
+	public List<Board> all_mList() {
+		return sqlSession.selectList(strNameSpace + ".all_mList");
+	}
+	
 	public int write(Board board) {
 		return sqlSession.insert(strNameSpace + ".write", board);
 	}

@@ -6,6 +6,10 @@
 <!-- namespace 속성은 현재 XML 파일을 나타내는 ID와 같은 정보 -->
 <mapper namespace="BoardFreeMapper">
 
+	<select id="all_mList" resultType="board">
+		SELECT * FROM board_free_view
+	</select>
+
 	<select id="read_cnt_plus" parameterType="int">
 	    UPDATE board_free
 	    SET read_cnt = read_cnt + 1 

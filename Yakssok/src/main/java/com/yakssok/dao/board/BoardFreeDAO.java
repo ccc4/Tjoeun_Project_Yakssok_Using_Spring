@@ -20,6 +20,12 @@ public class BoardFreeDAO {
 		
 		private String strNameSpace = "BoardFreeMapper";
 		
+		
+		public List<Board> all_mList() {
+			return sqlSession.selectList(strNameSpace + ".all_mList");
+		}
+		
+		
 		public int read_cnt_plus(int b_idx) {
 			return sqlSession.update(strNameSpace + ".read_cnt_plus", b_idx);
 		}
