@@ -52,6 +52,9 @@ public class BoardRestController {
 	@RequestMapping(value="/{type}/view/{b_idx}", method=RequestMethod.GET, 
 			produces="application/text; charset=utf8")
 	public String view(@PathVariable String type, @PathVariable int b_idx) {
+		System.out.println("view controller 들어옴");
+		System.out.println("type: " + type);
+		System.out.println("b_idx: " + b_idx);
 		String strJson = "";
 		Board board;
 		
@@ -60,9 +63,13 @@ public class BoardRestController {
 			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 			strJson = gson.toJson(board); 
 		} else if(type.equals("share")) {
-			
+			board = shareService.view(b_idx);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+			strJson = gson.toJson(board); 
 		} else if(type.equals("free")) {
-			
+			board = freeService.view(b_idx);
+			Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+			strJson = gson.toJson(board); 
 		}
 		
 		return strJson;
