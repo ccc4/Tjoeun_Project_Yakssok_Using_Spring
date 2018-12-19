@@ -4,8 +4,73 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href ="https: //fonts.googleapis.com /css?family=Do+Hyeon |Nanum+Gothic+Coding
+	 |Sunflower: 300" rel ="stylesheet ">  
+<style type="text/css">
+      
+p.title_1st {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	color: CornflowerBlue;
+}
+
+
+p.title_2st {
+	font-family: 'Sunflower', sans-serif;
+	font-size: 20px;
+	color: PaleVioletRed;
+}
+
+.list_1st {
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-size: 15px;
+	line-height: 25px;
+}
+
+#life_1st {
+	border: 1px;
+	padding: 10px;
+	background: Gainsboro;
+	margin-bottom : 50px;
+}
+
+
+
+#one-column-emphasis {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1300px;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+#one-column-emphasis th {
+	font-size: 16px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #039;
+}
+
+#one-column-emphasis td {
+	padding: 10px 15px;
+	color: #669;
+	border-top: 1px solid #e8edff;
+}
+
+.oce-first {
+	background: #d0dafd;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+#one-column-emphasis tr:hover td {
+	color: #339;
+	background: #eff2ff;
+}
+</style>
 <jsp:include page="/WEB-INF/resources/init/init.jsp" />
-<link href="${pageContext.request.contextPath }/resources/css/firstAid.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,6 +87,13 @@
 	
 			<!-- ~~ 시작-->
 			<div>
+			<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath }/">홈</a></li>
+    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath }/firstAid/main">응급처치</a></li>
+    <li class="breadcrumb-item active" aria-current="page">기도폐쇄</li>
+  </ol>
+</nav>
 
 <p class="title_1st">원인과 증상</p>
 	<div id="life_1st">
@@ -84,7 +156,7 @@
 	</div>
 
 	<p class="title_1st">유아 응급처치</p>
-	<div id="life_1st">
+	<div id="life_1st" style="padding-bottom : 250px;">
 		<p class="title_2st">하임리히법 실시요령</p>
 		<iframe width="500" height="300" align="right"
 			src="https://www.youtube.com/embed/ZsHe2j0YKSI" frameborder="0"
@@ -96,11 +168,8 @@
 			<li>입안의 이물질이 확인되면 제거한다.</li>
 			<li>흉부압박 후에도 의식이 없으면 심폐소생술을 실시한다.</li>
 		</ul>
-		<br />
-			<br />
-				<br />
-					<br />
-						<br />	<br />	<br />	<br />	<br />	<br />	<br />
+		
+					
 						
 		
 	</div>

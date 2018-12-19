@@ -4,8 +4,81 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href ="https: //fonts.googleapis.com /css?family=Do+Hyeon |Nanum+Gothic+Coding
+	 |Sunflower: 300" rel ="stylesheet ">  
+<style type="text/css">
+      
+p.title_1st {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 30px;
+	color: CornflowerBlue;
+}
+
+
+p.title_2st {
+	font-family: 'Sunflower', sans-serif;
+	font-size: 20px;
+	color: PaleVioletRed;
+}
+
+.list_1st {
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-size: 15px;
+	line-height: 25px;
+}
+
+#life_1st {
+	border: 1px;
+	padding: 10px;
+	background: Gainsboro;
+	margin-bottom : 50px;
+}
+
+#heart {
+border : 1px;
+padding : 10px;
+background: Gainsboro;
+margin-bottom : 30px;
+}
+
+
+#one-column-emphasis {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1300px;
+	text-align: center;
+	border-collapse: collapse;
+}
+
+#one-column-emphasis th {
+	font-size: 16px;
+	font-weight: normal;
+	padding: 12px 15px;
+	color: #039;
+}
+
+#one-column-emphasis td {
+	padding: 10px 15px;
+	color: #669;
+	border-top: 1px solid #e8edff;
+}
+
+.oce-first {
+	background: #d0dafd;
+	border-right: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+
+#one-column-emphasis tr:hover td {
+	color: #339;
+	background: #eff2ff;
+}
+</style>
+
 <jsp:include page="/WEB-INF/resources/init/init.jsp" />
-<link href="${pageContext.request.contextPath }/resources/css/firstAid.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -21,16 +94,22 @@
 	
 			<!-- ~~ 시작-->
 			<div>
-
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath }/">홈</a></li>
+    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath }/firstAid/main">응급처치</a></li>
+    <li class="breadcrumb-item active" aria-current="page">심폐소생술</li>
+  </ol>
+</nav>
 	<p class="title_1st">심폐소생술의 정의</p>
-	<div id=heart>
-		<p id="life_1st">
-			<strong> 심폐소생술 이란?<br> <br>Cardio Pulmonary
-				Resuscitation<br> <br>갑작스런 심장마비나 사고로 인해 폐와 심장의 활동이 멈추게 되었을
+	
+		<div id="heart">
+			<p class="title_2st"> 심폐소생술 이란?</p><br><br>
+			<p style="font-size:30px; text-align : center; font-weight: 800; color : PaleVioletRed;"> Cardio Pulmonary Resuscitation</p><br><br>
+			 <p style="font-size:15px; font-weight: 600;">갑작스런 심장마비나 사고로 인해 폐와 심장의 활동이 멈추게 되었을
 				때, 인공호흡으로 혈액을 순환시켜 지직으로 산소를 공급함으로써 뇌의 손상 또는 사망을 지연시키고자 현장에서 신속하게
-				실시하는 기술입니다.
-			</strong>
-		</p>
+				실시하는 기술입니다.</p>
+			
 	</div>
 
 

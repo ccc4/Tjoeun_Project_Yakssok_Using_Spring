@@ -4,8 +4,125 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic+Coding|Sunflower:300" rel="stylesheet">
+<style type="text/css">
+.title_1 {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 50px;
+	color: CornflowerBlue;
+}
+
+
+.title_2 {
+	font-family: 'Sunflower', sans-serif;
+	font-size: 20px;
+	color: PaleVioletRed;
+}
+.medimg {
+	display : inline-block;
+	width : 400px;
+	height : 400px;
+	float : left;
+}
+#accordion5 .panel {
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+	margin: 0 0 15px 50px;
+	
+	}
+	
+
+.panel-group {
+ width : 500px; 
+ display : inline-block;
+}
+
+
+#accordion5 .panel-title a {
+	display: block;
+	padding: 10px 20px 10px 60px;
+	background: #fe5f55;
+	border-radius: 30px;
+	border: 2px solid #fe5f55;
+	font-size: 20px;
+	font-weight: 400;
+	color: #fff;
+	position: relative;
+}
+
+#accordion5 .panel-title a.collapsed {
+	border: 2px solid #bbb;
+	background: #fff;
+	color: #bbb;
+}
+
+#accordion5 .panel-title a:before, #accordion5 .panel-title a.collapsed:before
+	{
+	content: "\f068";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+	border-radius: 50%;
+	background: #fe5f55;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	border-right: 3px solid #fff;
+	position: absolute;
+	top: -10px;
+	left: -30px;
+	z-index: 1;
+	transition: all 0.3s ease 0s;
+}
+
+#accordion5 .panel-title a.collapsed:before {
+	content: "\f067";
+	background: #bbb;
+	border: none;
+}
+
+#accordion5 .panel-body {
+	padding: 10px 15px 0;
+	margin: 0 0 0 30px;
+	border: none;
+	font-size: 14px;
+	color: #333;
+	line-height: 28px;
+	position: relative;
+}
+
+#accordion5 .panel-body:before {
+	content: "";
+	display: block;
+	width: 5px;
+	height: 90%;
+	background: #fe5f55;
+	position: absolute;
+	top: 0;
+	left: -30px;
+}
+
+#accordion5 .panel-body:after {
+	content: "";
+	border-top: 20px solid #fe5f55;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	position: absolute;
+	bottom: 0;
+	left: -48px;
+}
+.mainPanel {
+margin : auto;
+text-align : center;
+
+
+}
+</style>
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
-<link href="${pageContext.request.contextPath }/resources/css/medList.css" rel="stylesheet">
+
 
 </head>
 <body>
@@ -21,6 +138,13 @@
 	
 			<!-- ~~ 시작-->
 			<div>
+<nav aria-label="breadcrumb" role="navigation">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath }/">홈</a></li>
+    <li class="breadcrumb-item"><a href="${pageContext.request.contextPath }/medList/main">편의점 상비약</a></li>
+    <li class="breadcrumb-item active" aria-current="page">감기약</li>
+  </ol>
+</nav>
 
 	<h1 class="title_1">안전상비 의약품 - 감기약</h1>
 	<br>
@@ -29,7 +153,7 @@
 
 	<div class="mainPanel">
 		<img class="medimg"
-			src="${pageContext.request.contextPath}/pancoldA.jpg">
+			src="${pageContext.request.contextPath}/resources/img/medList/pancoldA.jpg">
 		<div class="panel-group" id="accordion5" role="tablist"
 			aria-multiselectable="true">
 			<div class="panel panel-default">
@@ -146,7 +270,7 @@
 
 
 	<div class="mainPanel">
-		<img class="medimg" src="${pageContext.request.contextPath}/panpi.jpg">
+		<img class="medimg" src="${pageContext.request.contextPath}/resources/img/medList/panpi.jpg">
 		<div class="panel-group" id="accordion5" role="tablist"
 			aria-multiselectable="true">
 			<div class="panel panel-default">
