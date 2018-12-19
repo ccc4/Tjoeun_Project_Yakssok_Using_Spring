@@ -93,33 +93,70 @@ public class MemberRestController {
 //    	return 
 //    }
 	
-	 @RequestMapping(value="/mJoin", method=RequestMethod.POST
-			   )
-	    public String mJoin(HttpSession session, Member member, 
-	    		String id, String pw, String nickname, String name, String age, String gender, String tel, String email, String address ) {
-		   
-		   Gson gson = new Gson();
-			String strJson = null;			
-			
-			member.setId(id);
-			member.setPw(pw);
-			member.setNickname(nickname);
-			member.setName(name);
-			member.setAge(Integer.parseInt(age));
-			member.setAddress(address);
-			member.setGender(Integer.parseInt(gender));
-			member.setTel(tel);
-			member.setEmail(email);
-			member.setAddress(address);
+	 @RequestMapping(value="/mJoin", method=RequestMethod.POST )
+	    public String mJoin(Member member) {			
 				   
-		   service.join(member);
+			service.join(member);
 		   
 		   if(member == null) {
-			   System.out.println("회원가입 실패");
+			   System.out.println("회원가입 실패");			
 		   }else {
-			   System.out.println("회원가입 성공" + member.getId());
+			   System.out.println("회원가입 성공" + member.getId());			   
 		   }
- 
+		   
+		    Gson gson = new Gson();
+			String strJson = gson.toJson(member);
+
 	    	return strJson;
-  }
+ }
+	   
+		@RequestMapping(value = "/mCheckId", method=RequestMethod.POST)
+	    public String mIdCheck(String id) {
+			
+			int count = service.checkId(id);
+			
+			HashMap<String, Object> map = new HashMap<>();
+			
+			System.out.println("아이디 check : " + id);
+			
+			if(count != 0) {
+				System.out.println("아이디 있음");
+			}else {
+				System.out.println("아이디 없음");
+			}
+			
+			Gson gson = new Gson();
+			
+			map.put("count", count);
+			String strJson = gson.toJson(map);
+			
+			System.out.println(strJson);
+						
+	        return strJson;
+		}
+		
+	    @RequestMapping(value = "/mCheckNick", method=RequestMethod.POST)
+	    public  String mNickCheck(String nickname) {
+			
+	    	int count = service.checkNick(nickname);
+			
+			HashMap<String, Object> map = new HashMap<>();
+			
+			System.out.println("닉네임 check : " + nickname);
+			
+			if(count != 0) {
+				System.out.println("닉네임 있음");
+			}else {
+				System.out.println("닉네임 없음");
+			}
+			
+			Gson gson = new Gson();
+			
+			map.put("count", count);
+			String strJson = gson.toJson(map);
+			
+			System.out.println(strJson);
+						
+	        return strJson;  
+	    }
 }
