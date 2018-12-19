@@ -5,9 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="BoardNoticeMapper">
 
+	<select id="all_mList" resultType="board">
+		SELECT * FROM b_notice_view
+	</select>
+
 
 	<insert id="write" parameterType="board">
-		INSERT INTO board_notice (m_idx, title, contents) VALUES (#{m_idx}, #{title}, #{contents});
+		INSERT INTO board_notice (m_idx, title, contents) VALUES (#{m_idx}, #{title}, #{contents})
 	</insert>
 
 	<select id="all_count" parameterType="search_helper" resultType="int">
