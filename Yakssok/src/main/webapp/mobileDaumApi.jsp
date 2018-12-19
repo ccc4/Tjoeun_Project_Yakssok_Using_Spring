@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주소검색</title>
+<title>주소 검색</title>
 </head>
 <body>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
