@@ -53,10 +53,8 @@
 					<td class="td_nickname">${r.nickname }</td>
 					<td class="td_contents">${r.contents }</td>
 					<td class="td_writeDate">
-						<fmt:timeZone value="KST">
-							<fmt:formatDate value="${r.writeDate }" pattern="yy-MM-dd HH:mm:ss" var="datetime"/>
-							<c:out value="${datetime }"/>
-						</fmt:timeZone>
+						<fmt:formatDate value="${r.writeDate }" pattern="yy-MM-dd HH:mm:ss" var="datetime"/>
+						<c:out value="${datetime }"/>
 					</td>
 					<td class="td_btn"><button class="btn btn-default modify_review_btn" type="button" onclick="modify_review(this, ${r.p_review_idx})">수정</button></td>
 					<td class="td_btn"><button class="btn btn-default delete_review_btn" type="button" onclick="delete_review(this, ${r.p_review_idx})">삭제</button></td>

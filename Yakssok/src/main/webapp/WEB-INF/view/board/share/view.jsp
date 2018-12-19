@@ -40,9 +40,7 @@
 						<tr>
 							<td>
 								글쓴이: ${result.nickname } &nbsp;
-								<fmt:timeZone value="KST">
-									<fmt:formatDate value="${result.writeDate }" pattern="yyyy-MM-dd HH:mm:ss" var="writeDate"/>
-								</fmt:timeZone>
+								<fmt:formatDate value="${result.writeDate }" pattern="yyyy-MM-dd HH:mm:ss" var="writeDate"/>
 								등록일: ${writeDate } &nbsp;
 								조회수: ${result.read_cnt }
 							</td>
@@ -50,9 +48,7 @@
 						<c:if test="${!empty result.modifyDate }">
 							<tr>
 								<td>
-									<fmt:timeZone value="KST">
-										<fmt:formatDate value="${result.modifyDate }" pattern="yyyy-MM-dd HH:mm:ss" var="modifyDate"/>
-									</fmt:timeZone>
+									<fmt:formatDate value="${result.modifyDate }" pattern="yyyy-MM-dd HH:mm:ss" var="modifyDate"/>
 									수정일: ${modifyDate }
 								</td>
 							</tr>

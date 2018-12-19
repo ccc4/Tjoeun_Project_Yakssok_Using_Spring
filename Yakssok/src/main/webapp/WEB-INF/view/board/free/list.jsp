@@ -68,32 +68,29 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!-- 이거 쓰면 한국시간으로 제대로 나옴 -->
-						<fmt:timeZone value="KST">
-							<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
-							<c:forEach var="l" items="${p.list }">
-							<tr>
-								<td>${l.b_idx }</td>
-								<td class="title"><a href="${pageContext.request.contextPath}/board/free/view/${l.b_idx}">${l.title }</a></td>
-								<td>${l.nickname }</td>
-								
-								<td>
-									<fmt:formatDate value="${l.writeDate }" pattern="MM-dd" var="date"/>
-									<fmt:formatDate value="${l.writeDate }" pattern="HH:mm" var="time"/>
-									<c:choose>
-										<c:when test="${date == toDay }">
-											<c:out value="${time }"></c:out>
-										</c:when>
-										<c:otherwise>
-											<c:out value="${date }"></c:out>
-										</c:otherwise>
-									</c:choose>
-								</td>
-								
-								<td>${l.read_cnt }</td>
-							</tr>
-							</c:forEach>
-						</fmt:timeZone>
+						<fmt:formatDate value="<%=new java.util.Date() %>" pattern="MM-dd" var="toDay"/>
+						<c:forEach var="l" items="${p.list }">
+						<tr>
+							<td>${l.b_idx }</td>
+							<td class="title"><a href="${pageContext.request.contextPath}/board/free/view/${l.b_idx}">${l.title }</a></td>
+							<td>${l.nickname }</td>
+							
+							<td>
+								<fmt:formatDate value="${l.writeDate }" pattern="MM-dd" var="date"/>
+								<fmt:formatDate value="${l.writeDate }" pattern="HH:mm" var="time"/>
+								<c:choose>
+									<c:when test="${date == toDay }">
+										<c:out value="${time }"></c:out>
+									</c:when>
+									<c:otherwise>
+										<c:out value="${date }"></c:out>
+									</c:otherwise>
+								</c:choose>
+							</td>
+							
+							<td>${l.read_cnt }</td>
+						</tr>
+						</c:forEach>
 						<!-- 페이지 존재여부 확인하여 없다면 게시판 제목과 같이 출력 -->
 							<tr>
 							  <td style="text-align: center;" colspan="5">

@@ -32,9 +32,7 @@
 						<tr>
 							<td>
 								글쓴이: ${board.nickname } &nbsp;
-								<fmt:timeZone value="KST">
-									<fmt:formatDate value="${board.writeDate }" pattern="yyyy-MM-dd HH:mm:ss" var="writeDate"/>
-								</fmt:timeZone>
+								<fmt:formatDate value="${board.writeDate }" pattern="yyyy-MM-dd HH:mm:ss" var="writeDate"/>
 								등록일: ${writeDate } &nbsp;
 								조회수: ${board.read_cnt }
 							</td>
@@ -42,9 +40,7 @@
 						<c:if test="${!empty board.modifyDate }">
 							<tr>
 								<td>
-									<fmt:timeZone value="KST">
-										<fmt:formatDate value="${board.modifyDate }" pattern="yyyy-MM-dd HH:mm:ss" var="modifyDate"/>
-									</fmt:timeZone>
+									<fmt:formatDate value="${board.modifyDate }" pattern="yyyy-MM-dd HH:mm:ss" var="modifyDate"/>
 									수정일: ${modifyDate }
 								</td>
 							</tr>
