@@ -68,6 +68,12 @@ public class BoardRestController {
 		} else if(type.equals("free")) {
 			board = freeService.view(b_idx);
 		}
+		
+		board.setContents(board.getContents().replace("<br>", "\r\n"));
+		board.setContents(board.getContents().replace("&", "&amp"));
+		board.setContents(board.getContents().replace("<", "&lt"));
+		board.setContents(board.getContents().replace("&nbsp", " "));
+		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		strJson = gson.toJson(board); 
 		
@@ -78,10 +84,7 @@ public class BoardRestController {
 	public String write(@PathVariable String type, Board board) {
 		
 		System.out.println("write 들어옴");
-		String strJson = "";
-		System.out.println(board.getTitle());
-		System.out.println(board.getContents());
-		System.out.println(board.getM_idx());
+		String strJson = "";		
 		
 		Map<String, Integer> result = new HashMap<>();
 		
