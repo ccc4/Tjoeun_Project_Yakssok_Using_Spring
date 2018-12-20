@@ -56,11 +56,11 @@
 												<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
 										</c:if>
 										<c:if test="${empty l.imgPath }">
-												<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
+												<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
 										</c:if>
 									</a>
 									<div class="caption">
-										<div>
+										<div style="min-height: 60px">
 											<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
 												<span class="h5">${l.name }</span>
 											</a>
@@ -78,7 +78,7 @@
 								        	</c:if>
 										</div>
 										<!-- rating 끝 -->
-										<div>
+										<div style="min-height: 40px">
 											<span>제조사/유통사 : ${l.company_name }</span>
 										</div>
 										<div>효능/효과 : 
@@ -89,7 +89,7 @@
 												<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 											</button>
 										</div>
-										<div>
+										<div class="ingredients" style="min-height: 150px">
 											<c:forEach var="lp" items="${l.p_ingredients }">
 												<span>${lp.eng } | ${lp.kor } | ${lp.content }</span>
 											</c:forEach>

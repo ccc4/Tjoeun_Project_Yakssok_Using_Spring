@@ -29,6 +29,9 @@
 	.thumbnail{
 		margin-bottom: 0;
 	}
+	div.tn_name{
+		min-height: 60px;
+	}
 </style>
 
 <!-- 컨테이너 시작 -->
@@ -58,7 +61,7 @@
 			<!-- 의약품 검색 끝-->
 			
 			<!-- 약 효과 랭킹 -->
-				<div style="border: 1px solid black; border-radius: 4px; width: 100%; height: 430px; margin-bottom: 10px">
+				<div style="border: 1px solid black; border-radius: 4px; width: 100%; min-height: 400px; margin-bottom: 10px">
 					<div>
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#두통" data-toggle="tab">두통</a></li>
@@ -84,7 +87,7 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div>
+			<div class="tn_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
 					<span class="h5">${l.name }</span>
 				</a>
@@ -124,7 +127,7 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div>
+			<div class="tn_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
 					<span class="h5">${l.name }</span>
 				</a>
@@ -163,7 +166,7 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div>
+			<div class="tn_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
 					<span class="h5">${l.name }</span>
 				</a>
@@ -202,7 +205,7 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div>
+			<div class="tn_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
 					<span class="h5">${l.name }</span>
 				</a>
