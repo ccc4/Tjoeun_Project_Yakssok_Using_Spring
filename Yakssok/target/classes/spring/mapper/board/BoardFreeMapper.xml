@@ -7,7 +7,7 @@
 <mapper namespace="BoardFreeMapper">
 
 	<select id="all_mList" resultType="board">
-		SELECT * FROM board_free_view
+		SELECT * FROM b_free_view
 	</select>
 
 	<select id="read_cnt_plus" parameterType="int">
@@ -21,7 +21,7 @@
     </insert>
   	
   	<select id="view" parameterType="int" resultType="board">
-  		SELECT * FROM board_free_view 
+  		SELECT * FROM b_free_view 
   		WHERE b_idx = #{b_idx}
   	</select>
   	
@@ -39,14 +39,14 @@
   	
   	<select id="searchList" parameterType="java.util.Map" resultType="board">
 		SELECT *
-		FROM board_free_view
+		FROM b_free_view
 		<include refid="search"/>
 		ORDER BY b_idx desc, writeDate desc LIMIT #{p1}, #{p2}
 	</select>
 	
     <select id="searchCount" parameterType="java.util.Map" resultType="int" >
 		SELECT count(*)
-		FROM board_free_view
+		FROM b_free_view
  	    <include refid="search"/>
 	</select>
 
@@ -72,7 +72,7 @@
 </sql>
 
 		<select id="main" resultType="board">
-			SELECT * FROM board_free_view LIMIT 0,5
+			SELECT * FROM b_free_view LIMIT 0,5
 		</select>
 
 </mapper>

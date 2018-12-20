@@ -1,24 +1,29 @@
 package com.yakssok.controller.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yakssok.model.board.Board;
+import com.yakssok.model.member.Member;
 import com.yakssok.service.board.BoardFreeService;
 import com.yakssok.service.board.BoardNoticeService;
 import com.yakssok.service.board.BoardShareService;
 
 @RestController
 @RequestMapping("/mBoard")
+@SessionAttributes("loginMember")
 public class BoardRestController {
 	
 	@Autowired
@@ -69,12 +74,16 @@ public class BoardRestController {
 		return strJson;
 	}
 	
-	@RequestMapping(value="/{type}/write/", method=RequestMethod.POST)
-	public String write(@PathVariable String type, Board board, @RequestParam int m_idx) {
+	@RequestMapping(value="/{type}/write", method=RequestMethod.POST)
+	public String write(@PathVariable String type, Board board) {
 		
+		System.out.println("write 들어옴");
 		String strJson = "";
-		board.setM_idx(m_idx);
-		Map<String, Integer> result = null;
+		System.out.println(board.getTitle());
+		System.out.println(board.getContents());
+		System.out.println(board.getM_idx());
+		
+		Map<String, Integer> result = new HashMap<>();
 		
 		if(type.equals("notice")) {
 			result.put("result", noticeService.write(board));

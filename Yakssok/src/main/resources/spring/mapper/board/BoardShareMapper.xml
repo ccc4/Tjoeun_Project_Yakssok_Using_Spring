@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="BoardShareMapper">
 	
 	<select id="all_mList" resultType="board">
-		SELECT * FROM board_share_view
+		SELECT * FROM b_share_view
 	</select>
 	
 	<insert id="write" parameterType="board">
@@ -14,12 +14,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<select id="all_count" parameterType="search_helper" resultType="int">
-		SELECT count(*) FROM board_share_view
+		SELECT count(*) FROM b_share_view
 		<include refid="search"/>
 	</select>
 	
 	<select id="all_list" parameterType="search_helper" resultType="board">
-		SELECT * FROM board_share_view 
+		SELECT * FROM b_share_view 
 		<include refid="search"/>
 		ORDER BY b_idx desc, writeDate desc LIMIT #{p1}, #{p2}
 	</select>
@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<select id="view" parameterType="int" resultType="board">
-		SELECT * FROM board_share_view WHERE b_idx = #{b_idx}
+		SELECT * FROM b_share_view WHERE b_idx = #{b_idx}
 	</select>
 	
 	<update id="modify" parameterType="board">
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="main" resultType="board">
-		SELECT * FROM board_share_view LIMIT 0, 5
+		SELECT * FROM b_share_view LIMIT 0, 5
 	</select>
 	
 </mapper>
