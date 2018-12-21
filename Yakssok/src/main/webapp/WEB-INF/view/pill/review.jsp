@@ -62,7 +62,7 @@
 				</c:forEach>
 			</table>
 			
-			<button type="button" onclick="more_review()">더 보기</button>
+			<button class="btn btn-default" type="button" onclick="more_review()">더 보기</button>
 			
 			
 			<%-- <!-- 페이징 시작 -->
@@ -172,6 +172,7 @@
 					alert("리뷰 작성 완료");
 					var value = $("#review_table tr:last").attr("id");
 					refresh_review(value);
+					$("#review_contents").val("");
 				}
 			}
 		})

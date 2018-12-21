@@ -7,6 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
+<style type="text/css">
+	.col-sm-1 {
+		padding: 0 10px;
+	}
+	dt,dd {
+		margin-bottom: 5px
+	}
+	.row{
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 0;
+	}
+
+</style>
 </head>
 <body>
 
@@ -38,14 +52,14 @@
 		<article>
 
 			<!-- 버튼모음 -->
-			<div>
-				<button class="btn btn-success pull-right" style="margin-right: 5px" type="button" onclick="location.href='${pageContext.request.contextPath }/suggest/write?p_idx=${p_idx}'">수정건의</button>
+			<div style="margin-bottom: 10px">
 				<c:if test="${!empty option }">
-					<button class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}&option=${option}&keyword=${keyword}'">목록</button>
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}&option=${option}&keyword=${keyword}'">목록</button>
 				</c:if>
 				<c:if test="${empty option }">
-					<button class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}'">목록</button>
+					<button class="btn btn-default" type="button" onclick="location.href='${pageContext.request.contextPath }/pill/list?page=${page}'">목록</button>
 				</c:if>
+				<button class="btn btn-success" style="margin-right: 5px" type="button" onclick="location.href='${pageContext.request.contextPath }/suggest/write?p_idx=${p_idx}'">수정건의</button>
 			</div>
 		
 			<!-- 약 정보 페이지 시작 -->
@@ -53,112 +67,154 @@
 				<!-- 상단 -->	
 				<div>
 					<!-- 사진 -->
-					<div>
+					<div style="width: 30%;">
 						<c:if test="${!empty l.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200" style="margin: 0">
+								<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="100%" style="margin: 0">
 						</c:if>
 						<c:if test="${empty l.imgPath }">
-								<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200" style="margin: 0">
+								<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="100%" style="margin: 0">
 						</c:if>
-						
-						<!-- 평가 버튼 -->
-						<c:if test="${!empty loginMember }">
-							<div>
-								<button class="btn btn-default btn-sm" id="goodBtn" type="button" onclick="good_click()">
-					        		Good&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-					        	</button> 
-					        	<button class="btn btn-danger btn-sm" id="badBtn" type="button" onclick="bad_click()">
-					        		Bad&nbsp;<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-					        	</button> 
-							</div>
-						</c:if>
-						<!-- 평가 버튼 끝-->
-						
 					</div>
 					<!-- 사진 끝 -->
 					
-					<!-- info -->
+					<!-- 약 정보 1 시작 -->
 					<div>
-					
-						<!-- rating -->
-						<div id="rating">
-					        <c:if test="${l.rating >= 50}">
-					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
-				        	</c:if>
-					        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
-					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
-				        	</c:if>
-				        	<c:if test="${l.total == 0 || l.rating == -1}">
-					        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
-				        	</c:if>
-						</div>
-						<!-- rating 끝 -->
-						
-						<!-- 이름 -->
+						<!-- 첫 번째줄 -->
 						<div>
-							이름: ${l.name }
-						</div>
-						
-						<!-- 성분/함량 -->
-						<div>
-							성분/함량: 
-							<c:forEach var="li" items="${l.ingredients }">
-								<div>
-									<span>${li.eng } | ${li.kor } | ${li.content }</span>
+							<!-- rating -->
+							<div id="rating" class="row">
+								<div class="col-sm-1">
+							        <c:if test="${l.rating >= 50}">
+							        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30" class="rounded">${l.rating } %
+						        	</c:if>
+							        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
+							        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30" class="rounded">${l.rating } %
+						        	</c:if>
+						        	<c:if test="${l.total == 0 || l.rating == -1}">
+							        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30" class="rounded">평가없음
+						        	</c:if>
 								</div>
-							</c:forEach>
+					        	
+					        	<div class="col-sm-11">
+									<c:if test="${!empty loginMember }">
+										<button class="btn btn-default btn-sm" id="goodBtn" type="button" onclick="good_click()">
+							        		Good&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+							        	</button> 
+							        	<button class="btn btn-danger btn-sm" id="badBtn" type="button" onclick="bad_click()">
+							        		Bad&nbsp;<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+							        	</button> 
+									</c:if>
+					        	</div>
+							</div>
+							<!-- rating 끝 -->
+							
+							<%-- <!-- 평가 버튼 -->
+							<c:if test="${!empty loginMember }">
+								<div>
+									<button class="btn btn-default btn-sm" id="goodBtn" type="button" onclick="good_click()">
+						        		Good&nbsp;<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+						        	</button> 
+						        	<button class="btn btn-danger btn-sm" id="badBtn" type="button" onclick="bad_click()">
+						        		Bad&nbsp;<span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+						        	</button> 
+								</div>
+							</c:if>
+							<!-- 평가 버튼 끝--> --%>
 						</div>
-						<!-- 성분/함량 끝-->
+						<!-- 첫 번째줄 끝-->
+						
+						<!-- 두 번째줄 시작-->
+						<div>
+							<dl class="row">
+								<!-- 이름 -->
+								<dt class="col-sm-1">이름</dt>
+								<dd class="col-sm-11">${l.name }</dd>
+								<!-- 성분/함량 -->
+								<dt class="col-sm-1">성분/함량</dt>
+								<dd class="col-sm-11">
+									<c:forEach var="li" items="${l.ingredients }">
+										<div>
+											<span>${li.eng } | ${li.kor } | ${li.content }</span>
+										</div>
+									</c:forEach>
+								</dd>
+								<!-- 성분/함량 끝-->
+								<!-- 회사 -->
+								<dt class="col-sm-1">회사이름</dt>
+								<dd class="col-sm-11">
+									<button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+										${l.company_name }
+									</button>
+									<div class="collapse" id="collapseExample">
+										<div class="card card-body">
+											<dl>
+												<dt>주소</dt>
+												<dd>${l.company_address }</dd>
+												
+												<dt>TEL</dt>
+												<dd>${l.company_tel}</dd>
+												
+												<c:if test="${!empty l.company_fax}">
+													<dt>FAX</dt>
+													<dd></dd>
+												</c:if>
+												
+												<dt>홈페이지</dt>
+												<dd>${l.company_url}</dd>
+											</dl>
+										</div>
+									</div>
+								</dd>
+							</dl>
+						</div>
+						<!-- 두 번째줄 끝-->
 					</div>
-					<!-- info 끝-->
+					<!-- 약 정보 1 끝 -->
 				</div>
 				<!-- 상단 끝 -->
 				
-				<!-- 중단 -->
+				<!-- 중단 약 정보 2 시작-->
 				<div>
-					<div>
-						회사이름: 
-						<%-- <button type="button" class="btn btn-default" data-toggle="popover" title="${l.company_name }" 
-							data-content="주소: ${l.company_address }\ntel: ${l.company_tel}\nfax: ${l.company_fax}\nurl: ${l.company_url}">
-							${l.company_name }
-						</button> --%>
-						<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" 
-							title="주소: ${l.company_address }<br>tel: ${l.company_tel}<br>fax: ${l.company_fax}<br>url: ${l.company_url}">
-							${l.company_name }
-						</button>
-					</div>	
-					<div>
-						<div>전문/일반 : ${l.sg }</div>
-						<div>투입경로 : ${l.route }</div>
-					</div>
-					<div>
-						생김새: ${l.look }
-					</div>
-					<div>
-						포장단위: ${l.packing }
-					</div>
-					<div>
-						효능/효과
-						<div>주 효과: ${l.effect_main }</div>
-						<c:if test="${!empty l.effect_etc }">
-							<div>그 외: 
-								${l.effect_etc }
-							</div>
-						</c:if>
-					</div>
-					<div>
-						참고정보: 
-						<c:if test="${empty l.detail_2 }">
+					<dl class="row">
+						<dt class="col-sm-1">효능/효과</dt>
+						<dd class="col-sm-11">
+							<dl class="row">
+								<dt class="col-sm-1">주효능</dt>
+								<dd class="col-sm-11">${l.effect_main }</dd>
+								
+								<c:if test="${!empty l.effect_etc }">
+									<dt class="col-sm-1">그 외</dt>
+									<dd class="col-sm-11">${l.effect_etc }</dd>
+								</c:if>
+							</dl>
+						</dd>
+						
+						<dt class="col-sm-1">생김새</dt>
+						<dd class="col-sm-11">${l.look }</dd>
+						
+						<dt class="col-sm-1">전문/일반</dt>
+						<dd class="col-sm-11">${l.sg }</dd>
+						
+						<dt class="col-sm-1">투입경로</dt>
+						<dd class="col-sm-11">${l.route }</dd>
+						
+						<dt class="col-sm-1">포장단위</dt>
+						<dd class="col-sm-11">${l.packing }</dd>
+						
+						<dt class="col-sm-1">참고정보</dt>
+						<dd class="col-sm-11">
+							<c:if test="${empty l.detail_2 }">
 							참고정보가 존재하지 않습니다.
-						</c:if>
-						<c:if test="${!empty l.detail_2 }">
-							<c:forEach var="ld" items="${l.detail_2 }">
-								<img alt="" src="${pageContext.request.contextPath }${ld }"  width="100px" height="120px">
-							</c:forEach>
-						</c:if>
-					</div>
+							</c:if>
+							<c:if test="${!empty l.detail_2 }">
+								<c:forEach var="ld" items="${l.detail_2 }">
+									<img alt="" src="${pageContext.request.contextPath }${ld }"  width="100px" height="120px">
+								</c:forEach>
+							</c:if>
+						</dd>
+					</dl>
 				</div>
-				<!-- 중단 끝 -->
+				<!-- 중단 약 정보 2 끝 -->
 				
 			</div>
 			<!-- 약 정보 페이지 끝 -->
@@ -238,14 +294,10 @@
 		})
 	}
 	
-	function reviewHeight() {
-		var the_height = document.getElementById('review_iframe').contentWindow.document.body.scrollHeight;
-		
-		document.getElementById('review_iframe').height = the_height;
-		
-		document.getElementById('review_iframe').style.overflow = "hidden";
-	}
-	
+
+
+
+
 </script>
 
 </body>
