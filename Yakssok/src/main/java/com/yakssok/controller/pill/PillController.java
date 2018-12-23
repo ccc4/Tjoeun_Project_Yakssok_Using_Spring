@@ -23,6 +23,7 @@ import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
+import com.yakssok.model.pill.P_review;
 import com.yakssok.model.pill.P_review_paging;
 import com.yakssok.model.pill.Pill;
 import com.yakssok.model.pill.PillFormData;
@@ -44,13 +45,15 @@ public class PillController {
 	private PillService service;
 	
 	
-	@RequestMapping(value="/review/{p_idx}", method=RequestMethod.GET)
-	public String view(Model model, @PathVariable int p_idx) {
-		
-		model.addAttribute("p_idx", p_idx);
-		model.addAttribute("p", service.review_list(p_idx, 0));
-		return "pill/review";
-	}
+//	@RequestMapping(value="/review/{p_idx}", method=RequestMethod.GET)
+//	public String view(Model model, @PathVariable int p_idx) {
+//		
+//		model.addAttribute("p_idx", p_idx);
+//		model.addAttribute("p", service.review_list(p_idx, 0));
+//		return "pill/review";
+//	}
+	
+	
 //	@RequestMapping(value="/review/{p_idx}", method=RequestMethod.GET)
 //	public String view(Model model, @PathVariable int p_idx, 
 //			@RequestParam(name="page", defaultValue="1", required=false) int page) {
@@ -75,10 +78,17 @@ public class PillController {
 			m_idx = loginMember.getM_idx();
 			model.addAttribute("checkRating", service.checkRating(p_idx, m_idx));
 		}
+		
+		P_one result = service.one_view(p_idx, m_idx);
+		
+		List<P_review> p_review_list = service.review_list(p_idx, 0);
+		if(p_review_list != null) {
+			result.setReview(p_review_list);
+		}
 		model.addAttribute("page", page);
 		model.addAttribute("option", option);
 		model.addAttribute("keyword", keyword);
-		model.addAttribute("l", service.one_view(p_idx, m_idx));
+		model.addAttribute("l", result);
 		return "pill/view";
 	}
 	

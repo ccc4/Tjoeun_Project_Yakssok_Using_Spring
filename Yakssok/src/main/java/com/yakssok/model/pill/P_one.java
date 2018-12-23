@@ -36,6 +36,16 @@ public class P_one {
 	
 	private List<String> detail_2;
 	
+	private List<P_review> review;
+	
+	
+	
+	public List<P_review> getReview() {
+		return review;
+	}
+	public void setReview(List<P_review> review) {
+		this.review = review;
+	}
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
