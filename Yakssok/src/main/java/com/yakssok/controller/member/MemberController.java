@@ -222,8 +222,8 @@ public class MemberController {
 			Member member = service.select(prevMember);
 			
 			//입력받은 새 비밀번호 저장
-			Member newMember = new Member();
-			newMember.setPw(newPw);
+//			Member newMember = new Member();
+//			newMember.setPw(newPw);
 			
 			int result = 0;
 			

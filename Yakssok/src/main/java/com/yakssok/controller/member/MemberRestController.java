@@ -96,11 +96,12 @@ public class MemberRestController {
 	 @RequestMapping(value="/mJoin", method=RequestMethod.POST )
 	    public String mJoin(Member member) {			
 				   
-			service.join(member);
+			
 		   
 		   if(member == null) {
 			   System.out.println("회원가입 실패");			
 		   }else {
+			   service.join(member);
 			   System.out.println("회원가입 성공" + member.getId());			   
 		   }
 		   
@@ -157,6 +158,34 @@ public class MemberRestController {
 			
 			System.out.println(strJson);
 						
+	        return strJson;  
+	    }
+	    
+	    @RequestMapping(value = "/mModifyPw", method=RequestMethod.POST,
+	    		produces="application/text; charset=utf8")
+	    public  String mModifyPw(Member member, String newPw) {
+	    	
+	    	Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+	    	String strJson = null;
+	    	System.out.println("전달 받은 아이디 = " + member.getId() 
+	    	                  + "\n전달 받은 기존비밀번호 = " + member.getPw()
+	    	                  + "\n전달 받은 새비밀번호 = " + newPw);	    	
+	    	
+	    	Member dbmember = service.select(member);
+	    	
+	    	HashMap<String, Object> map = new HashMap<>();
+	    	int count = 0;
+			
+			if(!member.getPw().equals(dbmember.getPw()) || member == null ) {
+				System.out.println("비밀번호가 틀리거나 데이터 없음");				
+			} else {
+				dbmember.setPw(newPw);
+				count = service.editPw(dbmember);
+				System.out.println("비밀번호 변경");
+			}
+			    map.put("count", count);
+				strJson = gson.toJson(map);
+			System.out.println(strJson);					
 	        return strJson;  
 	    }
 }
