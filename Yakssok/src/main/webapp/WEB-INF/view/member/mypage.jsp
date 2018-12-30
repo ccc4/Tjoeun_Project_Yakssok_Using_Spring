@@ -27,7 +27,7 @@
 	</div>
 	<!-- 본문 끝 -->
 	
-	
+	<jsp:include page="/WEB-INF/resources/init/footer.jsp"/>
 </div>
 
 </body>

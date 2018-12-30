@@ -28,6 +28,8 @@
 			<input type="submit" value="전송">
 		</form>
 	</div>
+	
+	<jsp:include page="/WEB-INF/resources/init/footer.jsp"/>
 </div>
 
 

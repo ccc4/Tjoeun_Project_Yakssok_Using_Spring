@@ -33,6 +33,8 @@
 			</table>
 		</form>
 	</div>
+	
+	<jsp:include page="/WEB-INF/resources/init/footer.jsp"/>
 </div>
 
 

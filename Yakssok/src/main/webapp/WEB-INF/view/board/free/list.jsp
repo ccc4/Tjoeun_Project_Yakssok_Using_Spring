@@ -181,9 +181,10 @@
 		<!-- article 끝 -->
 	</div>
 	<!-- 본문 끝 -->
+	
+	<jsp:include page="/WEB-INF/resources/init/footer.jsp"/>
 </div>
 <!-- 컨테이너 끝 -->
-
 
 </body>
 </html>

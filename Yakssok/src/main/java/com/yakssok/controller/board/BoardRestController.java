@@ -101,4 +101,24 @@ public class BoardRestController {
 		return strJson;
 	}
 
+	@RequestMapping(value="/{type}/modify", method=RequestMethod.POST)
+	public String modify(@PathVariable String type, Board board) {
+		
+		System.out.println("modify 들어옴");
+		String strJson = "";		
+		
+		Map<String, Integer> result = new HashMap<>();
+		
+		if(type.equals("notice")) {
+			result.put("result", noticeService.modify(board));
+		} else if(type.equals("share")) {
+			result.put("result", shareService.modify(board));
+		} else if(type.equals("free")) {
+			result.put("result", freeService.modify(board));
+		}
+		Gson gson = new Gson();
+		strJson = gson.toJson(result); 
+		
+		return strJson;
+	}
 }

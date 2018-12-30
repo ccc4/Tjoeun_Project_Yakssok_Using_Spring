@@ -32,6 +32,7 @@
 	div.tn_name{
 		min-height: 60px;
 	}
+}
 </style>
 
 <!-- 컨테이너 시작 -->
@@ -371,10 +372,11 @@ $(function(){
 		<!-- article 끝 -->
 	</div>
 	<!-- 본문 끝 -->
+	
+	
+	<jsp:include page="/WEB-INF/resources/init/footer.jsp"/>
 </div>
 <!-- 컨테이너 끝 -->
-
-
 
 </body>
 </html>

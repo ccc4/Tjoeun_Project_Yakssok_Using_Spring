@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -180,9 +179,10 @@
 		<!-- article 끝 -->
 	</div>
 	<!-- 본문 끝 -->
+	
+	<jsp:include page="/WEB-INF/resources/init/footer.jsp"/>
 </div>
 <!-- 컨테이너 끝 -->
-
 
 </body>
 </html>
