@@ -121,4 +121,25 @@ public class BoardRestController {
 		
 		return strJson;
 	}
+
+	@RequestMapping(value="/{type}/delete", method=RequestMethod.POST)
+	public String delete(@PathVariable String type, int b_idx) {
+		
+		System.out.println("delete 들어옴");
+		String strJson = "";		
+		
+		Map<String, Integer> result = new HashMap<>();
+		
+		if(type.equals("notice")) {
+			result.put("result", noticeService.delete(b_idx));
+		} else if(type.equals("share")) {
+			result.put("result", shareService.delete(b_idx));
+		} else if(type.equals("free")) {
+			result.put("result", freeService.delete(b_idx));
+		}
+		Gson gson = new Gson();
+		strJson = gson.toJson(result); 
+		
+		return strJson;
+	}
 }
