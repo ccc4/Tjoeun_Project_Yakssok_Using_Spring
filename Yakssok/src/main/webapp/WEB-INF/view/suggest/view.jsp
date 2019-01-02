@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
+<!-- suggest_css 적용 -->
+<link href="${pageContext.request.contextPath }/resources/css/suggest.css" rel="stylesheet">
 </head>
 <body>
 
@@ -19,52 +21,51 @@
 		<!-- article 시작 -->
 		<article>
 
-
 			<!-- 게시글 보기 -->
-			<div>
-				<table class="table" style="table-layout:fixed; word-break:break-all;">
-					<tr>
-						<c:if test="${result.state == '검토중' }">
-							<td colspan="4"><span class="label label-warning">${result.state }</span></td>
-						</c:if>
-						<c:if test="${result.state == '완료' }">
-							<td colspan="4"><span class="label label-primary">${result.state }</span></td>
-						</c:if>
-					</tr>
-					<tr>
-						<th width="30px">닉네임</th>
-						<td>${result.nickname }</td>
-						<th width="30px">연락처</th>
-						<td>${result.tel }</td>
-					</tr>
-					<tr>
-						<th width="30px">이메일</th>
-						<td colspan="3">${result.email }</td>
-					</tr>
-					<tr>
-						<td colspan="4">${result.title }</td>
-					</tr>
-					<tr>
-						<td colspan="4" rowspan="5">${result.contents }</td>
-					</tr>
+			<div class="_suggest_view">
+				<div class="_suggest_view_state">
+					<c:if test="${result.state == '검토중' }">
+						<span class="label label-warning">${result.state }</span>
+					</c:if>
+					<c:if test="${result.state == '완료' }">
+						<span class="label label-primary">${result.state }</span>
+					</c:if>
+				</div>
+				<div class="_suggest_view_info_1">
+					<div>닉네임</div>
+					<div>${result.nickname }</div>
+					<div>연락처</div>
+					<div>${result.tel }</div>
+				</div>
+				<div class="_suggest_view_info_2">
+					<span>이메일</span>
+					<span>${result.email }</span>
+				</div>
+				<div class="_suggest_view_title">
+					${result.title }
+				</div>
+				<div class="_suggest_view_contents">
+					${result.contents }
+				</div>
+				<div class="_suggest_view_images">
 					<c:if test="${!empty result.imgPath1 }">
-						<tr>
-							<td><a href="${pageContext.request.contextPath }/resources/img/suggest/${result.imgPath1}" download>${result.imgPath1}</a></td>
-						</tr>
+						<div>
+							<a href="${pageContext.request.contextPath }/resources/img/suggest/${result.imgPath1}" download>${result.imgPath1}</a>					
+						</div>
 					</c:if>
 					<c:if test="${!empty result.imgPath2 }">
-						<tr>
-							<td><a href="${pageContext.request.contextPath }/resources/img/suggest/${result.imgPath2}" download>${result.imgPath2}</a></td>
-						</tr>
+						<div>
+							<a href="${pageContext.request.contextPath }/resources/img/suggest/${result.imgPath2}" download>${result.imgPath2}</a>					
+						</div>
 					</c:if>
-					
-				</table>
-				<input type="button" class="btn btn-success pull-left" value="목록" onclick="location.href='${pageContext.request.contextPath}/suggest/list'">
-				<c:if test="${!empty loginMember }">
-					<c:if test="${loginMember.type == 2 }">
-						<button type="button" class="btn btn-primary pull-right" onclick="check_delete()">확인</button>
-					</c:if>
+				</div>
+				
+			</div>
+			<div>
+				<c:if test="${!empty loginMember && loginMember.type == 2}">
+					<button type="button" class="btn btn-primary pull-right" onclick="check_delete()">확인</button>
 				</c:if>
+				<input type="button" class="btn btn-success pull-right" value="목록" onclick="location.href='${pageContext.request.contextPath}/suggest/list'">			
 			</div>
 			<!-- 게시글 보기 끝 -->
 			
