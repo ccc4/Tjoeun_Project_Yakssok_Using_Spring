@@ -188,4 +188,17 @@ public class MemberRestController {
 			System.out.println(strJson);					
 	        return strJson;  
 	    }
+	    
+	    @RequestMapping(value="/mModifyProfile", method=RequestMethod.POST, produces = "appilcation/text; charset=utf8")
+	   public String mModifyProfile(Member newMember) {
+	    	
+	    	System.out.println(newMember.getId()+"로 수정들어옴 ");
+	    	
+		   Gson gson = new Gson();
+		   service.updateMember(newMember);
+		   String strJson = gson.toJson(newMember);
+		   System.out.println("수정된 닉네임" + newMember.getNickname());
+		   
+		   return strJson;
+	   }
 }
