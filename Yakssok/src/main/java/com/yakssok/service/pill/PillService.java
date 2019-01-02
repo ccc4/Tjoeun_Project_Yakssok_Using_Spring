@@ -284,7 +284,7 @@ public class PillService {
 			int target_idx = target.getP_idx();
 			
 			// 효능/효과 엔터 구분
-			target.setEffect_main(target.getEffect_main().replace("<br>", "\r\n"));
+//			target.setEffect_main(target.getEffect_main().replace("<br>", "\r\n"));
 			
 			// 위에서 구한 idx 로 해당 약품의 구성 성분들 리스트로 뽑아서 저장
 			target.setP_ingredients(dao.pi_list(target_idx));

@@ -3,22 +3,35 @@
     
 <style type="text/css">
 	footer{
+		display: flex;
+		border-top: 1px solid black;
 		width: 100%;
-	    background-color: #f9f8f6;
-	    float: left;
 	    margin-top: 30px;
 	    padding: 20px 10px;
+	}
+	
+	.footer_img {
+		margin-right: 20px;
+	}
+	
+	.footer_contents p{
+		padding: 0;
+		margin: 0;
 	}
 </style>
     
 <footer>
-	<div style="float: left; margin-right: 20px">
+	<div class="footer_img">
 		<img alt="" src="${pageContext.request.contextPath }/resources/img/title_footer.png" width="130" height="60">
 	</div>
-	<div style="float: left">
-		<p>서울특별시 종로구 더조은 아카데미 4층 402호 약쏙 <strong>TEL</strong> 02-1234-5678 <strong>FAX</strong> 02-1234-5678</p>
+	<div class="footer_contents">
 		<p>
-			©Copyright All Rights Reserved
+			서울특별시 종로구 더조은 아카데미 4층 402호 약쏙 ㅣ 
+			<strong>TEL</strong> 02-1234-5678 ㅣ 
+			<strong>FAX</strong> 02-1234-5678
+		</p>
+		<p>
+			©Copyright 2019 Yakssok. All Rights Reserved.
 		</p>
 		
 	</div>

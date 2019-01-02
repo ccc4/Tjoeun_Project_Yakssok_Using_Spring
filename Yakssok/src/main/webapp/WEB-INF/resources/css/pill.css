@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+._list_pill_effects{
+	color: DodgerBlue;
+	font-size: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+._list_pill_ingredients {
+	color: green;
+	font-size: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	min-height: 90px;
+}
+
+._list_pill_img {
+	
+}
+
+._list_pill_names {
+	height: 60px;
+}
+
+._list_pill_ratings span{
+	margin-left: 5px;
+}
+
+._list_pill_companys {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

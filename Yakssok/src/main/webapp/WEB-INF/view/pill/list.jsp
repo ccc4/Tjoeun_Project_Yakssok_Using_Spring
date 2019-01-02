@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
+<!-- pill_css 적용 -->
+<link href="${pageContext.request.contextPath }/resources/css/pill.css" rel="stylesheet">
 </head>
 <body>
 
@@ -53,45 +55,47 @@
 								<div class="thumbnail">
 									<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
 										<c:if test="${!empty l.imgPath }"> 
-												<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
+												<img class="_list_pill_img" src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px">
 										</c:if>
 										<c:if test="${empty l.imgPath }">
-												<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
+												<img class="_list_pill_img" src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200px">
 										</c:if>
 									</a>
 									<div class="caption">
-										<div style="min-height: 60px">
+										<div class="_list_pill_names">
 											<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
-												<span class="h5">${l.name }</span>
+												<h4>${l.name }</h4>
 											</a>
 										</div>
 										<!-- rating -->
-										<div id="rating">
+										<div id="rating" class="_list_pill_ratings">
 									        <c:if test="${l.rating >= 50}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
 								        	</c:if>
 									        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="40"><span>${l.rating } %</span>
 								        	</c:if>
 								        	<c:if test="${l.total == 0 || l.rating == -1}">
-									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
+									        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="40"><span>평가없음</span>
 								        	</c:if>
 										</div>
 										<!-- rating 끝 -->
-										<div style="min-height: 40px">
+										<div class="_list_pill_companys">
 											<span>제조사/유통사 : ${l.company_name }</span>
 										</div>
-										<div>효능/효과 : 
-											<%-- <button type="button" class="btn btn-default" data-toggle="popover" title="효능/효과" data-content="${l.effect_main }">
-												<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-											</button> --%>
-											<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="${l.effect_main }">
-												<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+										<div>
+											<button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#${l.p_idx}" aria-expanded="false" aria-controls="collapseExample">
+												효능/효과
 											</button>
+											<div class="collapse _list_pill_effects" id="${l.p_idx}">
+												<div class="card card-body">
+													${l.effect_main }
+												</div>
+											</div>
 										</div>
-										<div class="ingredients" style="min-height: 150px">
+										<div class="ingredients _list_pill_ingredients">
 											<c:forEach var="lp" items="${l.p_ingredients }">
-												<span>${lp.eng } | ${lp.kor } | ${lp.content }</span>
+												<p>${lp.eng } | ${lp.kor } | ${lp.content }</p>
 											</c:forEach>
 										</div>
 									</div>
