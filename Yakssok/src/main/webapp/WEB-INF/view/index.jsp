@@ -7,33 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
+<link href="${pageContext.request.contextPath }/resources/css/main.css" rel="stylesheet">
 </head>
 <body>
 
-<style type="text/css">
-	/* 게시글 제목 길면 알아서 생략하게 */
-	.title{
-		width: 300px;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		white-space: nowrap;
-	}
-	/* 링크는 다 검은색 유지되게 */
-	a, a:hover{
-		color: #000000;
-		text-decoration: none;
-	}
-	.col-md-3{
-		padding: 0 10px;
-	}
-	.thumbnail{
-		margin-bottom: 0;
-	}
-	div.tn_name{
-		min-height: 60px;
-	}
-}
-</style>
 
 <!-- 컨테이너 시작 -->
 <div class="container">
@@ -62,191 +39,180 @@
 			<!-- 의약품 검색 끝-->
 			
 			<!-- 약 효과 랭킹 -->
-				<div style="border: 1px solid black; border-radius: 4px; width: 100%; min-height: 400px; margin-bottom: 10px">
-					<div>
-						<ul class="nav nav-tabs">
-							<li class="active"><a href="#두통" data-toggle="tab">두통</a></li>
-							<li><a href="#해열" data-toggle="tab">해열</a></li>
-							<li><a href="#소화" data-toggle="tab">소화</a></li>
-							<li><a href="#비타민" data-toggle="tab">비타민</a></li>
-						</ul>
-					</div>
-					
-					<!-- 썸네일 틀 시작 -->      
-					<div class="tab-content" style="margin-top: 10px">
-						<div class="tab-pane fade active in" id="두통">
-							<c:forEach var="l" items="${rank['두통'] }">
-								<!-- 반복되는 썸네일 -->
-<div class="col-md-3">
-	<div class="thumbnail">
-		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-			<c:if test="${!empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
-			</c:if>
-			<c:if test="${empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
-			</c:if>
-		</a>
-		<div class="caption">
-			<div class="tn_name">
-				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
-				</a>
-			</div>
-			<!-- rating -->
-			<div id="rating">
-		        <c:if test="${l.rating >= 50}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-	        	<c:if test="${l.total == 0 || l.rating == -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
-	        	</c:if>
-			</div>
-			<!-- rating 끝 -->
-		</div>
-	</div>
-</div>
-<!-- 반복되는 썸네일 끝 -->
-							</c:forEach>
-							
-						</div>
-						  
-						<div class="tab-pane fade" id="해열">
-							<c:forEach var="l" items="${rank['해열'] }">
-								<!-- 반복되는 썸네일 -->
-<div class="col-md-3">
-	<div class="thumbnail">
-		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-			<c:if test="${!empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
-			</c:if>
-			<c:if test="${empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
-			</c:if>
-		</a>
-		<div class="caption">
-			<div class="tn_name">
-				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
-				</a>
-			</div>
-			<!-- rating -->
-			<div id="rating">
-		        <c:if test="${l.rating >= 50}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-	        	<c:if test="${l.total == 0 || l.rating == -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
-	        	</c:if>
-			</div>
-			<!-- rating 끝 -->
-		</div>
-	</div>
-</div>
-<!-- 반복되는 썸네일 끝 -->
-							</c:forEach>
-						</div>
-						
-						<div class="tab-pane fade" id="소화">
-							<c:forEach var="l" items="${rank['소화'] }">
-								<!-- 반복되는 썸네일 -->
-<div class="col-md-3">
-	<div class="thumbnail">
-		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-			<c:if test="${!empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
-			</c:if>
-			<c:if test="${empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
-			</c:if>
-		</a>
-		<div class="caption">
-			<div class="tn_name">
-				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
-				</a>
-			</div>
-			<!-- rating -->
-			<div id="rating">
-		        <c:if test="${l.rating >= 50}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-	        	<c:if test="${l.total == 0 || l.rating == -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
-	        	</c:if>
-			</div>
-			<!-- rating 끝 -->
-		</div>
-	</div>
-</div>
-<!-- 반복되는 썸네일 끝 -->
-							</c:forEach>
-						</div>
-						
-						<div class="tab-pane fade" id="비타민">
-							<c:forEach var="l" items="${rank['비타민'] }">
-								<!-- 반복되는 썸네일 -->
-<div class="col-md-3">
-	<div class="thumbnail">
-		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-			<c:if test="${!empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px" style="margin: 0">
-			</c:if>
-			<c:if test="${empty l.imgPath }">
-					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px" style="margin: 0">
-			</c:if>
-		</a>
-		<div class="caption">
-			<div class="tn_name">
-				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
-				</a>
-			</div>
-			<!-- rating -->
-			<div id="rating">
-		        <c:if test="${l.rating >= 50}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="30"><span>${l.rating } %</span>
-	        	</c:if>
-	        	<c:if test="${l.total == 0 || l.rating == -1}">
-		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="30"><span>평가없음</span>
-	        	</c:if>
-			</div>
-			<!-- rating 끝 -->
-		</div>
-	</div>
-</div>
-<!-- 반복되는 썸네일 끝 -->
-							</c:forEach>
-						</div>
-						
-					
-					</div>
-					<!-- 썸네일 틀 끝 -->
+			<div class="_main_pill_rankings">
+				<div>
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#두통" data-toggle="tab">두통</a></li>
+						<li><a href="#해열" data-toggle="tab">해열</a></li>
+						<li><a href="#소화" data-toggle="tab">소화</a></li>
+						<li><a href="#비타민" data-toggle="tab">비타민</a></li>
+					</ul>
 				</div>
+				
+				<!-- 썸네일 틀 시작 -->      
+				<div class="tab-content" style="margin-top: 10px">
+					<div class="tab-pane fade active in" id="두통">
+						<c:forEach var="l" items="${rank['두통'] }">
+							<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div class="tn_name">
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
+			</div>
+			<!-- rating -->
+			<div id="rating" class="_main_pill_ratings">
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+	        	<c:if test="${l.total == 0 || l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="40"><span>평가없음</span>
+	        	</c:if>
+			</div>
+			<!-- rating 끝 -->
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+						</c:forEach>
+						
+					</div>
+					  
+					<div class="tab-pane fade" id="해열">
+						<c:forEach var="l" items="${rank['해열'] }">
+							<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div class="tn_name">
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
+			</div>
+			<!-- rating -->
+			<div id="rating">
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+	        	<c:if test="${l.total == 0 || l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="40"><span>평가없음</span>
+	        	</c:if>
+			</div>
+			<!-- rating 끝 -->
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+						</c:forEach>
+					</div>
+					
+					<div class="tab-pane fade" id="소화">
+						<c:forEach var="l" items="${rank['소화'] }">
+							<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div class="tn_name">
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
+			</div>
+			<!-- rating -->
+			<div id="rating">
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+	        	<c:if test="${l.total == 0 || l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="40"><span>평가없음</span>
+	        	</c:if>
+			</div>
+			<!-- rating 끝 -->
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+						</c:forEach>
+					</div>
+					
+					<div class="tab-pane fade" id="비타민">
+						<c:forEach var="l" items="${rank['비타민'] }">
+							<!-- 반복되는 썸네일 -->
+<div class="col-md-3">
+	<div class="thumbnail">
+		<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+			<c:if test="${!empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px">
+			</c:if>
+			<c:if test="${empty l.imgPath }">
+					<img src="${pageContext.request.contextPath }/resources/init/img/1.png" alt="이미지없음" width="200px">
+			</c:if>
+		</a>
+		<div class="caption">
+			<div class="tn_name">
+				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
+					<span class="h5">${l.name }</span>
+				</a>
+			</div>
+			<!-- rating -->
+			<div id="rating">
+		        <c:if test="${l.rating >= 50}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+		        <c:if test="${l.total != 0 && l.rating < 50 && l.rating != -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/bad.png" width="40"><span>${l.rating } %</span>
+	        	</c:if>
+	        	<c:if test="${l.total == 0 || l.rating == -1}">
+		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" width="40"><span>평가없음</span>
+	        	</c:if>
+			</div>
+			<!-- rating 끝 -->
+		</div>
+	</div>
+</div>
+<!-- 반복되는 썸네일 끝 -->
+						</c:forEach>
+					</div>
+					
+				
+				</div>
+				<!-- 썸네일 틀 끝 -->
+			</div>
 			<!-- 약 효과 랭킹 끝-->
-
-
-<!-- 부트스트랩 탭 가능하게 해주는 js -->
-<script type="text/javascript">
-$(function(){
-    $('ul.nav-tabs a').click(function (e) {
-      e.preventDefault()
-      $(this).tab('show')
-    })
-})
-</script>
 	
 			<!-- 게시판 미리보기 -->
 			<div>
@@ -378,5 +344,15 @@ $(function(){
 </div>
 <!-- 컨테이너 끝 -->
 
+
+<!-- 부트스트랩 탭 가능하게 해주는 js -->
+<script type="text/javascript">
+$(function(){
+    $('ul.nav-tabs a').click(function (e) {
+      e.preventDefault()
+      $(this).tab('show')
+    })
+})
+</script>
 </body>
 </html>

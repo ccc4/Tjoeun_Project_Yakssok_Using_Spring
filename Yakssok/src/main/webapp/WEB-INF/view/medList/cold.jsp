@@ -42,9 +42,9 @@
 #accordion5 .panel-title a {
 	display: block;
 	padding: 10px 20px 10px 60px;
-	background: #fe5f55;
+	background: #81E0D6;
 	border-radius: 30px;
-	border: 2px solid #fe5f55;
+	border: 2px solid #81E0D6;
 	font-size: 20px;
 	font-weight: 400;
 	color: #fff;
@@ -52,9 +52,9 @@
 }
 
 #accordion5 .panel-title a.collapsed {
-	border: 2px solid #bbb;
+	border: 2px solid #000000;
 	background: #fff;
-	color: #bbb;
+	color: #000000;
 }
 
 #accordion5 .panel-title a:before, #accordion5 .panel-title a.collapsed:before
@@ -66,7 +66,7 @@
 	height: 60px;
 	line-height: 60px;
 	border-radius: 50%;
-	background: #fe5f55;
+	background: #81E0D6;
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
@@ -80,7 +80,7 @@
 
 #accordion5 .panel-title a.collapsed:before {
 	content: "\f067";
-	background: #bbb;
+	background: #000000;
 	border: none;
 }
 
@@ -99,7 +99,7 @@
 	display: block;
 	width: 5px;
 	height: 90%;
-	background: #fe5f55;
+	background: #81E0D6;
 	position: absolute;
 	top: 0;
 	left: -30px;
@@ -107,7 +107,7 @@
 
 #accordion5 .panel-body:after {
 	content: "";
-	border-top: 20px solid #fe5f55;
+	border-top: 20px solid #81E0D6;
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
 	position: absolute;
@@ -159,8 +159,8 @@ text-align : center;
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingOne5">
 					<h4 class="panel-title">
-						<a role="button" data-toggle="collapse" data-parent="#accordion5"
-							href="#collapseOne5" aria-expanded="true"
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5"
+							href="#collapseOne5" aria-expanded="false"
 							aria-controls="collapseOne5"> 제품정보 </a>
 					</h4>
 				</div>
@@ -276,8 +276,8 @@ text-align : center;
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab" id="headingOne1">
 					<h4 class="panel-title">
-						<a role="button" data-toggle="collapse" data-parent="#accordion5"
-							href="#panpi1" aria-expanded="true" aria-controls="collapseOne5">
+						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion5"
+							href="#panpi1" aria-expanded="false" aria-controls="collapseOne5">
 							제품정보 </a>
 					</h4>
 				</div>

@@ -1,13 +1,31 @@
 @charset "UTF-8";
 
-._list_pill_effects{
+a, a:hover{
+	color: #000000;
+	text-decoration: none;
+}
+
+._pill_list_names {
+	height: 60px;
+}
+
+._pill_list_ratings span{
+	margin-left: 5px;
+}
+
+._pill_list_companys {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+._pill_list_effects{
 	color: DodgerBlue;
 	font-size: 10px;
 	margin-top: 10px;
 	margin-bottom: 20px;
 }
 
-._list_pill_ingredients {
+._pill_list_ingredients {
 	color: green;
 	font-size: 10px;
 	margin-top: 20px;
@@ -15,19 +33,54 @@
 	min-height: 90px;
 }
 
-._list_pill_img {
-	
+.row {
+	margin: 0;
 }
 
-._list_pill_names {
-	height: 60px;
+.col-md-3 {
+	padding: 0 5px;
 }
 
-._list_pill_ratings span{
-	margin-left: 5px;
+._pill_list_thumnails {
+	display: flex;
+	border-radius: 4px; 
+	margin-top: 5px;
 }
 
-._list_pill_companys {
-	margin-top: 20px;
+._pill_list_thumbnail {
+	background-color:white;
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+    text-overflow: ellipsis;
+    padding:0 20px;
+    border-radius: 4px; 
+    box-shadow: 0 8px 38px rgba(133, 133, 133, 0.3), 0 5px 12px rgba(133, 133, 133,0.22);
+}
+
+._pill_list_thumbnail_img {
+	border: 1px solid white; 
+	border-radius: 4px; 
+	box-shadow: -10px 19px 38px rgba(83, 83, 83, 0.3), 10px 15px 12px rgba(80,80,80,0.22);
 	margin-bottom: 20px;
 }
+
+/* @media screen and (min-width:320px) and (max-width:667px){
+    ._pill_list_thumbnail{
+        width:100%;
+    }
+}
+
+@media screen and (min-width:320px) and (max-width:667px) and (orientation: portrait){
+    ._pill_list_thumbnail{
+        width:100%;
+        flex-direction: column;
+    }
+    ._pill_list_thumbnail_img{
+        top:0;
+        left:0;
+        width:100%;
+    }
+} */

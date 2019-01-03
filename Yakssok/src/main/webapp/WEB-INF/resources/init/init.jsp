@@ -8,6 +8,11 @@
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css" rel="stylesheet">
+<style type="text/css">
+	.container div article {
+		min-height: 700px;
+	}
+</style>
 
 
 

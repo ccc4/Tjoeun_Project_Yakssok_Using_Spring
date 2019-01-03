@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+/* 게시글 제목 길면 알아서 생략하게 */
+.title{
+	width: 300px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* 링크는 다 검은색 유지되게 */
+a, a:hover{
+	color: #000000;
+	text-decoration: none;
+}
+
+/* 
+.container div article {
+	min-height: 700px;
+} */
+
+.col-md-3{
+	padding: 0 10px;
+}
+
+.thumbnail{
+	margin-bottom: 0;
+}
+
+div.tn_name{
+	min-height: 60px;
+}
+
+._main_pill_ratings span{
+	margin-left: 5px;
+}
+._main_pill_rankings {
+	border: 1px solid black; 
+	border-radius: 4px; 
+	width: 100%; 
+	min-height: 400px; 
+	margin-bottom: 10px;
+}

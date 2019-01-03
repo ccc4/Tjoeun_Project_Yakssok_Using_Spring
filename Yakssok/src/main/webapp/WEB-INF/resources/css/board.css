@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/* 링크는 다 검은색 유지되게 */
+a, a:hover{
+	color: #000000;
+}
+
+a.h3{
+	text-decoration: none;
+}
+
+._board_list_subject {
+	margin-bottom: 10px;
+}
+
+/* 게시글 제목 길면 알아서 생략하게 */
+._board_list_title {
+	width: 300px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+._board_list {
+    
+}
+
+._board_list_table table{
+	margin: 0;
+}
+
+._board_list_pagenation nav {
+	height: 50px;
+}

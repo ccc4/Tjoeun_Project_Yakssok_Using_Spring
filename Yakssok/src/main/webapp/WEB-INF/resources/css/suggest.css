@@ -1,27 +1,27 @@
 @charset "UTF-8";
 
+.row {
+	margin: 0;
+}
+
 ._suggest_view {
-	display: flex;
-	flex-direction: column;
+	
 }
 
 ._suggest_view_state {
-	
+	border-bottom: 1px solid black;
 }
 
-._suggest_view_info_1 {
-	display: flex;
-}
-
-._suggest_view_info_2 {
-	
+._suggest_view_info {
+	border-bottom: 1px solid black;
 }
 
 ._suggest_view_title {
-	
+	border-bottom: 1px solid black;
 }
 
 ._suggest_view_contents {
+	border-bottom: 1px solid black;
 	min-height: 100px;
 }
 

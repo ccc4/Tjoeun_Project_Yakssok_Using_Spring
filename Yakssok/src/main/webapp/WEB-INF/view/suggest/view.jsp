@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/resources/init/init.jsp"/>
-<!-- suggest_css 적용 -->
 <link href="${pageContext.request.contextPath }/resources/css/suggest.css" rel="stylesheet">
 </head>
 <body>
@@ -31,15 +30,13 @@
 						<span class="label label-primary">${result.state }</span>
 					</c:if>
 				</div>
-				<div class="_suggest_view_info_1">
-					<div>닉네임</div>
-					<div>${result.nickname }</div>
-					<div>연락처</div>
-					<div>${result.tel }</div>
-				</div>
-				<div class="_suggest_view_info_2">
-					<span>이메일</span>
-					<span>${result.email }</span>
+				<div class="row _suggest_view_info">
+					<strong>닉네임 : </strong>
+					${result.nickname } | 
+					<strong>연락처 : </strong>
+					${result.tel } | 
+					<strong>이메일 : </strong>
+					${result.email }
 				</div>
 				<div class="_suggest_view_title">
 					${result.title }
