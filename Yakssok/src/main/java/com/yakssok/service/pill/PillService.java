@@ -18,6 +18,7 @@ import com.yakssok.model.pill.P_detail_2;
 import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_list;
+import com.yakssok.model.pill.P_mList;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
 import com.yakssok.model.pill.P_rating;
@@ -33,10 +34,25 @@ public class PillService {
 //	private static final int REVIEW_ONE_PAGE = 3;
 //	private static final int REVIEW_ONE_SECTION = 3;
 	private static final int REVIEW_ITEM_COUNT = 2;
+	private static final int MOBILE_LIST_ITEM_COUNT = 10;
 	
 	
 	@Autowired
 	private PillDAO dao;
+	
+	public int mAll_count() {
+		return dao.mAll_count();
+	}
+	
+	public List<P_mList> mList(Search_helper helper) {
+		List<P_mList> list = dao.mList(helper);
+		
+		for(P_mList item: list) {
+			item.setEffect_main(item.getEffect_main().replace("<br>", " | "));
+		}
+		
+		return list;
+	}
 	
 	public String review_list_ajax(int p_idx, int p_review_idx) {
 		Search_helper helper = new Search_helper();

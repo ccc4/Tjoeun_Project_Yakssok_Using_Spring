@@ -1,16 +1,23 @@
 package com.yakssok.controller.pill;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
+import com.yakssok.model.Search_helper;
 import com.yakssok.model.member.Member;
+import com.yakssok.model.pill.P_mList;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
+import com.yakssok.model.pill.p_mList_helper;
 import com.yakssok.service.pill.PillService;
 
 @RestController
@@ -133,6 +140,19 @@ public class PillRestController {
 		return service.review_list_ajax(p_idx, p_review_idx);
 	}
 	
-	
+	@RequestMapping(value="/mList/{choice}/{current_page}", method=RequestMethod.GET, 
+			produces="application/text; charset=utf8")
+	public String mList(@PathVariable String choice, @PathVariable int current_page) {
+		String strJson = "";
+		List<P_mList> list = null;
+		
+		Search_helper helper = new Search_helper(current_page, choice);
+			
+		p_mList_helper pmh = new p_mList_helper(service.mList(helper), service.mAll_count());
+		
+		Gson gson = new Gson();
+		strJson = gson.toJson(pmh);
+		return strJson;
+	}
 	
 }

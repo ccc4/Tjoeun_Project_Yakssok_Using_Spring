@@ -13,6 +13,7 @@ import com.yakssok.model.pill.P_detail_2;
 import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_list;
+import com.yakssok.model.pill.P_mList;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
@@ -26,6 +27,14 @@ public class PillDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	public int mAll_count() {
+		return sqlSession.selectOne(strNameSpace + ".mAll_count");
+	}
+	
+	public List<P_mList> mList(Search_helper helper) {
+		return sqlSession.selectList(strNameSpace + ".mList", helper);
+	}
 	
 	public List<P_review> review_list_ajax(Search_helper search_helper) {
 		return sqlSession.selectList(strNameSpace + ".review_list_ajax", search_helper);

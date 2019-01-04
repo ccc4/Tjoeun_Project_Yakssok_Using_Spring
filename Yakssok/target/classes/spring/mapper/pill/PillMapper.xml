@@ -4,6 +4,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="PillMapper">
+
+	<select id="mAll_count" resultType="int">
+		SELECT count(*) FROM p_list_view
+	</select>
+
+	<select id="mList" parameterType="search_helper" resultType="p_mList">
+		SELECT p_idx, name, effect_main, rating, total FROM p_list_view 
+		ORDER BY <include refid="p_mList_Search"/>
+		LIMIT #{current_page}, 10
+	</select>
+	
+	<sql id="p_mList_Search">
+		<if test="choice == '평점순'">
+			rating DESC, total DESC
+		</if>
+		<if test="choice == '이름순'">
+			name ASC
+		</if>
+	</sql>
 	
 	<select id="review_list_ajax" parameterType="search_helper" resultType="p_review">
 		SELECT * FROM p_review_view WHERE p_idx = #{p_idx} AND p_review_idx <![CDATA[>=]]> #{p_review_idx} ORDER BY p_review_idx DESC;
