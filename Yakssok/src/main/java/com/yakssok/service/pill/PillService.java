@@ -34,7 +34,6 @@ public class PillService {
 //	private static final int REVIEW_ONE_PAGE = 3;
 //	private static final int REVIEW_ONE_SECTION = 3;
 	private static final int REVIEW_ITEM_COUNT = 2;
-	private static final int MOBILE_LIST_ITEM_COUNT = 10;
 	
 	
 	@Autowired
