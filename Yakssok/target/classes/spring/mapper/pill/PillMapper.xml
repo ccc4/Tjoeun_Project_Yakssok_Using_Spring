@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="PillMapper">
 
+	<select id="mOne" parameterType="int" resultType="p_mOne">
+		SELECT p_idx, name, imgPath, rating, total FROM p_one_view WHERE p_idx = #{p_idx};
+	</select>
+
 	<select id="mAll_count" resultType="int">
 		SELECT count(*) FROM p_list_view
 	</select>
@@ -12,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="mList" parameterType="search_helper" resultType="p_mList">
 		SELECT p_idx, name, effect_main, rating, total FROM p_list_view 
 		ORDER BY <include refid="p_mList_Search"/>
-		LIMIT #{current_page}, 8
+		LIMIT #{p1}, #{p2}
 	</select>
 	
 	<sql id="p_mList_Search">

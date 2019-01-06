@@ -14,6 +14,7 @@ import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_list;
 import com.yakssok.model.pill.P_mList;
+import com.yakssok.model.pill.P_mOne;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
@@ -27,6 +28,10 @@ public class PillDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	public P_mOne mOne(int p_idx) {
+		return sqlSession.selectOne(strNameSpace + ".mOne", p_idx);
+	}
 	
 	public int mAll_count() {
 		return sqlSession.selectOne(strNameSpace + ".mAll_count");

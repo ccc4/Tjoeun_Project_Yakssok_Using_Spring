@@ -19,6 +19,7 @@ import com.yakssok.model.pill.P_effect;
 import com.yakssok.model.pill.P_ingredient;
 import com.yakssok.model.pill.P_list;
 import com.yakssok.model.pill.P_mList;
+import com.yakssok.model.pill.P_mOne;
 import com.yakssok.model.pill.P_one;
 import com.yakssok.model.pill.P_paging;
 import com.yakssok.model.pill.P_rating;
@@ -38,6 +39,13 @@ public class PillService {
 	
 	@Autowired
 	private PillDAO dao;
+	
+	public P_mOne mOne(int p_idx) {
+		P_mOne p_mOne = dao.mOne(p_idx);
+		// 리뷰 추가 예정 (리뷰 두개씩 어떻게 추가할지 생각)
+		
+		return p_mOne;
+	}
 	
 	public int mAll_count() {
 		return dao.mAll_count();

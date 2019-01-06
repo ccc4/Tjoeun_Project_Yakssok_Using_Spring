@@ -9,7 +9,6 @@ public class Search_helper {
 	private int p_review_idx;
 	
 	// android pill list option
-	private int current_page;
 	private String choice;
 	
 	
@@ -34,22 +33,14 @@ public class Search_helper {
 		this.p2 = p2;
 	}	
 	
-	public Search_helper(int current_page, String choice) {
-		super();
-		this.current_page = current_page;
+	public Search_helper(int p1, int p2, String choice) {
+		this.p1 = p1;
+		this.p2 = p2;
 		this.choice = choice;
 	}
 
 	
 	
-	
-	public int getCurrent_page() {
-		return current_page;
-	}
-
-	public void setCurrent_page(int current_page) {
-		this.current_page = current_page;
-	}
 
 	public String getChoice() {
 		return choice;

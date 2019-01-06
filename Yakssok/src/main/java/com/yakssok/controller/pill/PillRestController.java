@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yakssok.model.Search_helper;
 import com.yakssok.model.member.Member;
 import com.yakssok.model.pill.P_mList;
+import com.yakssok.model.pill.P_mOne;
 import com.yakssok.model.pill.P_rating;
 import com.yakssok.model.pill.P_review;
 import com.yakssok.model.pill.p_mList_helper;
@@ -24,6 +26,8 @@ import com.yakssok.service.pill.PillService;
 @RequestMapping("/pill")
 @SessionAttributes("loginMember")
 public class PillRestController {
+	
+	private static final int M_PILL_LIST_ONE_SECTION = 8;
 	
 	@Autowired
 	private PillService service;
@@ -146,12 +150,29 @@ public class PillRestController {
 		String strJson = "";
 		List<P_mList> list = null;
 		
-		Search_helper helper = new Search_helper(current_page, choice);
+		Search_helper helper = new Search_helper(current_page, M_PILL_LIST_ONE_SECTION, choice);
 			
 		p_mList_helper pmh = new p_mList_helper(service.mList(helper), service.mAll_count());
 		
 		Gson gson = new Gson();
 		strJson = gson.toJson(pmh);
+		return strJson;
+	}
+	
+	@RequestMapping(value="mView/{p_idx}", method=RequestMethod.GET, 
+			produces="application/text; charset=utf8")
+	public String mView(@PathVariable int p_idx) {
+		System.out.println("pill view 들어옴");
+		System.out.println("p_idx: " + p_idx);
+		
+		String strJson = "";
+		P_mOne p_mOne = null;
+		
+		p_mOne = service.mOne(p_idx);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+		strJson = gson.toJson(p_mOne); 
+		
 		return strJson;
 	}
 	
