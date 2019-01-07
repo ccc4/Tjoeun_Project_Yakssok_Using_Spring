@@ -29,6 +29,10 @@ public class PillDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	public List<P_review> mReview_list(int p_idx) {
+		return sqlSession.selectList(strNameSpace + ".mReview_list", p_idx);
+	}
+	
 	public P_mOne mOne(int p_idx) {
 		return sqlSession.selectOne(strNameSpace + ".mOne", p_idx);
 	}

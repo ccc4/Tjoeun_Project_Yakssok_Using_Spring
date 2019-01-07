@@ -169,6 +169,7 @@ public class PillRestController {
 		P_mOne p_mOne = null;
 		
 		p_mOne = service.mOne(p_idx);
+		p_mOne.setReview(service.mReview_list(p_idx));
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		strJson = gson.toJson(p_mOne); 

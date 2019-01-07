@@ -5,6 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
 <mapper namespace="PillMapper">
 
+	<select id="mReview_list" parameterType="int" resultType="p_review">
+		SELECT * FROM p_review_view WHERE p_idx = #{p_idx} ORDER BY p_review_idx DESC
+	</select>
+
 	<select id="mOne" parameterType="int" resultType="p_mOne">
 		SELECT p_idx, name, imgPath, rating, total FROM p_one_view WHERE p_idx = #{p_idx};
 	</select>

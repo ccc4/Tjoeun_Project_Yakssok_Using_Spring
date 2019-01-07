@@ -12,7 +12,6 @@ public class P_mOne {
 	private int total;
 	
 	private List<P_review> review;
-	private int review_all_count;
 	
 	public int getP_idx() {
 		return p_idx;
@@ -49,13 +48,7 @@ public class P_mOne {
 	}
 	public void setReview(List<P_review> review) {
 		this.review = review;
-	}
-	public int getReview_all_count() {
-		return review_all_count;
-	}
-	public void setReview_all_count(int review_all_count) {
-		this.review_all_count = review_all_count;
-	}
+	} 
 	
 	
 }

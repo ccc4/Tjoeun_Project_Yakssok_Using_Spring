@@ -40,11 +40,12 @@ public class PillService {
 	@Autowired
 	private PillDAO dao;
 	
+	public List<P_review> mReview_list(int p_idx) {
+		return dao.mReview_list(p_idx);
+	}
+	
 	public P_mOne mOne(int p_idx) {
-		P_mOne p_mOne = dao.mOne(p_idx);
-		// 리뷰 추가 예정 (리뷰 두개씩 어떻게 추가할지 생각)
-		
-		return p_mOne;
+		return dao.mOne(p_idx);
 	}
 	
 	public int mAll_count() {
