@@ -18,8 +18,8 @@ public class MobileController {
 	@RequestMapping(value="/API_Daum_Map_Drugstore/{lat}/{lon}", method=RequestMethod.GET)
 	public String API_Daum_Map_Drugstore(Model model, @PathVariable double lat, @PathVariable double lon) {
 		System.out.println("접속한 위치 : " + lat + ", " + lon);
-		model.addAttribute("latitude", lat);
-		model.addAttribute("logitude", lon);
+		model.addAttribute("lat", lat);
+		model.addAttribute("lon", lon);
 		return "API/API_Daum_Map_Drugstore";
 	}
 	

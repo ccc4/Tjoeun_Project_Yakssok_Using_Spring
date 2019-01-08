@@ -51,21 +51,30 @@
 //	var lat = ${lat};
 //	var lon = ${lon};
 // 전달받는 lat lon 값을 아래 적용시켜야함 !!!
-	if (navigator.geolocation) {
-		// GeoLocation을 이용해서 접속 위치를 얻어옵니다
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var lat = position.coords.latitude, // 위도
-			lon = position.coords.longitude; // 경도
-			
-			var locPosition = new daum.maps.LatLng(lat, lon);
-			// 마커 표시
-			displayMarker(locPosition);
-		});
-	    
-	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-	    var locPosition = new daum.maps.LatLng(33.450701, 126.570667);
-	    displayMarker(locPosition);
-	}
+	
+	
+//	
+//	
+//	if (navigator.geolocation) {
+//		// GeoLocation을 이용해서 접속 위치를 얻어옵니다
+//		navigator.geolocation.getCurrentPosition(function(position) {
+//			var lat = position.coords.latitude, // 위도
+//			lon = position.coords.longitude; // 경도
+//			
+//			var locPosition = new daum.maps.LatLng(lat, lon);
+//			// 마커 표시
+//			displayMarker(locPosition);
+//		});
+//	    
+//	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+//	    var locPosition = new daum.maps.LatLng(33.450701, 126.570667);
+//	    displayMarker(locPosition);
+//	}
+//	
+//	
+	
+	
+	
 
 	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
 	function displayMarker(locPosition) {

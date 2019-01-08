@@ -21,12 +21,6 @@
 	
 	
 	
-	
-	
-	
-	// 지도 컨트롤 추가함
-	
-	
 	// 지도 타입 변경 컨트롤을 생성한다
 	var mapTypeControl = new daum.maps.MapTypeControl();
 
