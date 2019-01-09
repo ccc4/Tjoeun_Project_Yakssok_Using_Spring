@@ -42,16 +42,18 @@
 	var lon = ${lon};
 	
 	if (lat != null && lon != null) {
+		alert("1");
 		var locPosition = new daum.maps.LatLng(lat, lon);
 		displayMarker(locPosition);
 	} else {
+		alert("2");
 	    var locPosition = new daum.maps.LatLng(37.3218, 127.0817);
 	    /* var locPosition = new daum.maps.LatLng(33.450701, 126.570667); */
 	    displayMarker(locPosition);
 	}
 	
 	function displayMarker(locPosition) {
-		
+		alert("3");
 		var marker = new daum.maps.Marker({
 			map: map, 
 		    position: locPosition
