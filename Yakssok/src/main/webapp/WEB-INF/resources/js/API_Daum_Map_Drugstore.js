@@ -274,21 +274,3 @@
 	        searchPlaces();
 	    }
 	}
-	
-	
-	// 클릭할 일 없으니 주석처리
-	
-	 /* // 클릭된 카테고리에만 클릭된 스타일을 적용하는 함수입니다
-	function changeCategoryClass(el) {
-	    var category = document.getElementById('category'),
-	        children = category.children,
-	        i;
-	
-	    for ( i=0; i<children.length; i++ ) {
-	        children[i].className = '';
-	    }
-	
-	    if (el) {
-	        el.className = 'on';
-	    } 
-	} */
