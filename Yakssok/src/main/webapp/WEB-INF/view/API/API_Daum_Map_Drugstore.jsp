@@ -8,20 +8,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/img/Yakssok_Icon.ico">
 <title>약쏙</title>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <link href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/css/bootstrap-theme.min.css" rel="stylesheet">
-<style type="text/css">
-	.container div article {
-		min-height: 700px;
-	}
-</style>
-
-<!-- 카카오 맵 api -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=769b0855ff503f0c21d8ca6171bac898&libraries=services"></script>
-
-
 <link href="${pageContext.request.contextPath }/resources/css/API_Daum_Map_Drugstore.css" rel="stylesheet">
 </head>
 <body>
@@ -49,6 +38,9 @@
 	</div>
 	<!-- 본문 끝 -->
 	
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- 카카오 맵 api -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=769b0855ff503f0c21d8ca6171bac898&libraries=services"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/API_Daum_Map_Drugstore_M.js"></script>
 <!-- 
 <script type="text/javascript">
@@ -56,18 +48,15 @@
 	var lon = ${lon};
 	
 	if (lat != null && lon != null) {
-		alert("1");
 		var locPosition = new daum.maps.LatLng(lat, lon);
 		displayMarker(locPosition);
 	} else {
-		alert("2");
-	    var locPosition = new daum.maps.LatLng(37.3218, 127.0817);
-	    /* var locPosition = new daum.maps.LatLng(33.450701, 126.570667); */
+	    /* var locPosition = new daum.maps.LatLng(37.3218, 127.0817); */
+	    var locPosition = new daum.maps.LatLng(33.450701, 126.570667);
 	    displayMarker(locPosition);
 	}
 	
 	function displayMarker(locPosition) {
-		alert("3");
 		var marker = new daum.maps.Marker({
 			map: map, 
 		    position: locPosition
