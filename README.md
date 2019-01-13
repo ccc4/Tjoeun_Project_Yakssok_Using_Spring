@@ -1,4 +1,4 @@
-# 약쏙(Yakssok) - 약 정보 쏙쏙!
+# ![alt text](Tjoeun_Project_Yakssok_Using_Spring/Yakssok/src/main/webapp/WEB-INF/resources/img/Yakssok_Icon.ico) 약쏙(Yakssok) - 약 정보 쏙쏙!
 ***
 ## 0. 목차
 ```
