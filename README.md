@@ -1,6 +1,5 @@
-# 
-<img src="https://github.com/ccc4/Tjoeun_Project_Yakssok_Using_Spring/blob/master/Yakssok/src/main/webapp/WEB-INF/resources/img/Yakssok_Icon.ico" width="20px" /> 약쏙(Yakssok) - 약 정보 쏙쏙!
-***
+# <img src="https://github.com/ccc4/Tjoeun_Project_Yakssok_Using_Spring/blob/master/Yakssok/src/main/webapp/WEB-INF/resources/img/Yakssok_Icon.ico" width="25px" /> 약쏙(Yakssok) - 약 정보 쏙쏙!
+
 ## 0. 목차
 ```
 1. 소개
