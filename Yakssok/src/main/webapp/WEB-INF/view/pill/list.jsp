@@ -56,10 +56,10 @@
 									<div class="_pill_list_thumbnail_img">
 										<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=${p.page}&option=${p.option}&keyword=${p.keyword}">
 											<c:if test="${!empty l.imgPath }"> 
-													<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}" width="200px">
+													<img src="${pageContext.request.contextPath }/resources/img/pill/img/${l.imgPath}" alt="${l.imgPath}">
 											</c:if>
 											<c:if test="${empty l.imgPath }">
-													<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음" width="200px">
+													<img src="${pageContext.request.contextPath }/resources/img/1.png" alt="이미지없음">
 											</c:if>
 										</a>
 									</div>

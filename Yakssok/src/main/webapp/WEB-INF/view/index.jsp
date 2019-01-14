@@ -38,6 +38,85 @@
 			</div>
 			<!-- 의약품 검색 끝-->
 			
+			
+			
+			<div class="_main_ranking">
+				<div>
+					<ul class="_main_ranking_effects">
+						<li onclick="alert('hi');">두통</li>
+						<li>해열</li>
+						<li>소화</li>
+						<li>비타민</li>
+					</ul>
+				</div>
+				
+				<div class="_main_ranking_contents">
+					<div class="_main_ranking_content">
+						<div class="_main_ranking_rank">
+							
+						</div>
+						<img class="_main_ranking_content_img" src="${pageContext.request.contextPath }/resources/img/1.png" alt="test" >
+						<h4 class="_main_ranking_content_name">약이름 </h4>
+						<div class="_main_ranking_content_rating">
+							<img src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" alt="rating_state">
+							<p>66%</p>
+						</div>
+					</div>
+					
+					<div class="_main_ranking_content">
+						<div class="_main_ranking_rank">
+							
+						</div>
+						<img class="_main_ranking_content_img" src="${pageContext.request.contextPath }/resources/img/1.png" alt="test" >
+						<h4 class="_main_ranking_content_name">약이름 </h4>
+						<div class="_main_ranking_content_rating">
+							<img src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" alt="rating_state">
+							<p>66%</p>
+						</div>
+					</div>
+					<div class="_main_ranking_content">
+						<div class="_main_ranking_rank">
+							
+						</div>
+						<img class="_main_ranking_content_img" src="${pageContext.request.contextPath }/resources/img/1.png" alt="test" >
+						<h4 class="_main_ranking_content_name">약이름 </h4>
+						<div class="_main_ranking_content_rating">
+							<img src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" alt="rating_state">
+							<p>66%</p>
+						</div>
+					</div>
+					<div class="_main_ranking_content">
+						<div class="_main_ranking_rank">
+							
+						</div>
+						<img class="_main_ranking_content_img" src="${pageContext.request.contextPath }/resources/img/1.png" alt="test" >
+						<h4 class="_main_ranking_content_name">약이름 </h4>
+						<div class="_main_ranking_content_rating">
+							<img src="${pageContext.request.contextPath }/resources/img/pill/rating/none.png" alt="rating_state">
+							<p>66%</p>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<script type="text/javascript">
+				const ul = document.querySelector("._main_ranking_effects");
+				const lis = ul.querySelectorAll("li");
+				
+				lis.forEach(function(li) {
+					li.addEventListener("click", function() {
+						const value = li.textContent
+						alert(value);
+					})
+				})
+				
+				
+			
+			</script>
+			
+			
+			<%-- 
 			<!-- 약 효과 랭킹 -->
 			<div class="_main_pill_rankings">
 				<div>
@@ -213,6 +292,7 @@
 				<!-- 썸네일 틀 끝 -->
 			</div>
 			<!-- 약 효과 랭킹 끝-->
+	 --%>
 	 
 	 
 	 

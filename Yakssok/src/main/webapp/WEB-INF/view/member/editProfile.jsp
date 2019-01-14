@@ -26,7 +26,7 @@
 	<jsp:include page="/WEB-INF/resources/init/header.jsp"/>
 	
 	<div style="width: 100%; text-align: center">
-	<div style="display: inline-block; text-align: left; width: 250px">
+	<div style="display: inline-block; text-align: left;">
 	
 		<h3>회원정보 수정</h3>
 		<form action="${pageContext.request.contextPath}/member/editProfile" method="post">
@@ -83,7 +83,7 @@
 			</table>
 			<button class="btn btn-default pull-right" type="submit" onclick="location.href='history.back()'">뒤로</button>
 			<button class="btn btn-default pull-right modify" type="submit">수정</button>
-			<button class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete'">회원탈퇴</button>
+			<button disabled class="btn btn-default pull-right" type="button" onclick="location.href='${pageContext.request.contextPath}/member/delete'">회원탈퇴</button>
 		</diV>
 		</form>
 		</div>

@@ -21,8 +21,18 @@
 
 <nav class="navbar navbar-inverse" style="margin-bottom: 20px">
   <div class="container-fluid">
+  
+  	<div class="navbar-header">
+  		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#_header_navbar">
+  			<span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+  		</button>
+  	
+  	</div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="_header_navbar">
       <ul class="nav navbar-nav">
         <li><a href="${pageContext.request.contextPath }/"><font color="white">메인</font></a></li>
         
