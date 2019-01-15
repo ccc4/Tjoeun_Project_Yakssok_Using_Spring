@@ -100,7 +100,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-
 	<select id="all_count" parameterType="search_helper" resultType="int">
 		<include refid="search_count"/>
 	</select>
@@ -112,7 +111,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<sql id="search_count">
 		<if test="option == '성분(영문/한글)'">
-			SELECT COUNT(distinct p.p_idx) 
+			SELECT count(distinct p.p_idx) 
 			FROM p_ingredient pi JOIN p_list_view p ON pi.p_idx = p.p_idx 
 			WHERE eng LIKE CONCAT('%', #{keyword}, '%') OR kor like CONCAT('%', #{keyword}, '%')
 		</if>

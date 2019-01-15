@@ -76,11 +76,11 @@ public class PillService {
 			for(int i=0;i<list.size();i++) {
 				str += "<tbody>";
 				str += "<tr id=\"review_" + list.get(i).getP_review_idx() + "\">";
-				str += "<td class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
-				str += "<td class=\"td_contents\">" + list.get(i).getContents() + "</td>";
-				str += "<td class=\"td_writeDate\">" + pattern.format(list.get(i).getWriteDate()) + "</td>";
-				str += "<td class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
-				str += "<td class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
+				str += "<td width=\"35\" class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
+				str += "<td width=\"150\" class=\"td_contents\">" + list.get(i).getContents() + "</td>";
+				str += "<td width=\"50\" class=\"td_writeDate\">" + pattern.format(list.get(i).getWriteDate()) + "</td>";
+				str += "<td width=\"20\" class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
+				str += "<td width=\"20\" class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
 				str += "</tr>";
 				str += "</tbody>";
 			}
@@ -103,11 +103,11 @@ public class PillService {
 			for(int i=0;i<list.size();i++) {
 				str += "<tbody>";
 				str += "<tr id=\"review_" + list.get(i).getP_review_idx() + "\">";
-				str += "<td class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
-				str += "<td class=\"td_contents\">" + list.get(i).getContents() + "</td>";
-				str += "<td class=\"td_writeDate\">" + pattern.format(list.get(i).getWriteDate()) + "</td>";
-				str += "<td class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
-				str += "<td class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
+				str += "<td width=\"35\" class=\"td_nickname\">" + list.get(i).getNickname() + "</td>";
+				str += "<td width=\"150\" class=\"td_contents\">" + list.get(i).getContents() + "</td>";
+				str += "<td width=\"50\" class=\"td_writeDate\">" + pattern.format(list.get(i).getWriteDate()) + "</td>";
+				str += "<td width=\"20\" class=\"td_btn\"><button class=\"btn btn-default modify_review_btn\" type=\"button\" onclick=\"modify_review(this, " + list.get(i).getP_review_idx() + ")\">수정</button></td>";
+				str += "<td width=\"20\" class=\"td_btn\"><button class=\"btn btn-default delete_review_btn\" type=\"button\" onclick=\"delete_review(this, " + list.get(i).getP_review_idx() + ")\">삭제</button></td>";
 				str += "</tr>";
 				str += "</tbody>";
 			}

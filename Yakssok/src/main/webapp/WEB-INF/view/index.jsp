@@ -38,8 +38,8 @@
 			</div>
 			<!-- 의약품 검색 끝-->
 			
-			
-			
+			<%-- 
+			<!-- 랭킹 테스트 중 -->
 			<div class="_main_ranking">
 				<div>
 					<ul class="_main_ranking_effects">
@@ -114,11 +114,14 @@
 				
 			
 			</script>
+			 --%>
 			
 			
-			<%-- 
+			
+			
+			<!-- original -->
 			<!-- 약 효과 랭킹 -->
-			<div class="_main_pill_rankings">
+			<div class="_main_ranking">
 				<div>
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#두통" data-toggle="tab">두통</a></li>
@@ -144,9 +147,9 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div class="tn_name">
+			<div class="_main_pill_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
+					${l.name }
 				</a>
 			</div>
 			<!-- rating -->
@@ -184,13 +187,13 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div class="tn_name">
+			<div class="_main_pill_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
+					${l.name }
 				</a>
 			</div>
 			<!-- rating -->
-			<div id="rating">
+			<div id="rating" class="_main_pill_ratings">
 		        <c:if test="${l.rating >= 50}">
 		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
 	        	</c:if>
@@ -223,13 +226,13 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div class="tn_name">
+			<div class="_main_pill_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
+					${l.name }
 				</a>
 			</div>
 			<!-- rating -->
-			<div id="rating">
+			<div id="rating" class="_main_pill_ratings">
 		        <c:if test="${l.rating >= 50}">
 		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
 	        	</c:if>
@@ -262,13 +265,13 @@
 			</c:if>
 		</a>
 		<div class="caption">
-			<div class="tn_name">
+			<div class="_main_pill_name">
 				<a href="${pageContext.request.contextPath }/pill/view/${l.p_idx}?page=1">
-					<span class="h5">${l.name }</span>
+					${l.name }
 				</a>
 			</div>
 			<!-- rating -->
-			<div id="rating">
+			<div id="rating" class="_main_pill_ratings">
 		        <c:if test="${l.rating >= 50}">
 		        	<img alt="" src="${pageContext.request.contextPath }/resources/img/pill/rating/good.png" width="40"><span>${l.rating } %</span>
 	        	</c:if>
@@ -292,7 +295,6 @@
 				<!-- 썸네일 틀 끝 -->
 			</div>
 			<!-- 약 효과 랭킹 끝-->
-	 --%>
 	 
 	 
 	 

@@ -14,15 +14,19 @@ a, a:hover{
 	text-decoration: none;
 }
 
-/* 
+
+
+
+
 .container div article {
 	min-height: 700px;
-} */
 
+}
 
-
-
-/* 
+._main_ranking{
+ 	height: 400px;
+ 	margin-bottom: 20px;
+ }
 .col-md-3{
 	padding: 0 10px;
 }
@@ -31,8 +35,8 @@ a, a:hover{
 	margin-bottom: 0;
 }
 
-div.tn_name{
-	min-height: 60px;
+._main_pill_name{
+	height: 60px;
 }
 
 ._main_pill_ratings span{
@@ -42,14 +46,18 @@ div.tn_name{
 	border: 1px solid black; 
 	border-radius: 4px; 
 	width: 100%; 
-	min-height: 400px; 
+	height: 400px; 
 	margin-bottom: 10px;
 }
- */
- 
- 
- 
- 
+
+
+
+
+
+
+
+/*  
+랭킹테스트 
  ._main_ranking{
  	height: 400px;
  	margin-bottom: 20px;
@@ -120,11 +128,22 @@ div.tn_name{
  	padding: 0;
  	
  }
+ */
+
+
+
  
- 
- 
- 
- 
+ /* 
+ .main_board{
+ 	padding: 50px;
+ 	width: 100%;
+ 	display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+    
+ }
+  */
  
  
  
